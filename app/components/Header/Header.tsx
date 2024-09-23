@@ -1,8 +1,13 @@
 "use client";
 import { usePathname } from "next/navigation";
+import React from "react";
 import { type ChildrenProps } from "../InterfaceType";
 
-function Header({ children }: ChildrenProps) {
+interface HeaderProps extends ChildrenProps {
+  advertisement: React.ReactNode;
+}
+
+function Header({ children, advertisement }: HeaderProps) {
   const pathname: string = usePathname();
   const isHomePage: boolean = pathname === "/";
 
@@ -10,7 +15,7 @@ function Header({ children }: ChildrenProps) {
     <div className="relative">
       {isHomePage && (
         <video
-          className="w-full h-full  object-cover absolute z-0 "
+          className="w-full h-full object-cover absolute z-0"
           autoPlay
           muted
           loop
@@ -22,8 +27,8 @@ function Header({ children }: ChildrenProps) {
         </video>
       )}
       <div className="relative z-10">
-        <div className="p-4">{children}</div>
-        {isHomePage && <div>This is homepage content</div>}
+        <div className="p-12">{children}</div>
+        {isHomePage && advertisement}
       </div>
     </div>
   );
