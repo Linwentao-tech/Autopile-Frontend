@@ -1,6 +1,9 @@
 import { type ChildrenProps } from "./InterfaceType";
 
-type ButtonType = "orange_button" | "transparent-button";
+type ButtonType =
+  | "orange_button"
+  | "transparent-button"
+  | "Add_to_cart_homepage";
 
 interface ButtonProps extends ChildrenProps {
   type: ButtonType;
@@ -11,7 +14,7 @@ function Button({ children, type }: ButtonProps) {
     return (
       <div>
         <button
-          className={`bg-orange-700 px-5 py-3 text-black rounded-full hover:border-white transition-all hover:bg-transparent hover:text-white border-2 border-transparent duration-500`}
+          className={`bg-orange-700 px-7 py-4 text-black rounded-full hover:border-white transition-all hover:bg-transparent hover:text-white border-2 border-transparent duration-500`}
         >
           {children}
         </button>
@@ -23,6 +26,17 @@ function Button({ children, type }: ButtonProps) {
         <button
           className="bg-transparent text-white px-8 py-3  rounded-full  border-2 border-white  hover:bg-orange-700 hover:text-black hover:border-orange-700 
         transition-all duration-500"
+        >
+          {children}
+        </button>
+      </div>
+    );
+  if (type == "Add_to_cart_homepage")
+    return (
+      <div>
+        <button
+          className="bg-transparent text-white px-14 py-3  rounded-full  border-2 border-white  hover:bg-white hover:text-black hover:border-white
+          transition-all duration-500"
         >
           {children}
         </button>
