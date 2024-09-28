@@ -17,7 +17,7 @@ function LearnMore() {
       />
       <div className="relative z-10 p-6 text-white">
         <div className="relative ml-5 ">
-          <h1 className="text-5xl mb-24 font-smibold ">
+          <h1 className="text-5xl mb-24 font-smibold pt-40 ">
             The One-Stop Shop for <br />
             Automotive Enthusiasts
           </h1>

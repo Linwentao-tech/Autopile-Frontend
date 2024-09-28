@@ -1,6 +1,8 @@
+"use client";
 import Link from "next/link";
 import React, { Fragment } from "react";
 import { type SvgLogoProps } from "../InterfaceType";
+import { usePathname, useRouter } from "next/navigation";
 
 type IconType = "iconA" | "iconB" | "iconC";
 
@@ -16,9 +18,28 @@ interface IconProps extends SvgLogoProps {
 type SvgLogoType = LogoProps | IconProps;
 function SvgLogo(props: SvgLogoType) {
   const { width, height, type } = props;
+  const pathname: string = usePathname();
+  const router = useRouter();
+  const isHomePage: boolean = pathname === "/";
   if (type == "logo") {
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+      e.preventDefault();
+
+      if (isHomePage) {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth",
+        });
+      } else {
+        router.push("/");
+      }
+    };
     return (
-      <Link href="/" className="flex items-center space-x-2 text-xl">
+      <Link
+        href="/"
+        className="flex items-center space-x-2 text-xl"
+        onClick={handleClick}
+      >
         <svg
           preserveAspectRatio="xMidYMid meet"
           viewBox="10 55 180 90"

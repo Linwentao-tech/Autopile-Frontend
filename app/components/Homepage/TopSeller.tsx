@@ -24,7 +24,7 @@ function TopSeller({ products }: { products: Product[] }) {
 
   return (
     <section className="w-full mt-20 mb-44">
-      <h1 className="text-4xl mb-6 px-4">Top Sellers</h1>
+      <h1 className="text-4xl mb-6 px-4 mx-8">Top Sellers</h1>
       <div className="relative">
         {currentPage === 1 && (
           <button
@@ -56,14 +56,17 @@ function TopSeller({ products }: { products: Product[] }) {
             {products.map((product: Product) => (
               <li key={product.id} className="flex-none w-1/5 px-2">
                 <div className="flex flex-col items-center">
-                  <div className="relative w-full pt-[100%] ">
+                  <div className="relative w-full pt-[140%]">
                     <Image
                       src={product.media[0].fullUrl}
                       alt={product.name}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 20vw"
-                      className="rounded-lg"
+                      className="rounded-lg object-cover"
                     />
+                    <div className="absolute top-2 left-2 bg-orange-500 text-white px-2 py-1 rounded-md text-sm font-semibold z-10">
+                      Best Seller
+                    </div>
                   </div>
                   <h2 className="mt-2 text-center text-2xl font-medium">
                     {product.name}

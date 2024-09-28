@@ -12,7 +12,7 @@ function Category() {
         <h1 className="text-2xl sm:text-3xl mb-4 sm:mb-0">Shop by Category</h1>
         <Button type="transparent-button">Shop</Button>
       </header>
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-8 ">
+      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 ">
         {[image1, image2, image3, image4].map((image, index) => (
           <div
             key={index}

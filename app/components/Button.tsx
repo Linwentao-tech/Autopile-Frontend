@@ -3,7 +3,8 @@ import { type ChildrenProps } from "./InterfaceType";
 type ButtonType =
   | "orange_button"
   | "transparent-button"
-  | "Add_to_cart_homepage";
+  | "Add_to_cart_homepage"
+  | "orange_submit_button";
 
 interface ButtonProps extends ChildrenProps {
   type: ButtonType;
@@ -15,6 +16,16 @@ function Button({ children, type }: ButtonProps) {
       <div>
         <button
           className={`bg-orange-700 px-7 py-4 text-black rounded-full hover:border-white transition-all hover:bg-transparent hover:text-white border-2 border-transparent duration-500`}
+        >
+          {children}
+        </button>
+      </div>
+    );
+  if (type == "orange_submit_button")
+    return (
+      <div>
+        <button
+          className={`bg-orange-700 px-12 py-2 ml-56 mt-4 text-black rounded-full hover:border-white transition-all hover:bg-transparent hover:text-white border-2 border-transparent duration-500`}
         >
           {children}
         </button>

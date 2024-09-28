@@ -1,5 +1,5 @@
+import { type StaticImageData } from "next/image";
 import { type ReactNode } from "react";
-
 export interface ChildrenProps {
   children: ReactNode;
 }
@@ -40,4 +40,40 @@ export interface Product {
     mode: string;
     value: number;
   };
+}
+
+export interface Review {
+  id: number;
+  title: string;
+  subtitle: string;
+  content: string;
+  design: string;
+  tags: string[];
+  stun: string;
+  inspire: string;
+  imageUrl: string;
+}
+
+export interface ReviewCardProps {
+  id: number;
+  img: string;
+  title: string;
+  subtitle: string;
+  type?: "homepage";
+}
+
+export interface FooterSectionProps {
+  title: string;
+  items: string[];
+}
+
+export interface PaymentIconProp {
+  src: StaticImageData;
+}
+export interface IFormInputs {
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone: string;
+  subscribe: boolean;
 }
