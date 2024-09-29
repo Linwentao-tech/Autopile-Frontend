@@ -6,7 +6,7 @@ function Navigation() {
       <ul className="flex space-x-4 ">
         <li>
           <Link
-            href="/parts"
+            href="/category/all-products"
             className="hover:text-orange-500 transition-colors duration-500 "
           >
             Shop Parts
@@ -14,7 +14,7 @@ function Navigation() {
         </li>
         <li>
           <Link
-            href="/wholesale"
+            href="/category/wholesale"
             className="hover:text-orange-500 transition-colors duration-500 "
           >
             Wholesale

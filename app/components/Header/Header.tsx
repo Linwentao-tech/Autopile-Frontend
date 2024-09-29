@@ -15,9 +15,9 @@ function Header({ children, advertisement, premiumArea }: HeaderProps) {
   const pathname: string = usePathname();
   const isHomePage: boolean = pathname === "/";
   const isPremiumPage: boolean = pathname === "/premium";
-  const isPartsPage: boolean = pathname === "/parts";
+  const isPartsPage: boolean = pathname === "/category/all-products";
   const isReviewsPage: boolean = pathname === "/reviews";
-  const isWholesalePage: boolean = pathname === "/wholesale";
+  const isWholesalePage: boolean = pathname === "/category/wholesale";
   return (
     <div className="relative">
       {isHomePage && (
@@ -46,7 +46,7 @@ function Header({ children, advertisement, premiumArea }: HeaderProps) {
         <Image
           src={background}
           alt="background"
-          className="w-full h-full object-cover absolute z-0 filter brightness-200 "
+          className="w-full h-full absolute z-0 filter brightness-200"
           placeholder="blur"
           fill
         />

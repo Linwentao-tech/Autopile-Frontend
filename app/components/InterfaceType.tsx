@@ -11,35 +11,51 @@ export interface SvgLogoProps {
 
 export interface Product {
   id: string;
-  name: string;
+  options: [];
+  customTextFields: [];
   productType: string;
-  ribbon: string;
+  ribbon: string | null;
   price: number;
-  comparePrice: number;
+  comparePrice: number | null;
   sku: string;
   isInStock: boolean;
   urlPart: string;
-  formattedComparePrice: string;
+  formattedComparePrice: string | null;
   formattedPrice: string;
+  pricePerUnit: null | number;
+  formattedPricePerUnit: null | string;
+  pricePerUnitData: null;
+  itemDiscount: null;
+  digitalProductFileItems: [];
+  name: string;
   media: {
     url: string;
     fullUrl: string;
     index: number;
     width: number;
     mediaType: string;
-    altText: string;
+    altText: string | null;
     title: string;
     height: number;
   }[];
+  isManageProductItems: boolean;
+  productItemsPreOrderAvailability: string;
+  isTrackingInventory: boolean;
   inventory: {
     status: string;
     quantity: number;
     availableForPreOrder: boolean;
+    preOrderInfoView: {
+      limit: null | number;
+    };
+  };
+  subscriptionPlans: {
+    list: [];
   };
   discount: {
     mode: string;
     value: number;
-  };
+  } | null;
 }
 
 export interface Review {
@@ -77,3 +93,17 @@ export interface IFormInputs {
   phone: string;
   subscribe: boolean;
 }
+export interface ProductCardProps {
+  productName: string;
+  productImage: string;
+  productRibbon: string | null;
+  productComparePrice: string | null;
+  productPrice: string;
+}
+
+export type ButtonType =
+  | "orange_button"
+  | "transparent-button"
+  | "Add_to_cart_homepage"
+  | "orange_submit_button"
+  | "Add_to_cart_productPage";

@@ -62,9 +62,9 @@ function TopSeller({ products }: { products: Product[] }) {
                       alt={product.name}
                       fill
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 20vw"
-                      className="rounded-lg object-cover"
+                      className=" object-cover"
                     />
-                    <div className="absolute top-2 left-2 bg-orange-500 text-white px-2 py-1 rounded-md text-sm font-semibold z-10">
+                    <div className="absolute top-0 left-0 bg-orange-500 text-white px-2 py-1  text-sm font-semibold z-10">
                       Best Seller
                     </div>
                   </div>
