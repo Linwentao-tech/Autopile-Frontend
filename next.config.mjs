@@ -12,6 +12,16 @@ const nextConfig = {
       },
     ],
   },
+  webpack: (config, { isServer }) => {
+    if (isServer) {
+      config.externals.push("sharp");
+    }
+    return config;
+  },
+  experimental: {
+    optimizeCss: true,
+    optimizeImages: true,
+  },
 };
 
 export default withPlaiceholder(nextConfig);
