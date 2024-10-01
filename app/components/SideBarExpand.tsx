@@ -1,15 +1,15 @@
 "use client";
 
-import { memo, useCallback, useState } from "react";
+import { memo, useCallback, useState, useEffect } from "react";
 import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
 
 function valuetext(value: number) {
   return value.toString();
 }
 
-// Create a custom styled Slider
 const WhiteSlider = styled(Slider)({
   color: "white",
   "& .MuiSlider-thumb": {
@@ -32,6 +32,27 @@ function RangeSlider({ onValueChange }: RangeSliderProps) {
   const [displayMin, setDisplayMin] = useState(0);
   const [displayMax, setDisplayMax] = useState(130);
 
+  const searchParams = useSearchParams();
+  const pathName = usePathname();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (displayMin === 0 && displayMax === 130) {
+      const params = new URLSearchParams(searchParams);
+      params.delete("minPrice");
+      params.delete("maxPrice");
+      const newPath = params.toString()
+        ? `${pathName}?${params.toString()}`
+        : pathName;
+      router.replace(newPath, { scroll: false });
+    } else {
+      const params = new URLSearchParams(searchParams);
+      params.set("minPrice", displayMin.toString());
+      params.set("maxPrice", displayMax.toString());
+      router.replace(`${pathName}?${params.toString()}`, { scroll: false });
+    }
+  }, [displayMin, displayMax, pathName, router, searchParams]);
+
   const handleChange = useCallback(
     (event: Event, newValue: number | number[]) => {
       const newValueArray = newValue as number[];
@@ -47,8 +68,6 @@ function RangeSlider({ onValueChange }: RangeSliderProps) {
     (event: React.SyntheticEvent | Event, newValue: number | number[]) => {
       if (Array.isArray(newValue)) {
         const [newMinPrice, newMaxPrice] = newValue;
-        console.log("Final value:", newValue);
-        console.log("Min Price:", newMinPrice, "Max Price:", newMaxPrice);
         setDisplayMin(newMinPrice);
         setDisplayMax(newMaxPrice);
       }
@@ -59,12 +78,14 @@ function RangeSlider({ onValueChange }: RangeSliderProps) {
   return (
     <Box sx={{ width: 220 }}>
       <WhiteSlider
-        getAriaLabel={() => "Temperature range"}
+        getAriaLabel={() => "Price range"}
         value={value}
         onChange={handleChange}
         onChangeCommitted={handleChangeCommitted}
         valueLabelDisplay="auto"
         getAriaValueText={valuetext}
+        min={0}
+        max={130}
       />
       <div className="flex justify-between">
         <span>${displayMin}</span>

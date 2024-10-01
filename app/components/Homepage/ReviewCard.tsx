@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ReviewCardProps } from "../InterfaceType";
+import DynamicReviewsPictureBlur from "../DynamicReviewsPictureBlur";
 
 function ReviewCard({ id, img, title, subtitle, type }: ReviewCardProps) {
   const [isLiked, setIsLiked] = useState(false);
@@ -9,15 +10,7 @@ function ReviewCard({ id, img, title, subtitle, type }: ReviewCardProps) {
     if (id !== 4) {
       return (
         <section className="border border-gray-800 max-w-sm">
-          <div className="relative w-full aspect-[4/3]">
-            <Image
-              src={img}
-              alt={title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
-          </div>
+          <DynamicReviewsPictureBlur src={img} title={title} />
           <section className="px-6">
             <h1 className="text-lg font-bold my-6 break-words">{title}</h1>
             <h2 className="my-6 break-words text-sm">

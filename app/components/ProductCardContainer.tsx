@@ -1,9 +1,9 @@
-import { Product, ProductCardProps } from "./InterfaceType";
+import {
+  type Product,
+  type ProductCardContainerProps,
+  type ProductCardProps,
+} from "./InterfaceType";
 import ProductCard from "./ProductCard";
-
-interface ProductCardContainerProps {
-  products: Product[];
-}
 
 function ProductCardContainer({ products }: ProductCardContainerProps) {
   return (

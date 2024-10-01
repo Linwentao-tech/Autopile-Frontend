@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import Image from "next/image";
 import { Product } from "../InterfaceType";
 import Button from "../Button";
+import DynamicTopSellers from "../DynamicTopSellers";
 
 function TopSeller({ products }: { products: Product[] }) {
   const [currentPage, setCurrentPage] = useState(0);
@@ -57,12 +57,9 @@ function TopSeller({ products }: { products: Product[] }) {
               <li key={product.id} className="flex-none w-1/5 px-2">
                 <div className="flex flex-col items-center">
                   <div className="relative w-full pt-[140%]">
-                    <Image
+                    <DynamicTopSellers
                       src={product.media[0].fullUrl}
                       alt={product.name}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 20vw"
-                      className=" object-cover"
                     />
                     <div className="absolute top-0 left-0 bg-orange-500 text-white px-2 py-1  text-sm font-semibold z-10">
                       Best Seller

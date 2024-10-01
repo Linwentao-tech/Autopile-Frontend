@@ -107,3 +107,16 @@ export type ButtonType =
   | "Add_to_cart_homepage"
   | "orange_submit_button"
   | "Add_to_cart_productPage";
+
+export interface ProductCardContainerProps {
+  products: Product[];
+}
+
+export interface SearchParams {
+  minPrice?: string;
+  maxPrice?: string;
+}
+
+export interface PageProps {
+  searchParams: SearchParams;
+}
