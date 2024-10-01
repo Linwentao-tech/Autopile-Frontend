@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
 import { getPlaiceholder } from "plaiceholder";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
   const url = request.nextUrl.searchParams.get("url");
@@ -10,6 +10,7 @@ export async function GET(request: NextRequest) {
 
   try {
     const buffer = await fetch(url).then(async (res) => {
+      if (!res.ok) throw new Error(`Failed to fetch image: ${res.statusText}`);
       return Buffer.from(await res.arrayBuffer());
     });
 

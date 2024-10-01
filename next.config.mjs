@@ -12,7 +12,19 @@ const nextConfig = {
       },
     ],
   },
-  output: "standalone",
+  experimental: {
+    optimizeCss: true,
+    optimizeServerReact: true,
+  },
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        ...config.resolve.fallback,
+        fs: false,
+      };
+    }
+    return config;
+  },
 };
 
 export default withPlaiceholder(nextConfig);
