@@ -18,10 +18,6 @@ const nextConfig = {
     }
     return config;
   },
-  experimental: {
-    optimizeCss: true,
-    optimizeImages: true,
-  },
 };
 
 export default withPlaiceholder(nextConfig);
