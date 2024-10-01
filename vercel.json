@@ -1,5 +1,10 @@
 {
     "buildCommand": "next build",
     "outputDirectory": ".next",
-    "framework": "nextjs"
+    "framework": "nextjs",
+    "functions": {
+        "api/*.ts": {
+            "memory": 3008
+        }
+    }
 }

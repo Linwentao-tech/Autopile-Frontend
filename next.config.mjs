@@ -1,15 +1,22 @@
 /** @type {import('next').NextConfig} */
 import withPlaiceholder from "@plaiceholder/next";
 const nextConfig = {
+  experimental: {
+    turbotrace: {
+      memoryLimit: 3000,
+    },
+  },
+  output: "standalone",
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "static.wixstatic.com",
-        port: "",
-        pathname: "/**",
-      },
-    ],
+    unoptimized: true,
+    // remotePatterns: [
+    //   {
+    //     protocol: "https",
+    //     hostname: "static.wixstatic.com",
+    //     port: "",
+    //     pathname: "/**",
+    //   },
+    // ],
   },
 };
 
