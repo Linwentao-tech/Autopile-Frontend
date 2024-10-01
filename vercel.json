@@ -2,11 +2,13 @@
     "builds": [
         {
             "src": "package.json",
-            "use": "@vercel/next",
-            "config": {
-                "buildCommand": "next build",
-                "outputDirectory": ".next/standalone"
-            }
+            "use": "@vercel/next"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/(.*)",
+            "dest": "/"
         }
     ]
 }
