@@ -9,7 +9,7 @@ function Brands() {
   return (
     <section className="mx-12">
       <h1 className="text-4xl mb-10">Brands We Trust</h1>
-      <section className="flex items-center justify-center">
+      <section className="flex items-center justify-center mb-14">
         <Brand>
           <Image
             src={Drivilux}

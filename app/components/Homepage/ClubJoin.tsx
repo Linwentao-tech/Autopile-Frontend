@@ -27,7 +27,9 @@ function ClubJoin() {
             early-bird sales, new arrivals and other special offers.{" "}
           </p>
           <div className="mb-40">
-            <Button type="orange_button">Join Now</Button>
+            <Button type={{ type: "orange_button", subtype: "premium_area" }}>
+              Join Now
+            </Button>
           </div>
         </div>
       </div>

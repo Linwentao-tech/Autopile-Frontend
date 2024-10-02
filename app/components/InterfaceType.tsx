@@ -78,11 +78,6 @@ export interface ReviewCardProps {
   type?: "homepage";
 }
 
-export interface FooterSectionProps {
-  title: string;
-  items: string[];
-}
-
 export interface PaymentIconProp {
   src: StaticImageData;
 }
@@ -100,9 +95,13 @@ export interface ProductCardProps {
   productComparePrice: string | null;
   productPrice: string;
 }
-
+type OrangeButtonSubtype =
+  | "shop_now"
+  | "default"
+  | "learn_about"
+  | "premium_area";
 export type ButtonType =
-  | "orange_button"
+  | { type: "orange_button"; subtype: OrangeButtonSubtype }
   | "transparent-button"
   | "Add_to_cart_homepage"
   | "orange_submit_button"

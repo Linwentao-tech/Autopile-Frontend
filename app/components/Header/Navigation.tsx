@@ -30,7 +30,7 @@ function Navigation() {
         </li>
         <li>
           <Link
-            href="/premium"
+            href="/premium-area"
             className="hover:text-orange-500 transition-colors duration-500 "
           >
             Premium Area

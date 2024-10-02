@@ -10,7 +10,9 @@ function Advertisement() {
         <br />
         Now 15% Off On All Items.
       </p>
-      <Button type="orange_button">Shop Now</Button>
+      <Button type={{ type: "orange_button", subtype: "shop_now" }}>
+        Shop Now
+      </Button>
       <div className="flex items-center gap-9">
         <SvgLogo
           width={50}

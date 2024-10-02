@@ -37,7 +37,7 @@ function SvgLogo(props: SvgLogoType) {
     return (
       <Link
         href="/"
-        className="flex items-center space-x-2 text-xl"
+        className="flex items-start space-x-2 text-xl justify-center "
         onClick={handleClick}
       >
         <svg

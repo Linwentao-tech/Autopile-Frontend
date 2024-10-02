@@ -6,6 +6,7 @@ import NavigationSection from "@/app/components/Header/NavigationSection";
 import { type ChildrenProps } from "@/app/components/InterfaceType";
 import "@/app/globals.css";
 import PremiumHeader from "./components/Header/PremiumHeader";
+import AboutUsHeader from "./components/Header/AboutUsHeader";
 
 export default function RootLayout({ children }: ChildrenProps) {
   return (
@@ -15,6 +16,7 @@ export default function RootLayout({ children }: ChildrenProps) {
         <Header
           advertisement={<Advertisement />}
           premiumArea={<PremiumHeader />}
+          aboutUs={<AboutUsHeader />}
         >
           <Info />
           <NavigationSection />

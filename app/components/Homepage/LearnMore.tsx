@@ -23,7 +23,9 @@ function LearnMore() {
           </h1>
           <Table />
           <div className="mb-24 ">
-            <Button type="orange_button">Learn More</Button>
+            <Button type={{ type: "orange_button", subtype: "learn_about" }}>
+              Learn More
+            </Button>
           </div>
         </div>
       </div>
