@@ -2,7 +2,6 @@ import SvgLogo from "@/app/components/Header/SvgLogo";
 import FooterSection from "@/app/components/Footer/FooterSection";
 import PolicySection from "@/app/components/Footer/PolicySection";
 import PaymentMethodsSection from "@/app/components/Footer/PaymentMethodsSection";
-import Link from "next/link";
 
 function Footer() {
   return (
