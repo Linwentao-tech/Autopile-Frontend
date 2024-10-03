@@ -1,7 +1,8 @@
 import { ProductFetcher } from "@/app/_lib/DatabaseFetcher";
 import Button from "@/app/components/Button";
+import DynamicProductPageBlur from "@/app/components/DynamicProductPageBlur";
 import ProductSectionContainer from "@/app/components/ProductSectionContainer";
-import Image from "next/image";
+
 import Link from "next/link";
 
 function reverseFormat(input: string) {
@@ -63,16 +64,7 @@ async function ProductPage({ params }: { params: { productname: string } }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex flex-col space-y-8">
-          <div className="flex justify-center items-start">
-            <Image
-              src={media[0].fullUrl}
-              alt={`${name} image`}
-              width={600}
-              height={900}
-              quality={100}
-              className="max-w-full h-auto"
-            />
-          </div>
+          <DynamicProductPageBlur src={media[0].fullUrl} name={name} />
           <p className="text-base mx-16">{productDescription}</p>
         </div>
         <div className="flex flex-col justify-start space-y-5 w-1/2">
