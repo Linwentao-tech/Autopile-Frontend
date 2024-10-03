@@ -10,6 +10,8 @@ export interface SvgLogoProps {
 }
 
 export interface Product {
+  productInfo: string;
+  productDescription: string;
   id: string;
   options: [];
   customTextFields: [];
@@ -105,7 +107,8 @@ export type ButtonType =
   | "transparent-button"
   | "Add_to_cart_homepage"
   | "orange_submit_button"
-  | "Add_to_cart_productPage";
+  | "Add_to_cart_productPage"
+  | "Buy_now";
 
 export interface ProductCardContainerProps {
   products: Product[];

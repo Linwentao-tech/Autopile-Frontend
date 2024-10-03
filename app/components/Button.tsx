@@ -37,7 +37,7 @@ function Button({ children, type }: ButtonProps) {
     else if (type.subtype === "premium_area")
       return (
         <div>
-          <Link href="/premium-area">
+          <Link href="/premium-area" scroll={false}>
             <button
               className={`bg-orange-700 px-7 py-4 text-black rounded-full hover:border-white transition-all hover:bg-transparent hover:text-white border-2 border-transparent duration-500`}
             >
@@ -94,9 +94,17 @@ function Button({ children, type }: ButtonProps) {
     return (
       <div className="w-full ">
         <button
-          className="bg-transparent text-white rounded-full border-2 border-white hover:bg-white hover:text-black hover:border-white
+          className="bg-transparent text-white rounded-full border-2 border-white  hover:text-opacity-60
               transition-all duration-500 mt-5 w-full py-2 px-4"
         >
+          {children}
+        </button>
+      </div>
+    );
+  if (type === "Buy_now")
+    return (
+      <div className="w-full ">
+        <button className="bg-orange-700 px-4 py-2 text-black rounded-full  transition-all   border-2 border-transparent duration-500 w-full hover:opacity-60">
           {children}
         </button>
       </div>

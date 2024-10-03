@@ -27,6 +27,10 @@ function Header({
   const isWholesalePage: boolean = pathname === "/category/wholesale";
   const isAboutUsPage: boolean = pathname === "/about-us";
   const isAccessoriesPage: boolean = pathname === "/category/accessories";
+  const isBestSellersPage: boolean = pathname === "/category/best-seller";
+  const isEnginePage: boolean = pathname === "/category/engine";
+  const isVehiclePage: boolean = pathname === "/category/vehicle-body-parts";
+  const isWheelsPage: boolean = pathname === "/category/wheels-and-rims";
   return (
     <div className="relative">
       {isHomePage && (
@@ -64,7 +68,11 @@ function Header({
       {(isReviewsPage ||
         isWholesalePage ||
         isPartsPage ||
-        isAccessoriesPage) && (
+        isAccessoriesPage ||
+        isBestSellersPage ||
+        isEnginePage ||
+        isVehiclePage ||
+        isWheelsPage) && (
         <Image
           src={background}
           alt="background"

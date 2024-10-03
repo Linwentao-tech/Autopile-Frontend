@@ -1,6 +1,6 @@
 import SvgLogo from "@/app/components/Header/SvgLogo";
 import FooterSection from "@/app/components/Footer/FooterSection";
-import PolicySection from "@/app/components/Footer/PolicySection";
+
 import PaymentMethodsSection from "@/app/components/Footer/PaymentMethodsSection";
 
 function Footer() {
@@ -10,7 +10,7 @@ function Footer() {
         <SvgLogo width={60} height={60} type="logo" />
         <FooterSection />
       </div>
-      <PolicySection />
+      <hr className="border border-gray-600 mt-10" />
       <PaymentMethodsSection />
     </section>
   );

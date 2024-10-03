@@ -1,8 +1,10 @@
 import Form from "@/app/components/PremiumPage/Form";
+import { ScrollToTop } from "@/app/components/ScrollTop";
 
 function page() {
   return (
     <section className="px-12 pt-24 grid-cols-2 grid">
+      <ScrollToTop />
       <div>
         <h1 className="text-4xl leading-normal">
           Sign up today and get

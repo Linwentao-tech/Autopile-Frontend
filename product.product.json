@@ -1,0 +1,1283 @@
+[
+  {
+    "_id": "66f2a97e89a001b8f1e08861",
+    "id": "60cb23ae-a10d-4e12-9abe-94f4174ee616",
+    "options": [],
+    "customTextFields": [],
+    "productType": "accessories",
+    "ribbon": "Sale",
+    "price": 9.99,
+    "comparePrice": 8.99,
+    "sku": "0001",
+    "isInStock": true,
+    "urlPart": "lamps",
+    "formattedComparePrice": "$8.99",
+    "formattedPrice": "$9.99",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Lamps",
+    "media": [
+      {
+        "url": "c837a6_b5449b8d8ff54d5f9f09963337ef1067~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_b5449b8d8ff54d5f9f09963337ef1067~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      },
+      {
+        "url": "c837a6_73ceb473661a40eab0dad350fbcaab7b~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_73ceb473661a40eab0dad350fbcaab7b~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 1,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 10
+    },
+    "productInfo": "Our automotive lamps are designed to enhance visibility and style for your vehicle. Crafted with high-quality materials, these lamps offer superior illumination and durability. They're easy to install and compatible with a wide range of car models. Whether you're looking to replace old lamps or upgrade your vehicle's lighting system, our lamps provide the perfect blend of functionality and aesthetics. They're energy-efficient, weather-resistant, and comply with all relevant safety standards.",
+    "productDescription": "Enhance your vehicle's visibility and style with our high-quality automotive lamps. Designed for easy installation and superior illumination, these durable lamps are the perfect upgrade for any car model."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e08862",
+    "id": "413ac95c-f165-4ff6-9b7c-7c683534a58c",
+    "options": [],
+    "customTextFields": [],
+    "productType": "accessories",
+    "ribbon": "Best Seller",
+    "price": 120,
+    "comparePrice": 0,
+    "sku": "0002",
+    "isInStock": true,
+    "urlPart": "door-handle",
+    "formattedComparePrice": "",
+    "formattedPrice": "$120.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Door Handle",
+    "media": [
+      {
+        "url": "c837a6_d4fcf2e334784b24b28ecff8a9e74be7~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_d4fcf2e334784b24b28ecff8a9e74be7~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 0
+    },
+    "productInfo": "Our premium door handle is engineered for durability and style. Crafted from high-grade materials, it's designed to withstand frequent use and harsh weather conditions. The ergonomic design ensures a comfortable grip, while the sleek finish adds a touch of elegance to your vehicle. Compatible with a wide range of car models, this door handle is easy to install and comes with all necessary mounting hardware. It's rigorously tested to meet or exceed OEM standards, ensuring long-lasting performance and reliability.",
+    "productDescription": "Upgrade your vehicle's exterior with our premium door handle. Combining durability, style, and ease of use, it's the perfect replacement or upgrade for your car's existing handle."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e08863",
+    "id": "a7009a32-c5a9-476a-963a-7a8c2987a38e",
+    "options": [],
+    "customTextFields": [],
+    "productType": "accessories",
+    "ribbon": "Best Seller",
+    "price": 120,
+    "comparePrice": 0,
+    "sku": "0003",
+    "isInStock": true,
+    "urlPart": "gps",
+    "formattedComparePrice": "",
+    "formattedPrice": "$120.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Gps",
+    "media": [
+      {
+        "url": "c837a6_7ceb4b4804c7416cbfd2bf352d0c8eff~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_7ceb4b4804c7416cbfd2bf352d0c8eff~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 0
+    },
+    "productInfo": "Our state-of-the-art GPS system is designed to provide accurate navigation and enhance your driving experience. Featuring a high-resolution touchscreen display, it offers clear, turn-by-turn directions and real-time traffic updates. The device comes preloaded with detailed maps and points of interest, and supports regular updates to ensure you always have the latest information. With voice command functionality, hands-free operation, and smartphone integration, it offers convenience and safety. The compact design allows for easy installation and portability between vehicles.",
+    "productDescription": "Navigate with confidence using our advanced GPS system. Featuring a user-friendly interface, real-time updates, and voice command functionality, it's your perfect companion for any journey."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e08864",
+    "id": "163a3279-b29a-4a67-97bb-ab4a52175a53",
+    "options": [],
+    "customTextFields": [],
+    "productType": "accessories",
+    "ribbon": "",
+    "price": 120,
+    "comparePrice": 0,
+    "sku": "0004",
+    "isInStock": true,
+    "urlPart": "car-mats",
+    "formattedComparePrice": "",
+    "formattedPrice": "$120.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Car Mats",
+    "media": [
+      {
+        "url": "c837a6_feec59fa74784f7d99887a58f9ff9ed8~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_feec59fa74784f7d99887a58f9ff9ed8~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 0
+    },
+    "productInfo": "Our premium car mats are designed to provide ultimate protection for your vehicle's interior. Made from durable, all-weather materials, they're resistant to water, mud, and debris. The non-slip backing ensures they stay securely in place, while the raised edges contain spills and dirt. These mats are custom-fit to your specific car model, ensuring complete floor coverage. They're easy to clean - simply hose off and air dry. Available in a variety of colors to match your car's interior, these mats combine functionality with style.",
+    "productDescription": "Protect your car's interior with our premium, all-weather car mats. Custom-fit, durable, and easy to clean, they offer superior protection against spills, dirt, and wear."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e08865",
+    "id": "74e00a94-f5af-4d0a-976e-d47ce94ff961",
+    "options": [],
+    "customTextFields": [],
+    "productType": "accessories",
+    "ribbon": "Sale",
+    "price": 120,
+    "comparePrice": 108,
+    "sku": "0005",
+    "isInStock": true,
+    "urlPart": "steering-wheel-cover",
+    "formattedComparePrice": "$108.00",
+    "formattedPrice": "$120.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Steering Wheel Cover",
+    "media": [
+      {
+        "url": "c837a6_2e35f13454cb4e4498827228bc70a559~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_2e35f13454cb4e4498827228bc70a559~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 10
+    },
+    "productInfo": "Our steering wheel cover is designed to enhance your driving comfort and protect your steering wheel. Made from premium, breathable materials, it provides a comfortable grip in all weather conditions. The cover is heat and cold resistant, ensuring a consistent feel year-round. Its universal fit makes it suitable for most standard steering wheels. Easy to install, it requires no tools or special skills. The cover not only improves grip and comfort but also protects the original steering wheel from wear and tear, preserving your car's value.",
+    "productDescription": "Enhance your driving experience with our premium steering wheel cover. Offering improved grip, comfort, and protection, it's the perfect accessory for any vehicle."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e08866",
+    "id": "409320e4-b9cd-40be-b3e0-2bcd54c97516",
+    "options": [],
+    "customTextFields": [],
+    "productType": "accessories",
+    "ribbon": "",
+    "price": 120,
+    "comparePrice": 0,
+    "sku": "0006",
+    "isInStock": true,
+    "urlPart": "seat-cover",
+    "formattedComparePrice": "",
+    "formattedPrice": "$120.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Seat Cover",
+    "media": [
+      {
+        "url": "c837a6_eebf0094c624498e9a94fede99eeb9ff~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_eebf0094c624498e9a94fede99eeb9ff~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 0
+    },
+    "productInfo": "Our premium seat covers are designed to provide ultimate comfort and protection for your vehicle's interior. Made from durable, easy-to-clean materials, they're resistant to spills, stains, and wear. The covers feature a universal fit, making them suitable for most car models. They're easy to install and remove for cleaning. These seat covers not only protect your original upholstery but also give your car's interior a fresh, new look. Available in various colors and designs to match your style preferences.",
+    "productDescription": "Revitalize your car's interior with our premium seat covers. Offering comfort, protection, and style, they're the perfect solution for preserving your vehicle's upholstery."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e08867",
+    "id": "03f23c2a-8309-479e-9655-e5f40d1dad42",
+    "options": [],
+    "customTextFields": [],
+    "productType": "Vehicle Body Parts",
+    "ribbon": "Best Seller",
+    "price": 120,
+    "comparePrice": 0,
+    "sku": "0007",
+    "isInStock": true,
+    "urlPart": "steering-rack",
+    "formattedComparePrice": "",
+    "formattedPrice": "$120.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Steering Rack",
+    "media": [
+      {
+        "url": "c837a6_2a025d5f690d4a979d6730a13ea3c96d~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_2a025d5f690d4a979d6730a13ea3c96d~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 0
+    },
+    "productInfo": "Our high-quality steering rack is engineered for precision and durability. Manufactured to meet or exceed OEM specifications, it ensures smooth and responsive steering control. This rack is designed for easy installation and is compatible with a wide range of vehicle models. It's constructed from premium materials to resist wear and corrosion, ensuring long-lasting performance. Regular replacement of your steering rack can improve your vehicle's handling and safety.",
+    "productDescription": "Upgrade your vehicle's steering system with our premium steering rack. Engineered for precision and durability, it ensures smooth, responsive control for a safer, more enjoyable driving experience."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e08868",
+    "id": "761bb79f-9467-4d8f-9732-bce680ed68c1",
+    "options": [],
+    "customTextFields": [],
+    "productType": "Vehicle Body Parts",
+    "ribbon": "Sale",
+    "price": 120,
+    "comparePrice": 108,
+    "sku": "0008",
+    "isInStock": true,
+    "urlPart": "brake-hoses",
+    "formattedComparePrice": "$108.00",
+    "formattedPrice": "$120.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Brake Hoses",
+    "media": [
+      {
+        "url": "c837a6_a8e7987786e34028b9723172e527831f~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_a8e7987786e34028b9723172e527831f~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 10
+    },
+    "productInfo": "Our high-performance brake hoses are designed to enhance your vehicle's braking system. Made from durable, flexible materials, they resist expansion under pressure, ensuring consistent brake pedal feel. These hoses are engineered to withstand extreme temperatures and are resistant to abrasion and corrosion. They meet or exceed DOT specifications for safety and reliability. Easy to install, these brake hoses are compatible with a wide range of vehicle models and come with all necessary fittings.",
+    "productDescription": "Upgrade your vehicle's braking performance with our premium brake hoses. Designed for durability and consistent performance, they ensure reliable, responsive braking in all conditions."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e08869",
+    "id": "8e78686e-a8ad-4f76-bdab-2f274bafbb51",
+    "options": [],
+    "customTextFields": [],
+    "productType": "Vehicle Body Parts",
+    "ribbon": "Best Seller",
+    "price": 120,
+    "comparePrice": 0,
+    "sku": "0009",
+    "isInStock": true,
+    "urlPart": "brake-cylinder",
+    "formattedComparePrice": "",
+    "formattedPrice": "$120.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Brake Cylinder",
+    "media": [
+      {
+        "url": "c837a6_8020737c00fa4fbe923f97bbeab12351~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_8020737c00fa4fbe923f97bbeab12351~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 0
+    },
+    "productInfo": "Our brake cylinder is a crucial component of your vehicle's braking system. Manufactured to meet or exceed OEM specifications, it ensures reliable and consistent braking performance. The cylinder is made from high-quality materials to resist corrosion and wear, extending its lifespan. It's designed for easy installation and is compatible with a wide range of vehicle models. Regular replacement of your brake cylinder can significantly improve your vehicle's braking efficiency and overall safety.",
+    "productDescription": "Ensure optimal braking performance with our high-quality brake cylinder. Engineered for reliability and longevity, it's an essential component for maintaining your vehicle's safety and performance."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e0886a",
+    "id": "8388a82d-943c-43d2-b074-fa3a729aa844",
+    "options": [],
+    "customTextFields": [],
+    "productType": "Vehicle Body Parts",
+    "ribbon": "Sale",
+    "price": 120,
+    "comparePrice": 108,
+    "sku": "0010",
+    "isInStock": true,
+    "urlPart": "brake-disc",
+    "formattedComparePrice": "$108.00",
+    "formattedPrice": "$120.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Brake Disc",
+    "media": [
+      {
+        "url": "c837a6_992b4187f25f4e1fb04f759f9bbc3ee5~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_992b4187f25f4e1fb04f759f9bbc3ee5~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 10
+    },
+    "productInfo": "Our high-performance brake disc is engineered for optimal braking efficiency and durability. Made from premium-grade materials, it offers excellent heat dissipation to prevent brake fade during intense use. The disc features precision machining for smooth, quiet operation and even pad wear. It's designed to meet or exceed OEM specifications and is compatible with a wide range of vehicle models. Regular replacement of your brake discs can significantly improve your vehicle's stopping power and overall safety.",
+    "productDescription": "Enhance your vehicle's braking performance with our premium brake disc. Engineered for durability and efficient heat dissipation, it ensures reliable, powerful stopping in all driving conditions."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e0886b",
+    "id": "c0d0996e-2c38-4362-b08e-343f048d422b",
+    "options": [],
+    "customTextFields": [],
+    "productType": "Vehicle Body Parts",
+    "ribbon": "",
+    "price": 120,
+    "comparePrice": 0,
+    "sku": "0011",
+    "isInStock": true,
+    "urlPart": "power-steering-pump",
+    "formattedComparePrice": "",
+    "formattedPrice": "$120.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Power Steering Pump",
+    "media": [
+      {
+        "url": "c837a6_c9623e6a69114f69abd6d83635f7c554~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_c9623e6a69114f69abd6d83635f7c554~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 0
+    },
+    "productInfo": "Our power steering pump is designed to deliver smooth and responsive steering control. Manufactured to meet or exceed OEM specifications, it ensures reliable performance and long service life. The pump features high-quality internal components for efficient operation and reduced noise. It's engineered for easy installation and is compatible with a wide range of vehicle models. Regular replacement of your power steering pump can improve your vehicle's handling and prevent potential steering system failures.",
+    "productDescription": "Restore your vehicle's steering responsiveness with our high-quality power steering pump. Engineered for smooth operation and durability, it ensures effortless steering control in all driving conditions."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e0886c",
+    "id": "5f9e2fcf-49ec-4b67-aad8-9231638205ed",
+    "options": [],
+    "customTextFields": [],
+    "productType": "Vehicle Body Parts",
+    "ribbon": "Best Seller",
+    "price": 120,
+    "comparePrice": 0,
+    "sku": "0012",
+    "isInStock": true,
+    "urlPart": "brake-pads",
+    "formattedComparePrice": "",
+    "formattedPrice": "$120.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Brake Pads",
+    "media": [
+      {
+        "url": "c837a6_27f58b0f50264a97a4b9d82f1a75b01f~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_27f58b0f50264a97a4b9d82f1a75b01f~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 0
+    },
+    "productInfo": "Our high-performance brake pads are engineered for optimal braking efficiency and durability. Made from advanced friction materials, they offer excellent stopping power in various driving conditions. These pads feature low-noise operation and minimal brake dust production. They're designed to meet or exceed OEM specifications and are compatible with a wide range of vehicle models. Regular replacement of your brake pads is crucial for maintaining your vehicle's braking performance and overall safety.",
+    "productDescription": "Upgrade your vehicle's braking performance with our premium brake pads. Engineered for superior stopping power and low noise, they ensure reliable braking in all driving conditions."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e0886d",
+    "id": "46d91393-0aab-435d-b026-56b35624f90f",
+    "options": [],
+    "customTextFields": [],
+    "productType": "Wheels & Rims",
+    "ribbon": "Sale",
+    "price": 85,
+    "comparePrice": 76.5,
+    "sku": "0013",
+    "isInStock": true,
+    "urlPart": "custom",
+    "formattedComparePrice": "$76.50",
+    "formattedPrice": "$85.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Custom",
+    "media": [
+      {
+        "url": "c837a6_8b8453c494c74c2d95502a8abd5a99a3~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_8b8453c494c74c2d95502a8abd5a99a3~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 10
+    },
+    "productInfo": "Our custom wheels are designed to enhance your vehicle's appearance and performance. Made from high-quality materials, they offer durability and style. These wheels are available in various sizes, finishes, and designs to suit your personal taste and vehicle specifications. They're engineered for optimal weight distribution and strength, improving your vehicle's handling and fuel efficiency. Our custom wheels meet or exceed industry standards for safety and quality.",
+    "productDescription": "Elevate your vehicle's style and performance with our custom wheels. Offering a perfect blend of form and function, they're the ideal upgrade for any car enthusiast."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e0886e",
+    "id": "c71ed085-197c-48e9-884a-2565f8b079bd",
+    "options": [],
+    "customTextFields": [],
+    "productType": "Wheels & Rims",
+    "ribbon": "Best Seller",
+    "price": 20,
+    "comparePrice": 0,
+    "sku": "0014",
+    "isInStock": true,
+    "urlPart": "4x4",
+    "formattedComparePrice": "",
+    "formattedPrice": "$20.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "4X4",
+    "media": [
+      {
+        "url": "c837a6_907b8956eaf94b07a51f0f108bab9108~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_907b8956eaf94b07a51f0f108bab9108~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 0
+    },
+    "productInfo": "Our 4x4 wheels are specifically designed for off-road enthusiasts and adventure seekers. Constructed from robust materials, these wheels offer exceptional durability and strength to withstand rough terrains. They feature an aggressive tread pattern for superior traction in mud, sand, and rocky surfaces. The wheels are engineered to provide optimal weight distribution and heat dissipation, ensuring reliable performance in challenging conditions. Compatible with a wide range of 4x4 vehicles, these wheels combine rugged functionality with striking aesthetics.",
+    "productDescription": "Conquer any terrain with our robust 4x4 wheels. Engineered for durability and superior traction, they're the perfect upgrade for off-road enthusiasts and adventure seekers."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e0886f",
+    "id": "ddd6d024-3395-4cf1-9f88-014e1309f5e8",
+    "options": [],
+    "customTextFields": [],
+    "productType": "Wheels & Rims",
+    "ribbon": "",
+    "price": 10,
+    "comparePrice": 0,
+    "sku": "0015",
+    "isInStock": true,
+    "urlPart": "aluminum",
+    "formattedPrice": "$10.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Aluminum",
+    "media": [
+      {
+        "url": "c837a6_6a4c11a1aa80451fa7efbb2ec564a524~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_6a4c11a1aa80451fa7efbb2ec564a524~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 0
+    },
+    "productInfo": "Our aluminum wheels offer a perfect blend of style, performance, and durability. Crafted from high-grade aluminum alloy, these wheels are significantly lighter than steel alternatives, improving your vehicle's fuel efficiency and handling. They feature a corrosion-resistant finish for long-lasting beauty. The wheels are designed to enhance brake cooling and are available in various sizes and styles to suit different vehicle models. Each wheel undergoes rigorous testing to ensure it meets or exceeds industry safety standards.",
+    "productDescription": "Upgrade your vehicle's performance and aesthetics with our lightweight aluminum wheels. Offering improved handling and fuel efficiency, they're the perfect choice for style-conscious drivers."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e08870",
+    "id": "8bfb53c6-0816-4e18-8973-d3e90ca86b31",
+    "options": [],
+    "customTextFields": [],
+    "productType": "Wheels & Rims",
+    "ribbon": "Sale",
+    "price": 25,
+    "comparePrice": 22.5,
+    "sku": "0016",
+    "isInStock": true,
+    "urlPart": "steel",
+    "formattedComparePrice": "$22.50",
+    "formattedPrice": "$25.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Steel",
+    "media": [
+      {
+        "url": "c837a6_4824cb74e00f4246aa7604ab960ac14f~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_4824cb74e00f4246aa7604ab960ac14f~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 10
+    },
+    "productInfo": "Our steel wheels are engineered for maximum durability and strength. Ideal for heavy-duty applications and rough terrains, these wheels can withstand high impacts and loads. They feature a corrosion-resistant coating for longevity in various weather conditions. While heavier than aluminum alternatives, steel wheels offer unmatched robustness and are often more cost-effective. Available in various sizes, these wheels are compatible with a wide range of vehicles, from trucks to SUVs.",
+    "productDescription": "Choose our steel wheels for unmatched durability and strength. Perfect for heavy-duty applications, they offer reliable performance in the toughest conditions at an affordable price."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e08871",
+    "id": "e1c1833c-7df1-4f8e-81eb-e7b2ef06e61c",
+    "options": [],
+    "customTextFields": [],
+    "productType": "Wheels & Rims",
+    "ribbon": "",
+    "price": 7.5,
+    "comparePrice": 0,
+    "sku": "0017",
+    "isInStock": true,
+    "urlPart": "alloy",
+    "formattedComparePrice": "",
+    "formattedPrice": "$7.50",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Alloy",
+    "media": [
+      {
+        "url": "c837a6_44e0db2f42bd48ff8ea5b3ade29882c1~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_44e0db2f42bd48ff8ea5b3ade29882c1~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 0
+    },
+    "productInfo": "Our alloy wheels offer the perfect balance between performance and aesthetics. Made from a custom blend of lightweight metals, these wheels provide improved handling and fuel efficiency compared to standard steel wheels. They feature excellent heat dissipation properties, enhancing brake performance. The wheels come in a variety of stylish designs and finishes, allowing you to personalize your vehicle's look. Each wheel is precision-engineered and thoroughly tested to ensure durability and safety.",
+    "productDescription": "Enhance your vehicle's performance and style with our premium alloy wheels. Offering improved handling, fuel efficiency, and a range of stylish designs, they're the ultimate upgrade for any car enthusiast."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e08872",
+    "id": "4c426cfa-bf92-4545-aa23-4a03fd666114",
+    "options": [],
+    "customTextFields": [],
+    "productType": "Wheels & Rims",
+    "ribbon": "Best Seller",
+    "price": 15,
+    "comparePrice": 0,
+    "sku": "0018",
+    "isInStock": true,
+    "urlPart": "chrome",
+    "formattedComparePrice": "",
+    "formattedPrice": "$15.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Chrome",
+    "media": [
+      {
+        "url": "c837a6_024beae3c83d4cfd888b84fac9a5094e~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_024beae3c83d4cfd888b84fac9a5094e~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 0
+    },
+    "productInfo": "Our chrome wheels are the epitome of luxury and style. These wheels feature a high-quality chrome plating over a durable alloy base, offering a brilliant, mirror-like finish that turns heads. The chrome finish not only enhances aesthetics but also provides excellent corrosion resistance. Despite their flashy appearance, these wheels are engineered for performance, offering good heat dissipation and strength. Available in various sizes and designs, they're compatible with a wide range of vehicle models.",
+    "productDescription": "Add a touch of luxury to your vehicle with our stunning chrome wheels. Offering a perfect blend of style and durability, they're the ideal choice for drivers who want to stand out."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e08873",
+    "id": "c5347a46-d6d0-444d-b992-dc67d83c886f",
+    "options": [],
+    "customTextFields": [],
+    "productType": "engine",
+    "ribbon": "Sale",
+    "price": 85,
+    "comparePrice": 76.5,
+    "sku": "0019",
+    "isInStock": true,
+    "urlPart": "turbocharger",
+    "formattedComparePrice": "$76.50",
+    "formattedPrice": "$85.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Turbocharger",
+    "media": [
+      {
+        "url": "c837a6_0550d7f901304eff9d178e70edec82d3~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_0550d7f901304eff9d178e70edec82d3~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 10
+    },
+    "productInfo": "Our high-performance turbocharger is designed to significantly boost your engine's power output. Engineered with precision, it forces more air into the combustion chamber, allowing for more fuel to be added, resulting in increased horsepower and torque. This turbocharger features advanced materials for improved heat resistance and durability. It's compatible with various engine types and sizes, and comes with necessary gaskets for installation. Proper installation can lead to improved fuel efficiency alongside the power increase.",
+    "productDescription": "Boost your engine's performance with our high-quality turbocharger. Engineered for increased horsepower and torque, it's the perfect upgrade for performance enthusiasts seeking more power from their engine."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e08874",
+    "id": "db3644f3-c5a5-46c4-a7c6-601c9a4f2c8a",
+    "options": [],
+    "customTextFields": [],
+    "productType": "engine",
+    "ribbon": "",
+    "price": 40,
+    "comparePrice": 0,
+    "sku": "0020",
+    "isInStock": true,
+    "urlPart": "timing-belt",
+    "formattedComparePrice": "",
+    "formattedPrice": "$40.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Timing Belt",
+    "media": [
+      {
+        "url": "c837a6_6b51e63633c548d3975e3b8a96acc7c7~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_6b51e63633c548d3975e3b8a96acc7c7~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 0
+    },
+    "productInfo": "Our high-quality timing belt is a crucial component for maintaining your engine's performance and longevity. Made from durable, heat-resistant materials, it ensures precise synchronization between the crankshaft and camshaft, preventing potential engine damage. This belt features reinforced edges for extended wear resistance and reduced noise. It's designed to meet or exceed OEM specifications and is compatible with a wide range of vehicle models. Regular replacement of your timing belt is essential for preventing costly engine repairs.",
+    "productDescription": "Ensure your engine's optimal performance with our durable timing belt. Designed for precision and longevity, it's an essential component for maintaining your vehicle's engine health and preventing costly repairs."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e08875",
+    "id": "6a283cf7-62bf-4f24-bb9c-480ba9eddb86",
+    "options": [],
+    "customTextFields": [],
+    "productType": "engine",
+    "ribbon": "",
+    "price": 130,
+    "comparePrice": 0,
+    "sku": "0021",
+    "isInStock": true,
+    "urlPart": "cylinder-head-combustion",
+    "formattedComparePrice": "",
+    "formattedPrice": "$130.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Cylinder Head Combustion",
+    "media": [
+      {
+        "url": "c837a6_e04c204674bb4986a2936c484516e8d3~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_e04c204674bb4986a2936c484516e8d3~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 0
+    },
+    "productInfo": "Our cylinder head combustion chamber is a critical component for optimizing your engine's performance. Precision-engineered for efficient fuel combustion, it helps improve power output and fuel economy. The chamber is designed to promote better fuel mixture and flame propagation, resulting in more complete combustion. Made from high-grade materials, it offers excellent heat resistance and durability. This component is compatible with various engine types and comes with necessary gaskets for installation.",
+    "productDescription": "Optimize your engine's performance with our precision-engineered cylinder head combustion chamber. Designed for efficient fuel combustion, it enhances power output and fuel economy for a superior driving experience."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e08876",
+    "id": "dcce3df4-1387-462c-af43-923ef924153c",
+    "options": [],
+    "customTextFields": [],
+    "productType": "engine",
+    "ribbon": "",
+    "price": 45,
+    "comparePrice": 0,
+    "sku": "0022",
+    "isInStock": true,
+    "urlPart": "aluminum-piston",
+    "formattedComparePrice": "",
+    "formattedPrice": "$45.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Aluminum Piston",
+    "media": [
+      {
+        "url": "c837a6_0067e35e1d024222bcc8817746065539~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_0067e35e1d024222bcc8817746065539~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 0
+    },
+    "productInfo": "Our high-performance aluminum piston is engineered for superior engine efficiency and power. Made from a lightweight, high-strength aluminum alloy, it reduces reciprocating mass for improved engine response and fuel economy. The piston features a precision-machined crown for optimal combustion efficiency and advanced coatings for reduced friction and wear. It's designed to withstand high temperatures and pressures, ensuring long-lasting performance. Compatible with various engine types, this piston comes with piston rings and wrist pin for a complete installation.",
+    "productDescription": "Boost your engine's performance with our lightweight aluminum piston. Engineered for improved efficiency and power, it's the perfect upgrade for performance enthusiasts seeking to enhance their engine's capabilities."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e08877",
+    "id": "447a9dbf-4ad0-4515-bd27-a482cf80aff6",
+    "options": [],
+    "customTextFields": [],
+    "productType": "engine",
+    "ribbon": "Sale",
+    "price": 100,
+    "comparePrice": 90,
+    "sku": "0023",
+    "isInStock": true,
+    "urlPart": "car-engine-clutch",
+    "formattedComparePrice": "$90.00",
+    "formattedPrice": "$100.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Car Engine Clutch",
+    "media": [
+      {
+        "url": "c837a6_81d47f6969b64d62a3875ff678aad9dc~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_81d47f6969b64d62a3875ff678aad9dc~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 10
+    },
+    "productInfo": "Our car engine clutch is engineered for smooth and efficient power transmission. It features high-quality friction materials for improved durability and performance. The clutch is designed to handle high torque loads while providing a comfortable pedal feel. It includes a pressure plate, clutch disc, and release bearing for a complete installation. This clutch kit is compatible with various vehicle models and is built to meet or exceed OEM specifications. Regular clutch replacement ensures optimal vehicle performance and prevents transmission damage.",
+    "productDescription": "Enhance your vehicle's performance with our high-quality engine clutch. Designed for smooth power transmission and durability, it ensures optimal performance and a comfortable driving experience."
+  },
+  {
+    "_id": "66f2a97e89a001b8f1e08878",
+    "id": "4ec7bf5b-0599-444a-a6d5-c2acf912cf15",
+    "options": [],
+    "customTextFields": [],
+    "productType": "engine",
+    "ribbon": "",
+    "price": 120,
+    "comparePrice": 0,
+    "sku": "0024",
+    "isInStock": true,
+    "urlPart": "cylinder-head-gasket",
+    "formattedComparePrice": "",
+    "formattedPrice": "$120.00",
+    "pricePerUnit": null,
+    "formattedPricePerUnit": null,
+    "pricePerUnitData": null,
+    "itemDiscount": null,
+    "digitalProductFileItems": [],
+    "name": "Cylinder Head Gasket",
+    "media": [
+      {
+        "url": "c837a6_1f843d4034ac41129a48348357a01ce8~mv2.jpg",
+        "fullUrl": "https://static.wixstatic.com/media/c837a6_1f843d4034ac41129a48348357a01ce8~mv2.jpg/v1/fit/w_500,h_500,q_90/file.jpg",
+        "index": 0,
+        "width": 530,
+        "mediaType": "PHOTO",
+        "altText": null,
+        "title": "",
+        "height": 708
+      }
+    ],
+    "isManageProductItems": false,
+    "productItemsPreOrderAvailability": "no_variants",
+    "isTrackingInventory": false,
+    "inventory": {
+      "status": "in_stock",
+      "quantity": 0,
+      "availableForPreOrder": false,
+      "preOrderInfoView": {
+        "limit": null
+      }
+    },
+    "subscriptionPlans": {
+      "list": []
+    },
+    "discount": {
+      "mode": "PERCENT",
+      "value": 0
+    },
+    "productInfo": "Our cylinder head gasket is a crucial component for maintaining your engine's compression and preventing coolant and oil leaks. Made from high-quality materials, it's designed to withstand high temperatures and pressures. This gasket features advanced sealing technology for improved durability and leak prevention. It's precision-engineered to fit a wide range of vehicle models and comes with all necessary seals for a complete installation. Regular replacement of your cylinder head gasket is essential for optimal engine performance and longevity.",
+    "productDescription": "Ensure your engine's optimal performance with our high-quality cylinder head gasket. Engineered for durability and superior sealing, it's essential for maintaining compression and preventing leaks."
+  }
+]
