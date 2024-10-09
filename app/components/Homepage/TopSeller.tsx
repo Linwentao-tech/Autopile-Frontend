@@ -71,7 +71,16 @@ function TopSeller({ products }: { products: Product[] }) {
                   <p className="text-gray-300 text-xl mt-2 mb-4">
                     ${product.price.toFixed(2)}
                   </p>
-                  <Button type="Add_to_cart_homepage">Add to cart</Button>
+                  <Button
+                    type="Add_to_cart_homepage"
+                    productId={product.id}
+                    productName={product.name}
+                    productImage={product.media[0].fullUrl}
+                    productPrice={product.price.toFixed(2)}
+                    quantity={1}
+                  >
+                    Add to cart
+                  </Button>
                 </div>
               </li>
             ))}

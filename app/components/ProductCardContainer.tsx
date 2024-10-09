@@ -15,6 +15,7 @@ function ProductCardContainer({ products }: ProductCardContainerProps) {
           productRibbon: el.ribbon,
           productComparePrice: el.formattedComparePrice,
           productPrice: el.formattedPrice,
+          productId: el.id,
         };
         return <ProductCard key={el.id} product={product} />;
       })}

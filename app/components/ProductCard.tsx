@@ -2,6 +2,7 @@ import { type ProductCardProps } from "./InterfaceType";
 import Button from "./Button";
 import DynamicProductsBlur from "./DynamicProductsBlur";
 import Link from "next/link";
+
 function formatProductName(productName: string) {
   return productName
     .toLowerCase()
@@ -9,6 +10,7 @@ function formatProductName(productName: string) {
     .filter((word) => word.trim() !== "")
     .join("-");
 }
+
 function ProductCard({ product }: { product: ProductCardProps }) {
   const {
     productName,
@@ -16,13 +18,15 @@ function ProductCard({ product }: { product: ProductCardProps }) {
     productRibbon,
     productComparePrice,
     productPrice,
+    productId,
   } = product;
+
   return (
-    <Link
-      href={`/product-page/${formatProductName(productName)}`}
-      className="block"
-    >
-      <div className="relative w-full cursor-pointer group">
+    <div className="relative w-full cursor-pointer group">
+      <Link
+        href={`/product-page/${formatProductName(productName)}`}
+        className="block"
+      >
         <DynamicProductsBlur src={productImage} name={productName} />
         {productRibbon && (
           <div className="absolute top-0 left-0 bg-orange-500 text-white px-2 py-1 text-sm font-semibold z-10">
@@ -41,13 +45,24 @@ function ProductCard({ product }: { product: ProductCardProps }) {
                 productPrice
               )}
             </p>
-            <div className="w-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 ">
-              <Button type="Add_to_cart_productPage">Add to cart</Button>
-            </div>
           </div>
         </div>
+      </Link>
+      <div className="w-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+        <Button
+          type="Add_to_cart_productPage"
+          productId={productId}
+          productName={productName}
+          productImage={productImage}
+          productPrice={
+            productComparePrice ? productComparePrice : productPrice
+          }
+          quantity={1}
+        >
+          Add to cart
+        </Button>
       </div>
-    </Link>
+    </div>
   );
 }
 

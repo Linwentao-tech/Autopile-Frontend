@@ -1,7 +1,7 @@
 import { ProductFetcher } from "@/app/_lib/DatabaseFetcher";
-import Button from "@/app/components/Button";
 import DynamicProductPageBlur from "@/app/components/DynamicProductPageBlur";
 import ProductSectionContainer from "@/app/components/ProductSectionContainer";
+import ProductSubmitComponent from "@/app/components/ProductSubmitComponent";
 
 import Link from "next/link";
 
@@ -27,6 +27,7 @@ async function ProductPage({ params }: { params: { productname: string } }) {
   }
 
   const {
+    id,
     name,
     productType,
     media,
@@ -85,15 +86,13 @@ async function ProductPage({ params }: { params: { productname: string } }) {
             )}
           </span>
           <span className="text-sm">Quantity</span>
-          <input
-            defaultValue="1"
-            type="number"
-            className="w-20 text-white px-4 py-2 bg-black border-2 border-white rounded-lg hover:border-orange-500 focus:outline-none focus:border-orange-500 transition-colors duration-300"
-            max="10"
-            min="1"
-          ></input>
-          <Button type="Add_to_cart_productPage">Add to cart</Button>
-          <Button type="Buy_now">Buy Now</Button>
+          <ProductSubmitComponent
+            id={id}
+            name={name}
+            media={media}
+            formattedComparePrice={formattedComparePrice}
+            formattedPrice={formattedPrice}
+          />
           <ProductSectionContainer productInfo={productInfo} />
         </div>
       </div>

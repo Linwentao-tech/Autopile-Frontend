@@ -96,6 +96,7 @@ export interface ProductCardProps {
   productRibbon: string | null;
   productComparePrice: string | null;
   productPrice: string;
+  productId: string;
 }
 type OrangeButtonSubtype =
   | "shop_now"

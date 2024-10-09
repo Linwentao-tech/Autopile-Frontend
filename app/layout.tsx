@@ -7,22 +7,25 @@ import { type ChildrenProps } from "@/app/components/InterfaceType";
 import "@/app/globals.css";
 import PremiumHeader from "./components/Header/PremiumHeader";
 import AboutUsHeader from "./components/Header/AboutUsHeader";
+import StoreProvider from "./StoreProvider";
 
 export default function RootLayout({ children }: ChildrenProps) {
   return (
     <html lang="en">
       <body className="bg-black text-white  text-base">
-        {/* make components server components by passing as props */}
-        <Header
-          advertisement={<Advertisement />}
-          premiumArea={<PremiumHeader />}
-          aboutUs={<AboutUsHeader />}
-        >
-          <Info />
-          <NavigationSection />
-        </Header>
-        {children}
-        <Footer />
+        <StoreProvider>
+          {/* make components server components by passing as props */}
+          <Header
+            advertisement={<Advertisement />}
+            premiumArea={<PremiumHeader />}
+            aboutUs={<AboutUsHeader />}
+          >
+            <Info />
+            <NavigationSection />
+          </Header>
+          {children}
+          <Footer />
+        </StoreProvider>
       </body>
     </html>
   );
