@@ -109,7 +109,8 @@ export type ButtonType =
   | "Add_to_cart_homepage"
   | "orange_submit_button"
   | "Add_to_cart_productPage"
-  | "Buy_now";
+  | "Buy_now"
+  | "clear_cart";
 
 export interface ProductCardContainerProps {
   products: Product[];

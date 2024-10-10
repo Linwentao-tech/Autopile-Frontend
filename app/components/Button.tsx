@@ -5,7 +5,7 @@ import {
 } from "@/app/components/InterfaceType";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "../_lib/hooks";
-import { addItem } from "../_lib/features/cart/cartSlice";
+import { addItem, clearCart } from "../_lib/features/cart/cartSlice";
 import { useCallback, useEffect, useState } from "react";
 
 interface ButtonProps extends ChildrenProps {
@@ -46,7 +46,6 @@ function Button({
 
   useEffect(() => {
     if (addToCartClicked) {
-      console.log("Current items in cart:", items);
       setAddToCartClicked(false);
     }
   }, [items, addToCartClicked]);
@@ -120,24 +119,33 @@ function Button({
         </Link>
       </div>
     );
-  if (type == "Add_to_cart_homepage")
+  if (type === "Add_to_cart_homepage") {
     return (
       <div>
         <button
-          className="bg-transparent text-white px-14 py-3  rounded-full  border-2 border-white  hover:bg-white hover:text-black hover:border-white
-          transition-all duration-500"
+          className="bg-transparent text-white px-14 py-3 rounded-full border-2 border-white
+                       hover:bg-white hover:text-black hover:border-white
+                       transition-all duration-300 ease-in-out
+                       active:bg-white active:text-black active:scale-95
+                       active:duration-150 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
           onClick={handleAddToCart}
         >
           {children}
         </button>
       </div>
     );
+  }
   if (type === "Add_to_cart_productPage") {
     return (
-      <div className="w-full ">
+      <div className="w-full">
         <button
-          className="bg-transparent text-white rounded-full border-2 border-white hover:text-opacity-60
-                transition-all duration-500 mt-5 w-full py-2 px-4"
+          className="bg-transparent text-white rounded-full border-2 border-white
+                       hover:text-opacity-60 
+                       transition-all duration-300 ease-in-out
+                       mt-5 w-full py-2 px-4
+                       focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50
+                       active:bg-white active:text-black active:scale-95
+                       active:duration-150"
           onClick={handleAddToCart}
         >
           {children}
@@ -149,6 +157,17 @@ function Button({
     return (
       <div className="w-full ">
         <button className="bg-orange-700 px-4 py-2 text-black rounded-full  transition-all   border-2 border-transparent duration-500 w-full hover:opacity-60">
+          {children}
+        </button>
+      </div>
+    );
+  if (type === "clear_cart")
+    return (
+      <div className="w-32">
+        <button
+          onClick={() => dispatch(clearCart())}
+          className="bg-orange-700 px-4 py-3 text-white rounded-full  transition-all   border-2 border-transparent duration-500 w-full hover:opacity-60"
+        >
           {children}
         </button>
       </div>

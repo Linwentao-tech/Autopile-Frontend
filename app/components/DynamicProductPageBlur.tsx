@@ -22,7 +22,7 @@ async function DynamicProductPageBlur({
         width={600}
         height={900}
         quality={100}
-        className="max-w-full h-auto"
+        className="w-full h-auto px-16"
         placeholder="blur"
         blurDataURL={base64}
       />
