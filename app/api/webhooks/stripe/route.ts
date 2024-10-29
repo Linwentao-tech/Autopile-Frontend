@@ -1,151 +1,26 @@
-// app/api/webhooks/stripe/route.ts
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { Resend } from "resend";
-
-// Define types for logging data
-type LogData = {
-  [key: string]: string | number | boolean | null | undefined;
-};
-
-// Define types for order details
-interface OrderDetails {
-  orderId: string;
-  items: Array<{
-    name: string;
-    quantity: number;
-    price: number;
-  }>;
-  total: number;
-}
+import type { CreateEmailResponse } from "resend";
 
 // Initialize Stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2024-09-30.acacia",
 });
 
-// Configuration for your Vercel deployment
-const DOMAIN = "e-commerce-plum-seven-35.vercel.app";
-
-// Helper function for consistent logging with typed data
-function logWebhookEvent(message: string, data?: LogData) {
-  const timestamp = new Date().toISOString();
-  console.log(`[${timestamp}] Webhook: ${message}`);
-  if (data) {
-    console.log("Data:", JSON.stringify(data, null, 2));
-  }
-}
-
-async function sendOrderConfirmationEmail(
-  email: string,
-  orderDetails: OrderDetails
-) {
-  try {
-    logWebhookEvent("Starting email send attempt", {
-      recipient: email,
-      orderId: orderDetails.orderId,
-    });
-
-    // Check for API key
-    const resendApiKey = process.env.RESEND_API_KEY;
-    if (!resendApiKey) {
-      logWebhookEvent("❌ Missing Resend API key");
-      return;
-    }
-
-    const resend = new Resend(resendApiKey);
-
-    const emailResponse = await resend.emails.send({
-      from: `E-Commerce Store <customer@autopile.store>`,
-      to: email,
-      subject: `Order Confirmation #${orderDetails.orderId}`,
-      html: `
-        <html>
-          <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
-            <h1>Thank you for your order!</h1>
-            <p>Your order #${orderDetails.orderId} has been confirmed.</p>
-            
-            <h2>Order Summary:</h2>
-            <table style="width: 100%; border-collapse: collapse; margin: 20px 0;">
-              <thead>
-                <tr style="background-color: #f8f9fa;">
-                  <th style="padding: 12px; text-align: left; border-bottom: 2px solid #dee2e6;">Item</th>
-                  <th style="padding: 12px; text-align: right; border-bottom: 2px solid #dee2e6;">Quantity</th>
-                  <th style="padding: 12px; text-align: right; border-bottom: 2px solid #dee2e6;">Price</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${orderDetails.items
-                  .map(
-                    (item) => `
-                  <tr>
-                    <td style="padding: 12px; border-bottom: 1px solid #dee2e6;">${
-                      item.name
-                    }</td>
-                    <td style="padding: 12px; text-align: right; border-bottom: 1px solid #dee2e6;">${
-                      item.quantity
-                    }</td>
-                    <td style="padding: 12px; text-align: right; border-bottom: 1px solid #dee2e6;">$${(
-                      item.price / 100
-                    ).toFixed(2)}</td>
-                  </tr>
-                `
-                  )
-                  .join("")}
-                <tr>
-                  <td colspan="2" style="padding: 12px; text-align: right; font-weight: bold;">Total:</td>
-                  <td style="padding: 12px; text-align: right; font-weight: bold;">$${(
-                    orderDetails.total / 100
-                  ).toFixed(2)}</td>
-                </tr>
-              </tbody>
-            </table>
-            
-            <p>We'll send you another email when your order ships.</p>
-            
-            <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #dee2e6;">
-              <p>If you have any questions, please contact our support team.</p>
-              <p>Thank you for shopping with us!</p>
-              <p><small>This order was placed on ${DOMAIN}</small></p>
-            </div>
-          </body>
-        </html>
-      `,
-    });
-
-    logWebhookEvent("✅ Email sent successfully", {
-      recipient: email,
-      orderId: orderDetails.orderId,
-    });
-
-    return emailResponse;
-  } catch (error) {
-    logWebhookEvent("❌ Error sending email", {
-      error: error instanceof Error ? error.message : "Unknown error",
-      recipient: email,
-      orderId: orderDetails.orderId,
-    });
-  }
-}
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: NextRequest) {
   try {
-    logWebhookEvent("Received webhook request");
+    console.log("Webhook received");
 
     const body = await request.text();
     const headersList = headers();
     const signature = headersList.get("stripe-signature");
 
-    // Log headers for debugging
-    logWebhookEvent("Webhook headers received", {
-      hasSignature: Boolean(signature).toString(),
-      contentType: headersList.get("content-type") ?? "none",
-    });
-
-    // Verify required environment variables
     if (!process.env.STRIPE_WEBHOOK_SECRET) {
-      logWebhookEvent("❌ Missing Stripe webhook secret");
+      console.error("Missing STRIPE_WEBHOOK_SECRET");
       return NextResponse.json(
         { error: "Server configuration error" },
         { status: 500 }
@@ -153,7 +28,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (!signature) {
-      logWebhookEvent("❌ Missing Stripe signature");
+      console.error("Missing stripe signature");
       return NextResponse.json(
         { error: "Missing stripe signature" },
         { status: 400 }
@@ -167,18 +42,14 @@ export async function POST(request: NextRequest) {
       process.env.STRIPE_WEBHOOK_SECRET
     );
 
-    logWebhookEvent("✅ Webhook signature verified", {
-      eventType: event.type,
-      eventId: event.id,
-    });
+    console.log(`Event type: ${event.type}`);
 
-    // Handle the event
     if (event.type === "checkout.session.completed") {
       const session = event.data.object as Stripe.Checkout.Session;
 
-      logWebhookEvent("Processing checkout session", {
+      console.log("Processing completed checkout session", {
         sessionId: session.id,
-        customerEmail: session.customer_details?.email ?? "no email",
+        customerEmail: session.customer_details?.email,
       });
 
       // Retrieve the session with line items
@@ -189,49 +60,136 @@ export async function POST(request: NextRequest) {
         }
       );
 
-      // Format order details
-      const orderDetails: OrderDetails = {
-        orderId: session.id,
-        items:
-          expandedSession.line_items?.data.map((item) => ({
-            name: item.description ?? "Unnamed Item",
-            quantity: item.quantity ?? 1,
-            price: item.amount_total ?? 0,
-          })) || [],
-        total: session.amount_total ?? 0,
-      };
+      if (!session.customer_details?.email) {
+        console.error("No customer email found in session");
+        return NextResponse.json(
+          { error: "No customer email found" },
+          { status: 400 }
+        );
+      }
 
-      logWebhookEvent("Order details formatted", {
-        orderId: orderDetails.orderId,
-        itemCount: orderDetails.items.length,
-        total: orderDetails.total,
-      });
+      // Format line items for email
+      const items =
+        expandedSession.line_items?.data.map((item) => ({
+          name: item.description || "Unnamed product",
+          quantity: item.quantity || 0,
+          price: item.amount_total || 0,
+        })) || [];
 
-      // Send confirmation email
-      if (session.customer_details?.email) {
-        // Don't await email sending to prevent webhook timeout
-        sendOrderConfirmationEmail(
-          session.customer_details.email,
-          orderDetails
-        ).catch((error) => {
-          logWebhookEvent("❌ Error in email send promise", {
-            error: error instanceof Error ? error.message : "Unknown error",
-          });
+      // Calculate totals
+      const subtotal = session.amount_subtotal || 0;
+      const shipping = session.shipping_cost?.amount_total || 0;
+      const total = session.amount_total || 0;
+
+      try {
+        const emailResult: CreateEmailResponse = await resend.emails.send({
+          from: "Autopile <orders@autopile.store>",
+          to: session.customer_details.email,
+          subject: `Order Confirmation #${session.id}`,
+          html: `
+            <html>
+              <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+                <h1 style="color: #e44d26;">Thank you for your order!</h1>
+                <p>Hi ${session.customer_details.name},</p>
+                <p>Your order #${
+                  session.id
+                } has been confirmed and is being processed.</p>
+                
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 5px; margin: 20px 0;">
+                  <h2 style="margin-top: 0;">Order Summary</h2>
+                  <table style="width: 100%; border-collapse: collapse;">
+                    <thead>
+                      <tr style="border-bottom: 2px solid #dee2e6;">
+                        <th style="text-align: left; padding: 10px;">Item</th>
+                        <th style="text-align: center; padding: 10px;">Quantity</th>
+                        <th style="text-align: right; padding: 10px;">Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      ${items
+                        .map(
+                          (item) => `
+                        <tr style="border-bottom: 1px solid #dee2e6;">
+                          <td style="padding: 10px;">${item.name}</td>
+                          <td style="text-align: center; padding: 10px;">${
+                            item.quantity
+                          }</td>
+                          <td style="text-align: right; padding: 10px;">$${(
+                            item.price / 100
+                          ).toFixed(2)}</td>
+                        </tr>
+                      `
+                        )
+                        .join("")}
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <td colspan="2" style="text-align: right; padding: 10px;">Subtotal:</td>
+                        <td style="text-align: right; padding: 10px;">$${(
+                          subtotal / 100
+                        ).toFixed(2)}</td>
+                      </tr>
+                      <tr>
+                        <td colspan="2" style="text-align: right; padding: 10px;">Shipping:</td>
+                        <td style="text-align: right; padding: 10px;">$${(
+                          shipping / 100
+                        ).toFixed(2)}</td>
+                      </tr>
+                      <tr style="font-weight: bold;">
+                        <td colspan="2" style="text-align: right; padding: 10px;">Total:</td>
+                        <td style="text-align: right; padding: 10px;">$${(
+                          total / 100
+                        ).toFixed(2)}</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 20px; border-radius: 5px; margin: 20px 0;">
+                  <h2 style="margin-top: 0;">Shipping Address</h2>
+                  <p style="margin-bottom: 0;">
+                    ${session.shipping_details?.address?.line1}<br>
+                    ${
+                      session.shipping_details?.address?.line2
+                        ? session.shipping_details.address.line2 + "<br>"
+                        : ""
+                    }
+                    ${session.shipping_details?.address?.city}, ${
+            session.shipping_details?.address?.state
+          } ${session.shipping_details?.address?.postal_code}<br>
+                    ${session.shipping_details?.address?.country}
+                  </p>
+                </div>
+
+                <p>We'll send you another email when your order ships.</p>
+                
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #dee2e6;">
+                  <p>If you have any questions, please contact our support team.</p>
+                  <p>Thank you for shopping with us!</p>
+                </div>
+              </body>
+            </html>
+          `,
         });
-      } else {
-        logWebhookEvent("⚠️ No customer email found in session");
+
+        console.log("Email sent successfully", {
+          emailId: emailResult.data?.id,
+          sessionId: session.id,
+        });
+      } catch (error) {
+        console.error("Failed to send email", {
+          error: error instanceof Error ? error.message : "Unknown error",
+          sessionId: session.id,
+        });
+        // Don't return error response - we still want to acknowledge the webhook
       }
     }
 
-    logWebhookEvent("✅ Webhook processed successfully");
-
-    // Return a response to acknowledge receipt of the event
     return NextResponse.json({ received: true }, { status: 200 });
   } catch (err) {
-    logWebhookEvent("❌ Webhook processing failed", {
+    console.error("Webhook processing failed", {
       error: err instanceof Error ? err.message : "Unknown error",
     });
-
     return NextResponse.json(
       { error: "Webhook handler failed" },
       { status: 400 }
