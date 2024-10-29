@@ -4,6 +4,22 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { Resend } from "resend";
 
+// Define types for logging data
+type LogData = {
+  [key: string]: string | number | boolean | null | undefined;
+};
+
+// Define types for order details
+interface OrderDetails {
+  orderId: string;
+  items: Array<{
+    name: string;
+    quantity: number;
+    price: number;
+  }>;
+  total: number;
+}
+
 // Initialize Stripe
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2024-09-30.acacia",
@@ -12,8 +28,8 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 // Configuration for your Vercel deployment
 const DOMAIN = "e-commerce-plum-seven-35.vercel.app";
 
-// Helper function for consistent logging
-function logWebhookEvent(message: string, data?: any) {
+// Helper function for consistent logging with typed data
+function logWebhookEvent(message: string, data?: LogData) {
   const timestamp = new Date().toISOString();
   console.log(`[${timestamp}] Webhook: ${message}`);
   if (data) {
@@ -23,15 +39,7 @@ function logWebhookEvent(message: string, data?: any) {
 
 async function sendOrderConfirmationEmail(
   email: string,
-  orderDetails: {
-    orderId: string;
-    items: Array<{
-      name: string;
-      quantity: number;
-      price: number;
-    }>;
-    total: number;
-  }
+  orderDetails: OrderDetails
 ) {
   try {
     logWebhookEvent("Starting email send attempt", {
@@ -49,7 +57,7 @@ async function sendOrderConfirmationEmail(
     const resend = new Resend(resendApiKey);
 
     const emailResponse = await resend.emails.send({
-      from: `E-Commerce Store <onboarding@resend.dev>`,
+      from: `E-Commerce Store <customer@autopile.store>`,
       to: email,
       subject: `Order Confirmation #${orderDetails.orderId}`,
       html: `
@@ -107,8 +115,8 @@ async function sendOrderConfirmationEmail(
     });
 
     logWebhookEvent("✅ Email sent successfully", {
-      emailId: emailResponse.id,
       recipient: email,
+      orderId: orderDetails.orderId,
     });
 
     return emailResponse;
@@ -131,8 +139,8 @@ export async function POST(request: NextRequest) {
 
     // Log headers for debugging
     logWebhookEvent("Webhook headers received", {
-      "stripe-signature": signature ? "Present" : "Missing",
-      contentType: headersList.get("content-type"),
+      hasSignature: Boolean(signature).toString(),
+      contentType: headersList.get("content-type") ?? "none",
     });
 
     // Verify required environment variables
@@ -170,7 +178,7 @@ export async function POST(request: NextRequest) {
 
       logWebhookEvent("Processing checkout session", {
         sessionId: session.id,
-        customerEmail: session.customer_details?.email,
+        customerEmail: session.customer_details?.email ?? "no email",
       });
 
       // Retrieve the session with line items
@@ -182,15 +190,15 @@ export async function POST(request: NextRequest) {
       );
 
       // Format order details
-      const orderDetails = {
+      const orderDetails: OrderDetails = {
         orderId: session.id,
         items:
           expandedSession.line_items?.data.map((item) => ({
-            name: item.description!,
-            quantity: item.quantity!,
-            price: item.amount_total!,
+            name: item.description ?? "Unnamed Item",
+            quantity: item.quantity ?? 1,
+            price: item.amount_total ?? 0,
           })) || [],
-        total: session.amount_total!,
+        total: session.amount_total ?? 0,
       };
 
       logWebhookEvent("Order details formatted", {
