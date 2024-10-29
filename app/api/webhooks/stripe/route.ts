@@ -10,9 +10,13 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-// Generate a random order number
+// Module-level counter for order numbers
+let lastOrderNumber = 0;
+
+// Generate order number
 function generateOrderNumber(): string {
-  return Math.floor(1000 + Math.random() * 9000).toString();
+  lastOrderNumber++;
+  return lastOrderNumber.toString().padStart(3, "0");
 }
 
 // Format currency
@@ -27,7 +31,6 @@ export async function POST(request: NextRequest) {
   try {
     // Clone the request to get the raw body
     const rawBody = await request.text();
-
     const signature = headers().get("stripe-signature");
 
     console.log("Webhook received", {
@@ -73,7 +76,7 @@ export async function POST(request: NextRequest) {
     if (event.type === "checkout.session.completed") {
       const session = event.data.object as Stripe.Checkout.Session;
 
-      // Generate a friendly order number
+      // Generate order number
       const orderNumber = generateOrderNumber();
 
       console.log("Processing checkout session", {
@@ -120,7 +123,7 @@ export async function POST(request: NextRequest) {
               <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
                 <h1 style="color: #e44d26;">Thank you for your order!</h1>
                 <p>Hi ${session.customer_details.name},</p>
-                <p>Your order #${orderNumber} has been confirmed and is being processed.</p>
+                <p>Order #${orderNumber} has been confirmed and is being processed.</p>
                 
                 <div style="background: #f8f9fa; padding: 20px; border-radius: 5px; margin: 20px 0;">
                   <h2 style="margin-top: 0;">Order Summary</h2>
@@ -202,13 +205,8 @@ export async function POST(request: NextRequest) {
                   </p>
                 </div>
 
-                <p style="color: #666; font-size: 14px;">
-                  Order reference: ${session.id}<br>
-                  Order date: ${new Date().toLocaleDateString("en-AU")}
-                </p>
-
                 <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #dee2e6;">
-                  <p>If you have any questions about your order, please contact our support team.</p>
+                  <p>If you have any questions, please contact our support team.</p>
                   <p>Thank you for shopping with Autopile!</p>
                 </div>
               </body>
