@@ -12,7 +12,15 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 // Configuration for your Vercel deployment
 const DOMAIN = "e-commerce-plum-seven-35.vercel.app";
 
-// Move Resend initialization inside the email function to prevent build errors
+// Helper function for consistent logging
+function logWebhookEvent(message: string, data?: any) {
+  const timestamp = new Date().toISOString();
+  console.log(`[${timestamp}] Webhook: ${message}`);
+  if (data) {
+    console.log("Data:", JSON.stringify(data, null, 2));
+  }
+}
+
 async function sendOrderConfirmationEmail(
   email: string,
   orderDetails: {
@@ -26,16 +34,21 @@ async function sendOrderConfirmationEmail(
   }
 ) {
   try {
-    // Check for API key before initializing Resend
+    logWebhookEvent("Starting email send attempt", {
+      recipient: email,
+      orderId: orderDetails.orderId,
+    });
+
+    // Check for API key
     const resendApiKey = process.env.RESEND_API_KEY;
     if (!resendApiKey) {
-      console.error("Missing Resend API key");
+      logWebhookEvent("❌ Missing Resend API key");
       return;
     }
 
     const resend = new Resend(resendApiKey);
 
-    await resend.emails.send({
+    const emailResponse = await resend.emails.send({
       from: `E-Commerce Store <onboarding@resend.dev>`,
       to: email,
       subject: `Order Confirmation #${orderDetails.orderId}`,
@@ -92,22 +105,39 @@ async function sendOrderConfirmationEmail(
         </html>
       `,
     });
+
+    logWebhookEvent("✅ Email sent successfully", {
+      emailId: emailResponse.id,
+      recipient: email,
+    });
+
+    return emailResponse;
   } catch (error) {
-    console.error("Error sending confirmation email:", error);
-    // Don't throw the error, just log it
-    // This prevents the webhook from failing if email sending fails
+    logWebhookEvent("❌ Error sending email", {
+      error: error instanceof Error ? error.message : "Unknown error",
+      recipient: email,
+      orderId: orderDetails.orderId,
+    });
   }
 }
 
 export async function POST(request: NextRequest) {
   try {
+    logWebhookEvent("Received webhook request");
+
     const body = await request.text();
     const headersList = headers();
     const signature = headersList.get("stripe-signature");
 
+    // Log headers for debugging
+    logWebhookEvent("Webhook headers received", {
+      "stripe-signature": signature ? "Present" : "Missing",
+      contentType: headersList.get("content-type"),
+    });
+
     // Verify required environment variables
     if (!process.env.STRIPE_WEBHOOK_SECRET) {
-      console.error("Missing Stripe webhook secret");
+      logWebhookEvent("❌ Missing Stripe webhook secret");
       return NextResponse.json(
         { error: "Server configuration error" },
         { status: 500 }
@@ -115,6 +145,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (!signature) {
+      logWebhookEvent("❌ Missing Stripe signature");
       return NextResponse.json(
         { error: "Missing stripe signature" },
         { status: 400 }
@@ -128,9 +159,19 @@ export async function POST(request: NextRequest) {
       process.env.STRIPE_WEBHOOK_SECRET
     );
 
+    logWebhookEvent("✅ Webhook signature verified", {
+      eventType: event.type,
+      eventId: event.id,
+    });
+
     // Handle the event
     if (event.type === "checkout.session.completed") {
       const session = event.data.object as Stripe.Checkout.Session;
+
+      logWebhookEvent("Processing checkout session", {
+        sessionId: session.id,
+        customerEmail: session.customer_details?.email,
+      });
 
       // Retrieve the session with line items
       const expandedSession = await stripe.checkout.sessions.retrieve(
@@ -152,20 +193,37 @@ export async function POST(request: NextRequest) {
         total: session.amount_total!,
       };
 
+      logWebhookEvent("Order details formatted", {
+        orderId: orderDetails.orderId,
+        itemCount: orderDetails.items.length,
+        total: orderDetails.total,
+      });
+
       // Send confirmation email
       if (session.customer_details?.email) {
         // Don't await email sending to prevent webhook timeout
         sendOrderConfirmationEmail(
           session.customer_details.email,
           orderDetails
-        ).catch(console.error);
+        ).catch((error) => {
+          logWebhookEvent("❌ Error in email send promise", {
+            error: error instanceof Error ? error.message : "Unknown error",
+          });
+        });
+      } else {
+        logWebhookEvent("⚠️ No customer email found in session");
       }
     }
+
+    logWebhookEvent("✅ Webhook processed successfully");
 
     // Return a response to acknowledge receipt of the event
     return NextResponse.json({ received: true }, { status: 200 });
   } catch (err) {
-    console.error("Webhook error:", err);
+    logWebhookEvent("❌ Webhook processing failed", {
+      error: err instanceof Error ? err.message : "Unknown error",
+    });
+
     return NextResponse.json(
       { error: "Webhook handler failed" },
       { status: 400 }
