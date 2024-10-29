@@ -9,12 +9,10 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2024-09-30.acacia",
 });
 
-// Initialize Resend
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 // Configuration for your Vercel deployment
 const DOMAIN = "e-commerce-plum-seven-35.vercel.app";
 
+// Move Resend initialization inside the email function to prevent build errors
 async function sendOrderConfirmationEmail(
   email: string,
   orderDetails: {
@@ -28,8 +26,17 @@ async function sendOrderConfirmationEmail(
   }
 ) {
   try {
+    // Check for API key before initializing Resend
+    const resendApiKey = process.env.RESEND_API_KEY;
+    if (!resendApiKey) {
+      console.error("Missing Resend API key");
+      return;
+    }
+
+    const resend = new Resend(resendApiKey);
+
     await resend.emails.send({
-      from: `E-Commerce Store <onboarding@resend.dev>`, // Use this for testing
+      from: `E-Commerce Store <onboarding@resend.dev>`,
       to: email,
       subject: `Order Confirmation #${orderDetails.orderId}`,
       html: `
@@ -87,7 +94,8 @@ async function sendOrderConfirmationEmail(
     });
   } catch (error) {
     console.error("Error sending confirmation email:", error);
-    throw error;
+    // Don't throw the error, just log it
+    // This prevents the webhook from failing if email sending fails
   }
 }
 
@@ -95,13 +103,29 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.text();
     const headersList = headers();
-    const signature = headersList.get("stripe-signature") as string;
+    const signature = headersList.get("stripe-signature");
+
+    // Verify required environment variables
+    if (!process.env.STRIPE_WEBHOOK_SECRET) {
+      console.error("Missing Stripe webhook secret");
+      return NextResponse.json(
+        { error: "Server configuration error" },
+        { status: 500 }
+      );
+    }
+
+    if (!signature) {
+      return NextResponse.json(
+        { error: "Missing stripe signature" },
+        { status: 400 }
+      );
+    }
 
     // Verify the webhook signature
     const event = stripe.webhooks.constructEvent(
       body,
       signature,
-      process.env.STRIPE_WEBHOOK_SECRET!
+      process.env.STRIPE_WEBHOOK_SECRET
     );
 
     // Handle the event
@@ -130,14 +154,12 @@ export async function POST(request: NextRequest) {
 
       // Send confirmation email
       if (session.customer_details?.email) {
-        await sendOrderConfirmationEmail(
+        // Don't await email sending to prevent webhook timeout
+        sendOrderConfirmationEmail(
           session.customer_details.email,
           orderDetails
-        );
+        ).catch(console.error);
       }
-
-      // Optional: Save order to your database
-      // await saveOrderToDatabase(orderDetails);
     }
 
     // Return a response to acknowledge receipt of the event
