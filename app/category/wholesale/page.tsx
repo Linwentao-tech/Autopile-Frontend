@@ -2,7 +2,10 @@ import { ProductFetcher } from "@/app/_lib/DatabaseFetcher";
 import ProductFilter from "@/app/_lib/ProductFilter";
 import { PageProps, Product } from "@/app/components/InterfaceType";
 import ProductCardContainer from "@/app/components/ProductCardContainer";
-
+export const metadata = {
+  title: "Wholesale",
+  description: "Wholesale Page",
+};
 async function Page({ searchParams }: PageProps) {
   const products: Product[] = await ProductFetcher();
   const wholesaleProducts: Product[] = products.filter(

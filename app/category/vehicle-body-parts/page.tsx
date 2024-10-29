@@ -2,7 +2,10 @@ import { ProductFetcher } from "@/app/_lib/DatabaseFetcher";
 import ProductFilter from "@/app/_lib/ProductFilter";
 import { PageProps, type Product } from "@/app/components/InterfaceType";
 import ProductCardContainer from "@/app/components/ProductCardContainer";
-
+export const metadata = {
+  title: "Vehicle Body Parts",
+  description: "Vehicle Body Parts Page",
+};
 async function page({ searchParams }: PageProps) {
   const products: Product[] = (await ProductFetcher()).filter(
     (product) => product.productType === "Vehicle Body Parts"

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
+import { auth } from "@/app/auth";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2024-09-30.acacia",
@@ -17,26 +18,9 @@ interface StripeError extends Error {
   type?: string;
 }
 
-// Define a type for line items with optional images
-type LineItem = {
-  price_data: {
-    currency: string;
-    product_data: {
-      name: string;
-      images?: string[];
-    };
-    unit_amount: number;
-  };
-  quantity: number;
-};
-
 export async function POST(req: Request) {
   try {
-    const {
-      items,
-      gstAmount,
-      deliveryFee,
-    }: { items: CartItem[]; gstAmount: number; deliveryFee: number } =
+    const { items, deliveryFee }: { items: CartItem[]; deliveryFee: number } =
       await req.json();
 
     if (!process.env.STRIPE_SECRET_KEY) {
@@ -45,51 +29,65 @@ export async function POST(req: Request) {
       );
     }
 
-    const transformedItems: LineItem[] = items.map((item: CartItem) => ({
-      price_data: {
-        currency: "usd",
-        product_data: {
-          name: item.name,
-          images: [item.image],
-        },
-        unit_amount: Math.round(parseFloat(item.price.replace("$", "")) * 100),
-      },
-      quantity: item.quantity,
-    }));
+    const session = await auth();
 
-    // Add GST as a separate line item
-    transformedItems.push({
-      price_data: {
-        currency: "usd",
-        product_data: {
-          name: "GST",
+    const lineItems: Stripe.Checkout.SessionCreateParams.LineItem[] = items.map(
+      (item: CartItem) => ({
+        price_data: {
+          currency: "aud",
+          product_data: {
+            name: item.name,
+            images: [item.image],
+          },
+          unit_amount: Math.round(
+            parseFloat(item.price.replace("$", "")) * 100
+          ),
         },
-        unit_amount: Math.round(gstAmount * 100),
-      },
-      quantity: 1,
-    });
+        quantity: item.quantity,
+      })
+    );
 
-    // Add Delivery Fee as a separate line item
-    transformedItems.push({
-      price_data: {
-        currency: "usd",
-        product_data: {
-          name: "Delivery Fee",
-        },
-        unit_amount: Math.round(deliveryFee * 100),
-      },
-      quantity: 1,
-    });
-
-    const session = await stripe.checkout.sessions.create({
+    const params: Stripe.Checkout.SessionCreateParams = {
       payment_method_types: ["card"],
-      line_items: transformedItems,
+      line_items: lineItems,
       mode: "payment",
       success_url: `${req.headers.get("origin")}/success`,
       cancel_url: `${req.headers.get("origin")}/cart`,
-    });
+      shipping_address_collection: {
+        allowed_countries: ["AU"],
+      },
+      shipping_options: [
+        {
+          shipping_rate_data: {
+            type: "fixed_amount",
+            fixed_amount: {
+              amount: Math.round(deliveryFee * 100),
+              currency: "aud",
+            },
+            display_name: "Standard Shipping",
+            delivery_estimate: {
+              minimum: {
+                unit: "business_day",
+                value: 5,
+              },
+              maximum: {
+                unit: "business_day",
+                value: 7,
+              },
+            },
+          },
+        },
+      ],
+    };
 
-    return NextResponse.json({ id: session.id });
+    // Add customer_email to params if session exists
+    if (session?.user?.email) {
+      params.customer_email = session.user.email;
+    }
+
+    const checkoutSession = await stripe.checkout.sessions.create(params);
+
+    return NextResponse.json({ id: checkoutSession.id });
   } catch (err: unknown) {
     console.error("Error creating checkout session:", err);
     if (err instanceof Error) {

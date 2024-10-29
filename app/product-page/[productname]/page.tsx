@@ -4,7 +4,24 @@ import ProductSectionContainer from "@/app/components/ProductSectionContainer";
 import ProductSubmitComponent from "@/app/components/ProductSubmitComponent";
 
 import Link from "next/link";
+export async function generateMetadata({
+  params,
+}: {
+  params: { productname: string };
+}) {
+  const products = await ProductFetcher();
+  const productName = reverseFormat(params.productname);
 
+  const product = products.find((product) => product.name === productName);
+  if (product?.name === "Gps") {
+    product.name = "GPS";
+  }
+
+  return {
+    title: product ? `${product.name}` : "Product Not Found",
+    description: product ? product.productDescription : "Product not found",
+  };
+}
 function reverseFormat(input: string) {
   return input
     .split("-")

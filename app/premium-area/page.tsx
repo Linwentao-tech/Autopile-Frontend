@@ -1,6 +1,9 @@
 import Form from "@/app/components/PremiumPage/Form";
 import { ScrollToTop } from "@/app/components/ScrollTop";
-
+export const metadata = {
+  title: "Premium Area",
+  description: "Premium Area Page",
+};
 function page() {
   return (
     <section className="px-12 pt-24 grid-cols-2 grid">

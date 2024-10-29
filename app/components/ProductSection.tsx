@@ -7,7 +7,7 @@ function ProductSection({ title, info }: { title: string; info: string }) {
   return (
     <div className="border-b pb-4 mb-4">
       <div className="flex text-xl items-center justify-between mb-2">
-        <span className="font-semibold">{title}</span>
+        <header className="font-semibold">{title}</header>
         <button
           className="text-2xl transition-transform duration-500 ease-in-out"
           onClick={() => {
@@ -22,7 +22,9 @@ function ProductSection({ title, info }: { title: string; info: string }) {
           expanded ? "max-h-96" : "max-h-0"
         }`}
       >
-        <p className="text-pretty">{info}</p>
+        <article>
+          <p className="text-pretty">{info}</p>
+        </article>
       </div>
     </div>
   );

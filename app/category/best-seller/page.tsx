@@ -2,7 +2,10 @@ import { ProductFetcher } from "@/app/_lib/DatabaseFetcher";
 import ProductFilter from "@/app/_lib/ProductFilter";
 import { PageProps, type Product } from "@/app/components/InterfaceType";
 import ProductCardContainer from "@/app/components/ProductCardContainer";
-
+export const metadata = {
+  title: "Best Seller",
+  description: "Page of best seller",
+};
 async function page({ searchParams }: PageProps) {
   const products: Product[] = (await ProductFetcher()).filter(
     (product) => product.ribbon === "Best Seller"

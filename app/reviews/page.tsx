@@ -1,5 +1,8 @@
 import ReviewSection from "../components/ReviewPage/ReviewSection";
-
+export const metadata = {
+  title: "Review",
+  description: "Review Page",
+};
 function page() {
   return (
     <div className="mx-12 mt-20">

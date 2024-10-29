@@ -32,6 +32,7 @@ function Header({
   const isVehiclePage: boolean = pathname === "/category/vehicle-body-parts";
   const isWheelsPage: boolean = pathname === "/category/wheels-and-rims";
   const isCartPage: boolean = pathname === "/cart";
+  const isDashboardPage: boolean = pathname === "/dashboard";
   return (
     <div className="relative">
       {isHomePage && (
@@ -74,7 +75,8 @@ function Header({
         isEnginePage ||
         isVehiclePage ||
         isWheelsPage ||
-        isCartPage) && (
+        isCartPage ||
+        isDashboardPage) && (
         <Image
           src={background}
           alt="background"

@@ -60,8 +60,8 @@ function ProductSubmitComponent({
           onChange={handleQuantityChange}
           type="number"
           className="w-20 text-white px-4 py-2 bg-black border-2 border-white rounded-lg hover:border-orange-500 focus:outline-none focus:border-orange-500 transition-colors duration-300"
-          max={10}
-          min={1}
+          max="10"
+          min="1"
         />
         {warning && (
           <div
@@ -84,7 +84,18 @@ function ProductSubmitComponent({
       >
         Add to cart
       </Button>
-      <Button type="Buy_now">Buy Now</Button>
+      <Button
+        type="Buy_now"
+        productId={id}
+        productName={name}
+        productImage={media[0].fullUrl}
+        productPrice={
+          formattedComparePrice ? formattedComparePrice : formattedPrice
+        }
+        quantity={quantity}
+      >
+        Buy Now
+      </Button>
     </>
   );
 }

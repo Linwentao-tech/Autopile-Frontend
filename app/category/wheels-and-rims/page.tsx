@@ -2,7 +2,10 @@ import { ProductFetcher } from "@/app/_lib/DatabaseFetcher";
 import ProductFilter from "@/app/_lib/ProductFilter";
 import { PageProps, type Product } from "@/app/components/InterfaceType";
 import ProductCardContainer from "@/app/components/ProductCardContainer";
-
+export const metadata = {
+  title: "Wheels & Rims",
+  description: "Wheels & Rims Page",
+};
 async function page({ searchParams }: PageProps) {
   const products: Product[] = (await ProductFetcher()).filter(
     (product) => product.productType === "Wheels & Rims"

@@ -7,7 +7,7 @@ import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "../_lib/hooks";
 import { addItem, clearCart } from "../_lib/features/cart/cartSlice";
 import { useCallback, useEffect, useState } from "react";
-
+import getStripe from "@/app/_lib/stripe";
 interface ButtonProps extends ChildrenProps {
   type: ButtonType;
   productId?: string;
@@ -49,6 +49,54 @@ function Button({
       setAddToCartClicked(false);
     }
   }, [items, addToCartClicked]);
+  const [checkoutError, setCheckoutError] = useState<string | null>(null);
+
+  const handleCheckout = async () => {
+    setCheckoutError(null);
+    const stripe = await getStripe();
+
+    try {
+      const response = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          items: [
+            {
+              id: productId,
+              name: productName,
+              price: productPrice,
+              quantity: 1,
+              image: productImage,
+            },
+          ],
+          deliveryFee: 10,
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "An error occurred during checkout");
+      }
+
+      const data = await response.json();
+      const result = await stripe?.redirectToCheckout({ sessionId: data.id });
+
+      if (result?.error) {
+        throw new Error(result.error.message);
+      }
+    } catch (error: unknown) {
+      console.error("Checkout error:", error);
+      if (error instanceof Error) {
+        setCheckoutError(error.message);
+        console.log(checkoutError);
+      } else {
+        setCheckoutError("An unexpected error occurred");
+        console.log(checkoutError);
+      }
+    }
+  };
   if (typeof type === "object" && type.type === "orange_button")
     if (type.subtype === "shop_now")
       return (
@@ -156,7 +204,10 @@ function Button({
   if (type === "Buy_now")
     return (
       <div className="w-full ">
-        <button className="bg-orange-700 px-4 py-2 text-black rounded-full  transition-all   border-2 border-transparent duration-500 w-full hover:opacity-60">
+        <button
+          onClick={handleCheckout}
+          className="bg-orange-700 px-4 py-2 text-black rounded-full  transition-all   border-2 border-transparent duration-500 w-full hover:opacity-60"
+        >
           {children}
         </button>
       </div>

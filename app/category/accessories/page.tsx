@@ -3,6 +3,11 @@ import ProductFilter from "@/app/_lib/ProductFilter";
 import { PageProps, type Product } from "@/app/components/InterfaceType";
 import ProductCardContainer from "@/app/components/ProductCardContainer";
 
+export const metadata = {
+  title: "Accessories",
+  description: "Accessories Page",
+};
+
 async function page({ searchParams }: PageProps) {
   const products: Product[] = (await ProductFetcher()).filter(
     (product) => product.productType === "accessories"

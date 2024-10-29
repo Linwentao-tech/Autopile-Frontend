@@ -1,5 +1,9 @@
 import background from "@/public/about-car.jpg";
 import Image from "next/image";
+export const metadata = {
+  title: "About us",
+  description: "We Understand Cars",
+};
 function page() {
   return (
     <section className="px-12 pt-16">

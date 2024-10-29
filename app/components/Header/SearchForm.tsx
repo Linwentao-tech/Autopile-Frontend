@@ -16,8 +16,10 @@ function SearchForm() {
         />
       </svg>
       <input
-        type="text"
+        type="search"
         placeholder="Search..."
+        id="search"
+        name="search"
         className="bg-transparent w-full focus:outline-none text-white placeholder-white/50"
       />
     </form>
