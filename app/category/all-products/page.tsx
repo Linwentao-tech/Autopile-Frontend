@@ -7,7 +7,8 @@ export const metadata = {
   title: "All Products",
   description: "Page of all of the products",
 };
-async function page({ searchParams }: PageProps) {
+async function page(props: PageProps) {
+  const searchParams = await props.searchParams;
   const products: Product[] = await ProductFetcher();
   const filterProducts = ProductFilter({
     searchParams,

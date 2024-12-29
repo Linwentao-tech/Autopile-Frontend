@@ -4,11 +4,12 @@ import ProductSectionContainer from "@/app/components/ProductSectionContainer";
 import ProductSubmitComponent from "@/app/components/ProductSubmitComponent";
 
 import Link from "next/link";
-export async function generateMetadata({
-  params,
-}: {
-  params: { productname: string };
-}) {
+export async function generateMetadata(
+  props: {
+    params: Promise<{ productname: string }>;
+  }
+) {
+  const params = await props.params;
   const products = await ProductFetcher();
   const productName = reverseFormat(params.productname);
 
@@ -29,7 +30,8 @@ function reverseFormat(input: string) {
     .join(" ");
 }
 
-async function ProductPage({ params }: { params: { productname: string } }) {
+async function ProductPage(props: { params: Promise<{ productname: string }> }) {
+  const params = await props.params;
   const products = await ProductFetcher();
   const product = products.find(
     (product) => product.name === reverseFormat(params.productname)
@@ -55,7 +57,7 @@ async function ProductPage({ params }: { params: { productname: string } }) {
   } = product;
 
   return (
-    <div className="container mx-auto px-4">
+    (<div className="container mx-auto px-4">
       <nav className="text-sm mb-4">
         <Link href="/" className="hover:underline">
           Home
@@ -79,7 +81,6 @@ async function ProductPage({ params }: { params: { productname: string } }) {
           {name}
         </span>
       </nav>
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div className="flex flex-col space-y-8">
           <DynamicProductPageBlur src={media[0].fullUrl} name={name} />
@@ -113,7 +114,7 @@ async function ProductPage({ params }: { params: { productname: string } }) {
           <ProductSectionContainer productInfo={productInfo} />
         </div>
       </div>
-    </div>
+    </div>)
   );
 }
 

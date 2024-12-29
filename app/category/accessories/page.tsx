@@ -8,7 +8,8 @@ export const metadata = {
   description: "Accessories Page",
 };
 
-async function page({ searchParams }: PageProps) {
+async function page(props: PageProps) {
+  const searchParams = await props.searchParams;
   const products: Product[] = (await ProductFetcher()).filter(
     (product) => product.productType === "accessories"
   );

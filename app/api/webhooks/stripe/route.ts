@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
   try {
     // Clone the request to get the raw body
     const rawBody = await request.text();
-    const signature = headers().get("stripe-signature");
+    const signature = (await headers()).get("stripe-signature");
 
     console.log("Webhook received", {
       hasSignature: !!signature,

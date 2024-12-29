@@ -6,7 +6,8 @@ export const metadata = {
   title: "Best Seller",
   description: "Page of best seller",
 };
-async function page({ searchParams }: PageProps) {
+async function page(props: PageProps) {
+  const searchParams = await props.searchParams;
   const products: Product[] = (await ProductFetcher()).filter(
     (product) => product.ribbon === "Best Seller"
   );
