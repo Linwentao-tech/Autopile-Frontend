@@ -1,4 +1,3 @@
-// app/reset-password/page.tsx
 import PasswordResetForm from "../components//PasswordResetForm";
 
 export const metadata = {

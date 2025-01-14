@@ -38,7 +38,7 @@ export default function PasswordResetForm() {
         );
 
         const data = await response.json();
-        setIsValidToken(data.message === "Token valid");
+        setIsValidToken(data.success);
       } catch {
         setIsValidToken(false);
       } finally {
