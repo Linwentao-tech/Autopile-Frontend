@@ -4,7 +4,7 @@ import SearchForm from "./SearchForm";
 
 import DynamicUserIconBlur from "../DynamicUserIconBlur";
 
-async function SearchLoginCartHeader() {
+function SearchLoginCartHeader() {
   return (
     <div className="flex items-center justify-between gap-7">
       <SearchForm />

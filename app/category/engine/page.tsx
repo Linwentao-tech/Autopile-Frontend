@@ -1,5 +1,5 @@
-import { ProductFetcher } from "@/app/_lib/DatabaseFetcher";
 import ProductFilter from "@/app/_lib/ProductFilter";
+import { getProducts } from "@/app/actions/getProducts";
 import { PageProps, type Product } from "@/app/components/InterfaceType";
 import ProductCardContainer from "@/app/components/ProductCardContainer";
 export const metadata = {
@@ -8,8 +8,8 @@ export const metadata = {
 };
 async function page(props: PageProps) {
   const searchParams = await props.searchParams;
-  const products: Product[] = (await ProductFetcher()).filter(
-    (product) => product.productType === "engine"
+  const products: Product[] = (await getProducts()).filter(
+    (product: Product) => product.category === 3
   );
   const filterProducts = ProductFilter({
     searchParams,

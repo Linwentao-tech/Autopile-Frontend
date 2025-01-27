@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { Product } from "../InterfaceType";
+import type { Product } from "../InterfaceType";
 import Button from "../Button";
 import DynamicTopSellers from "../DynamicTopSellers";
 
@@ -58,7 +58,7 @@ function TopSeller({ products }: { products: Product[] }) {
                 <div className="flex flex-col items-center">
                   <div className="relative w-full pt-[140%]">
                     <DynamicTopSellers
-                      src={product.media[0].fullUrl}
+                      src={product.productMedias[0].fullUrl}
                       alt={product.name}
                     />
                     <div className="absolute top-0 left-0 bg-orange-500 text-white px-2 py-1  text-sm font-semibold z-10">
@@ -75,7 +75,7 @@ function TopSeller({ products }: { products: Product[] }) {
                     type="Add_to_cart_homepage"
                     productId={product.id}
                     productName={product.name}
-                    productImage={product.media[0].fullUrl}
+                    productImage={product.productMedias[0].fullUrl}
                     productPrice={product.price.toFixed(2)}
                     quantity={1}
                   >

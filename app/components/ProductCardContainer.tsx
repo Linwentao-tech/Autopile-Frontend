@@ -11,10 +11,10 @@ function ProductCardContainer({ products }: ProductCardContainerProps) {
       {products.map((el: Product) => {
         const product: ProductCardProps = {
           productName: el.name,
-          productImage: el.media[0].fullUrl,
+          productImage: el.productMedias[0].fullUrl,
           productRibbon: el.ribbon,
-          productComparePrice: el.formattedComparePrice,
-          productPrice: el.formattedPrice,
+          productComparePrice: el.comparePrice,
+          productPrice: el.price,
           productId: el.id,
         };
         return <ProductCard key={el.id} product={product} />;

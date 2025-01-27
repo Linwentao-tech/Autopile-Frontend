@@ -36,7 +36,7 @@ function Button({
           id: productId,
           name: productName,
           image: productImage,
-          price: productPrice || "",
+          price: productPrice?.toString() || "",
           quantity: quantity,
         })
       );

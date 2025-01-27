@@ -11,6 +11,7 @@ import StoreProvider from "./StoreProvider";
 import { Raleway } from "next/font/google";
 import { Metadata } from "next";
 import MiniCart from "./components/MiniCart";
+import { SessionProvider } from "next-auth/react";
 
 const josefin = Raleway({
   weight: ["400"],
@@ -33,21 +34,23 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: ChildrenProps) {
   return (
     <html lang="en">
-      <body className={`bg-black text-white  text-base ${josefin.className}`}>
-        <StoreProvider>
-          {/* make components server components by passing as props */}
-          <Header
-            advertisement={<Advertisement />}
-            premiumArea={<PremiumHeader />}
-            aboutUs={<AboutUsHeader />}
-          >
-            <Info />
-            <NavigationSection />
-          </Header>
-          {children}
-          <Footer />
-          <MiniCart />
-        </StoreProvider>
+      <body className={`bg-black text-white text-base ${josefin.className}`}>
+        <SessionProvider>
+          <StoreProvider>
+            {/* make components server components by passing as props */}
+            <Header
+              advertisement={<Advertisement />}
+              premiumArea={<PremiumHeader />}
+              aboutUs={<AboutUsHeader />}
+            >
+              <Info />
+              <NavigationSection />
+            </Header>
+            {children}
+            <Footer />
+            <MiniCart />
+          </StoreProvider>
+        </SessionProvider>
       </body>
     </html>
   );

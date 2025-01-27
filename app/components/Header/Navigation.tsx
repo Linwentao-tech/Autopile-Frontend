@@ -1,8 +1,7 @@
-import { auth } from "@/app/auth";
 import Link from "next/link";
+import DashboardLink from "../Dashboardpage/DashboardLink";
 
 async function Navigation() {
-  const session = await auth();
   return (
     <nav>
       <ul className="flex space-x-4 ">
@@ -38,16 +37,9 @@ async function Navigation() {
             Premium Area
           </Link>
         </li>
-        {session && (
-          <li>
-            <Link
-              href="/dashboard"
-              className="hover:text-orange-500 transition-colors duration-500 "
-            >
-              Dashboard
-            </Link>
-          </li>
-        )}
+        <li>
+          <DashboardLink className="hover:text-orange-500 transition-colors duration-500 " />
+        </li>
       </ul>
     </nav>
   );

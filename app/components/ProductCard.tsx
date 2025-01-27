@@ -2,6 +2,7 @@ import { type ProductCardProps } from "./InterfaceType";
 import Button from "./Button";
 import DynamicProductsBlur from "./DynamicProductsBlur";
 import Link from "next/link";
+import convertRibbon from "../_lib/utils/ribbonConverter";
 
 function formatProductName(productName: string) {
   return productName
@@ -28,21 +29,17 @@ function ProductCard({ product }: { product: ProductCardProps }) {
         className="block"
       >
         <DynamicProductsBlur src={productImage} name={productName} />
-        {productRibbon && (
-          <div className="absolute top-0 left-0 bg-orange-500 text-white px-2 py-1 text-sm font-semibold z-10">
-            {productRibbon}
-          </div>
-        )}
+        {convertRibbon(productRibbon)}
         <div className="w-full">
           <div>
             <h1 className="text-lg mb-1 mt-2">{productName}</h1>
             <p>
               {productComparePrice ? (
                 <>
-                  <s>{productPrice}</s> {productComparePrice}
+                  <s>${productPrice}</s> ${productComparePrice}
                 </>
               ) : (
-                productPrice
+                <>${productPrice}</>
               )}
             </p>
           </div>
@@ -54,9 +51,10 @@ function ProductCard({ product }: { product: ProductCardProps }) {
           productId={productId}
           productName={productName}
           productImage={productImage}
-          productPrice={
-            productComparePrice ? productComparePrice : productPrice
-          }
+          productPrice={(productComparePrice
+            ? productComparePrice
+            : productPrice
+          ).toString()}
           quantity={1}
         >
           Add to cart

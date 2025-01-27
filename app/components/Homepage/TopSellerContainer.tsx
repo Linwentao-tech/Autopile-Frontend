@@ -1,12 +1,13 @@
+import { getProducts } from "@/app/actions/getProducts";
 import TopSeller from "./TopSeller";
-import { ProductFetcher } from "@/app/_lib/DatabaseFetcher";
+import type { Product } from "../InterfaceType";
 
 async function TopSellerContainer() {
-  const Products = await ProductFetcher();
+  const Products = await getProducts();
   const bestSellerProducts = Products.filter(
-    (product) => product.ribbon === "Best Seller"
+    (product: Product) => product.ribbon === 1
   );
-  const serializedProducts = bestSellerProducts.map((product) =>
+  const serializedProducts = bestSellerProducts.map((product: Product) =>
     JSON.parse(JSON.stringify(product))
   );
 

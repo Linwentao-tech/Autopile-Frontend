@@ -10,54 +10,29 @@ export interface SvgLogoProps {
 }
 
 export interface Product {
-  productInfo: string;
-  productDescription: string;
+  // Fields from the JSON
   id: string;
-  options: [];
-  customTextFields: [];
-  productType: string;
-  ribbon: string | null;
-  price: number;
-  comparePrice: number | null;
-  sku: string;
-  isInStock: boolean;
-  urlPart: string;
-  formattedComparePrice: string | null;
-  formattedPrice: string;
-  pricePerUnit: null | number;
-  formattedPricePerUnit: null | string;
-  pricePerUnitData: null;
-  itemDiscount: null;
-  digitalProductFileItems: [];
   name: string;
-  media: {
+  productDescription: string;
+  productInfo: string;
+  sku: string;
+  price: number;
+  comparePrice: number;
+  isInStock: boolean;
+  stockQuantity: number;
+  ribbon: number;
+  createdAt: string;
+  updatedAt: string;
+  category: number;
+  productMedias: {
     url: string;
     fullUrl: string;
-    index: number;
-    width: number;
     mediaType: string;
-    altText: string | null;
+    altText: string;
     title: string;
+    width: number;
     height: number;
   }[];
-  isManageProductItems: boolean;
-  productItemsPreOrderAvailability: string;
-  isTrackingInventory: boolean;
-  inventory: {
-    status: string;
-    quantity: number;
-    availableForPreOrder: boolean;
-    preOrderInfoView: {
-      limit: null | number;
-    };
-  };
-  subscriptionPlans: {
-    list: [];
-  };
-  discount: {
-    mode: string;
-    value: number;
-  } | null;
 }
 
 export interface Review {
@@ -65,11 +40,11 @@ export interface Review {
   title: string;
   subtitle: string;
   content: string;
-  design: string;
-  tags: string[];
-  stun: string;
-  inspire: string;
-  imageUrl: string;
+  rating: number;
+  createdAt: string;
+  author: string;
+  imageUrl?: string;
+  userId: string;
 }
 
 export interface ReviewCardProps {
@@ -93,9 +68,9 @@ export interface IFormInputs {
 export interface ProductCardProps {
   productName: string;
   productImage: string;
-  productRibbon: string | null;
-  productComparePrice: string | null;
-  productPrice: string;
+  productRibbon: number;
+  productComparePrice: number | null;
+  productPrice: number;
   productId: string;
 }
 type OrangeButtonSubtype =
@@ -123,4 +98,13 @@ export interface SearchParams {
 
 export interface PageProps {
   searchParams: SearchParams;
+}
+
+export interface userData {
+  firstName: string;
+  lastName: string;
+  userName: string;
+  phoneNumber: string;
+  email: string;
+  password: string;
 }

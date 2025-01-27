@@ -1,4 +1,4 @@
-import { ProductFetcher } from "@/app/_lib/DatabaseFetcher";
+import { getProducts } from "@/app/actions/getProducts";
 import ProductFilter from "@/app/_lib/ProductFilter";
 import { PageProps, type Product } from "@/app/components/InterfaceType";
 import ProductCardContainer from "@/app/components/ProductCardContainer";
@@ -8,8 +8,8 @@ export const metadata = {
 };
 async function page(props: PageProps) {
   const searchParams = await props.searchParams;
-  const products: Product[] = (await ProductFetcher()).filter(
-    (product) => product.productType === "Wheels & Rims"
+  const products: Product[] = (await getProducts()).filter(
+    (product: Product) => product.category === 2
   );
   const filterProducts = ProductFilter({
     searchParams,

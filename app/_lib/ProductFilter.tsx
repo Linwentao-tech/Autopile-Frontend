@@ -9,7 +9,7 @@ function ProductFilter({
   const maxPrice: number | undefined =
     Number(searchParams?.maxPrice) || undefined;
 
-  return products.filter((product) => {
+  return products.filter((product: Product) => {
     const price = product.comparePrice || product.price;
     if (minPrice && maxPrice) {
       return price >= minPrice && price <= maxPrice;
