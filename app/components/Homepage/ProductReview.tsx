@@ -1,6 +1,3 @@
-import ReviewCard from "./ReviewCard";
-import { Review } from "../InterfaceType";
-
 async function ProductReview() {
   return (
     // <section className="mx-12 my-16">
@@ -21,5 +18,4 @@ async function ProductReview() {
     <div>placeholder review section</div>
   );
 }
-
 export default ProductReview;
