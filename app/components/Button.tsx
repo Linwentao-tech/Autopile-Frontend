@@ -10,8 +10,8 @@ import { showToast } from "./ToastMessage";
 
 interface ButtonProps extends ChildrenProps {
   type: ButtonType;
-  productId: string;
-  quantity: number;
+  productId?: string;
+  quantity?: number;
 }
 
 function Button({ children, type, productId, quantity }: ButtonProps) {
@@ -86,6 +86,11 @@ function Button({ children, type, productId, quantity }: ButtonProps) {
       </div>
     );
   if (type === "Add_to_cart_homepage") {
+    if (!productId || !quantity) {
+      throw new Error(
+        "productId and quantity are required for Add_to_cart_homepage button type"
+      );
+    }
     return (
       <div>
         <button
@@ -101,6 +106,11 @@ function Button({ children, type, productId, quantity }: ButtonProps) {
     );
   }
   if (type === "Add_to_cart_productPage") {
+    if (!productId || !quantity) {
+      throw new Error(
+        "productId and quantity are required for Add_to_cart_productPage button type"
+      );
+    }
     return (
       <div className="w-full">
         <button
