@@ -29,7 +29,7 @@ function TopSeller({ products }: { products: Product[] }) {
         {currentPage === 1 && (
           <button
             onClick={prevPage}
-            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black rounded-full p-2 shadow-md z-10"
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-black/80 hover:bg-black rounded-full p-2 shadow-lg z-10 transition-colors duration-200"
             aria-label="Previous page"
           >
             <svg
@@ -55,29 +55,34 @@ function TopSeller({ products }: { products: Product[] }) {
           >
             {products.map((product: Product) => (
               <li key={product.id} className="flex-none w-1/5 px-2">
-                <div className="flex flex-col items-center">
-                  <div className="relative w-full pt-[140%]">
+                <div className="flex flex-col items-center group">
+                  <div className="relative w-full pt-[140%] overflow-hidden rounded-lg">
                     <DynamicTopSellers
                       src={product.productMedias[0].fullUrl}
                       alt={product.name}
                     />
-                    <div className="absolute top-0 left-0 bg-orange-500 text-white px-2 py-1  text-sm font-semibold z-10">
+                    <div className="absolute top-0 left-0 bg-orange-500 text-white px-3 py-1.5 text-sm font-semibold z-10 rounded-br-lg shadow-md">
                       Best Seller
                     </div>
+                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
-                  <h2 className="mt-2 text-center text-2xl font-medium">
-                    {product.name}
-                  </h2>
-                  <p className="text-gray-300 text-xl mt-2 mb-4">
-                    ${product.price.toFixed(2)}
-                  </p>
-                  <Button
-                    type="Add_to_cart_homepage"
-                    productId={product.id}
-                    quantity={1}
-                  >
-                    Add to cart
-                  </Button>
+                  <div className="w-full text-center mt-4 space-y-2">
+                    <h2 className="text-2xl font-medium text-white group-hover:text-orange-500 transition-colors duration-300">
+                      {product.name}
+                    </h2>
+                    <p className="text-gray-300 text-xl">
+                      ${product.price.toFixed(2)}
+                    </p>
+                    <div className="opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+                      <Button
+                        type="Add_to_cart_homepage"
+                        productId={product.id}
+                        quantity={1}
+                      >
+                        Add to cart
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               </li>
             ))}
@@ -86,7 +91,7 @@ function TopSeller({ products }: { products: Product[] }) {
         {currentPage === 0 && (
           <button
             onClick={nextPage}
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 rounded-full p-2 shadow-md z-10 bg-black"
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 rounded-full p-2 shadow-lg z-10 bg-black/80 hover:bg-black transition-colors duration-200"
             aria-label="Next page"
           >
             <svg
