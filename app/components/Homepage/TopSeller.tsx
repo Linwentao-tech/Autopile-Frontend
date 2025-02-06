@@ -74,9 +74,6 @@ function TopSeller({ products }: { products: Product[] }) {
                   <Button
                     type="Add_to_cart_homepage"
                     productId={product.id}
-                    productName={product.name}
-                    productImage={product.productMedias[0].fullUrl}
-                    productPrice={product.price.toFixed(2)}
                     quantity={1}
                   >
                     Add to cart
