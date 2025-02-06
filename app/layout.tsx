@@ -7,11 +7,10 @@ import { type ChildrenProps } from "@/app/components/InterfaceType";
 import "@/app/globals.css";
 import PremiumHeader from "./components/Header/PremiumHeader";
 import AboutUsHeader from "./components/Header/AboutUsHeader";
-import StoreProvider from "./StoreProvider";
 import { Raleway } from "next/font/google";
 import { Metadata } from "next";
-import MiniCart from "./components/MiniCart";
 import { SessionProvider } from "next-auth/react";
+import { Toaster } from "react-hot-toast";
 
 const josefin = Raleway({
   weight: ["400"],
@@ -36,20 +35,18 @@ export default function RootLayout({ children }: ChildrenProps) {
     <html lang="en">
       <body className={`bg-black text-white text-base ${josefin.className}`}>
         <SessionProvider>
-          <StoreProvider>
-            {/* make components server components by passing as props */}
-            <Header
-              advertisement={<Advertisement />}
-              premiumArea={<PremiumHeader />}
-              aboutUs={<AboutUsHeader />}
-            >
-              <Info />
-              <NavigationSection />
-            </Header>
-            {children}
-            <Footer />
-            <MiniCart />
-          </StoreProvider>
+          <Toaster />
+          {/* make components server components by passing as props */}
+          <Header
+            advertisement={<Advertisement />}
+            premiumArea={<PremiumHeader />}
+            aboutUs={<AboutUsHeader />}
+          >
+            <Info />
+            <NavigationSection />
+          </Header>
+          {children}
+          <Footer />
         </SessionProvider>
       </body>
     </html>

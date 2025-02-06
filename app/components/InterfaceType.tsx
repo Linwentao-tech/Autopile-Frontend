@@ -99,6 +99,14 @@ export interface SearchParams {
 export interface PageProps {
   searchParams: SearchParams;
 }
+export type Item = {
+  id: number;
+  productName: string;
+  productPrice: string;
+  productId: string;
+  quantity: number;
+  totalPrice: number;
+};
 
 export interface userData {
   firstName: string;
@@ -107,4 +115,31 @@ export interface userData {
   phoneNumber: string;
   email: string;
   password: string;
+}
+
+export interface CartItem {
+  id: number;
+  userId: number;
+  productId: number;
+  quantity: number;
+  createdAt: string;
+}
+
+type PaymentMethod = "Credit Card" | "PayPal" | "Stripe";
+
+interface OrderItem {
+  productId: string;
+  quantity: number;
+}
+
+export interface CheckoutFormData {
+  paymentMethod: PaymentMethod;
+  shippingAddress_Line1: string;
+  shippingAddress_Line2?: string;
+  shippingAddress_City: string;
+  shippingAddress_Country: string;
+  shippingAddress_State: string;
+  shippingAddress_PostalCode: string;
+  deliveryFee: number;
+  orderItems: OrderItem[];
 }

@@ -49,12 +49,6 @@ function ProductCard({ product }: { product: ProductCardProps }) {
         <Button
           type="Add_to_cart_productPage"
           productId={productId}
-          productName={productName}
-          productImage={productImage}
-          productPrice={(productComparePrice
-            ? productComparePrice
-            : productPrice
-          ).toString()}
           quantity={1}
         >
           Add to cart

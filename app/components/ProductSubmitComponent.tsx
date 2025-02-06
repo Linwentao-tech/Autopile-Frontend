@@ -1,7 +1,6 @@
 "use client";
 import { ChangeEvent, useState } from "react";
 import Button from "./Button";
-import CartWarning from "./CartWarming";
 
 type media = {
   url: string;
@@ -22,13 +21,7 @@ interface ProductSubmitComponentProps {
   formattedPrice: string;
 }
 
-function ProductSubmitComponent({
-  id,
-  name,
-  media,
-  formattedComparePrice,
-  formattedPrice,
-}: ProductSubmitComponentProps) {
+function ProductSubmitComponent({ id }: ProductSubmitComponentProps) {
   const [quantity, setQuantity] = useState(1);
 
   const [warning, setWarning] = useState<string>("");
@@ -53,7 +46,6 @@ function ProductSubmitComponent({
 
   return (
     <>
-      <CartWarning />
       <div className="space-y-4">
         <input
           value={quantity}
@@ -72,32 +64,10 @@ function ProductSubmitComponent({
           </div>
         )}
       </div>
-      <Button
-        type="Add_to_cart_productPage"
-        productId={id}
-        productName={name}
-        productImage={media[0].fullUrl}
-        productPrice={
-          formattedComparePrice ? formattedComparePrice : formattedPrice
-        }
-        quantity={quantity}
-      >
+      <Button type="Add_to_cart_productPage" productId={id} quantity={quantity}>
         Add to cart
-      </Button>
-      <Button
-        type="Buy_now"
-        productId={id}
-        productName={name}
-        productImage={media[0].fullUrl}
-        productPrice={
-          formattedComparePrice ? formattedComparePrice : formattedPrice
-        }
-        quantity={quantity}
-      >
-        Buy Now
       </Button>
     </>
   );
 }
-
 export default ProductSubmitComponent;

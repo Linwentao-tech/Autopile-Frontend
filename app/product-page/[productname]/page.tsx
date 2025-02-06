@@ -8,6 +8,19 @@ import Link from "next/link";
 import ProductReviewSection from "@/app/components/ProductReviewSection";
 import { auth } from "@/app/auth";
 import { getReviews } from "@/app/actions/Review";
+
+// Add generateStaticParams
+export async function generateStaticParams() {
+  const products = await getProducts();
+  return products.map((product: Product) => ({
+    productname: product.name
+      .toLowerCase()
+      .split(" ")
+      .filter((word: string) => word.trim() !== "")
+      .join("-"),
+  }));
+}
+
 export async function generateMetadata(props: {
   params: Promise<{ productname: string }>;
 }) {
@@ -27,6 +40,7 @@ export async function generateMetadata(props: {
     description: product ? product.productDescription : "Product not found",
   };
 }
+
 function reverseFormat(input: string) {
   if (input === "gps") {
     return "GPS";
