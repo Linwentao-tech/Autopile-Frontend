@@ -1,19 +1,42 @@
 import { NextResponse } from "next/server";
 import { auth } from "./app/auth";
+import { cookies } from "next/headers";
+import { refreshToken } from "./app/actions/authActions";
 
-export default auth((req) => {
+export default auth(async (req) => {
   const { nextUrl } = req;
   const isAuth = !!req.auth;
 
-  // If authenticated user tries to access login or signup pages, redirect to home
+  const cookieStore = cookies();
+  const authToken = cookieStore.get("AuthToken")?.value;
+  const actualrefreshToken = cookieStore.get("RefreshToken")?.value;
+
+  if (!authToken && actualrefreshToken) {
+    const response = NextResponse.next();
+    const data = await refreshToken();
+    response.cookies.set("AuthToken", data.data.accessToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+      maxAge: 30 * 60,
+    });
+
+    response.cookies.set("RefreshToken", data.data.refreshToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+      maxAge: 7 * 24 * 60 * 60,
+    });
+
+    return response;
+  }
+
   if (
     isAuth &&
     (nextUrl.pathname === "/login" || nextUrl.pathname === "/signup")
   ) {
     return NextResponse.redirect(new URL("/", nextUrl));
   }
-
-  // If unauthenticated user tries to access dashboard, redirect to login
   if (!isAuth && nextUrl.pathname === "/dashboard") {
     return NextResponse.redirect(new URL("/login", nextUrl));
   }
@@ -23,6 +46,7 @@ export default auth((req) => {
 // export const config = {
 //   matcher: ["/login", "/signup", "/dashboard"],
 // };
+
 export const config = {
   /*
    * Match all request paths except:

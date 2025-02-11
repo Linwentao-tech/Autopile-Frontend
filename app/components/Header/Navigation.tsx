@@ -21,14 +21,7 @@ async function Navigation() {
             Wholesale
           </Link>
         </li>
-        <li>
-          <Link
-            href="/reviews"
-            className="hover:text-orange-500 transition-colors duration-500 "
-          >
-            Reviews
-          </Link>
-        </li>
+
         <li>
           <Link
             href="/premium-area"

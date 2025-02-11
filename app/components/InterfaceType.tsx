@@ -94,6 +94,7 @@ export interface ProductCardContainerProps {
 export interface SearchParams {
   minPrice?: string;
   maxPrice?: string;
+  productName?: string;
 }
 
 export interface PageProps {
@@ -141,5 +142,31 @@ export interface CheckoutFormData {
   shippingAddress_State: string;
   shippingAddress_PostalCode: string;
   deliveryFee: number;
+  orderItems: OrderItem[];
+}
+
+interface OrderItem {
+  productId: string;
+  quantity: number;
+}
+
+export interface Order {
+  id: number;
+  userId: string;
+  orderNumber: string;
+  orderDate: string;
+  status: number;
+  subTotal: number;
+  deliveryFee: number;
+  totalAmount: number;
+  paymentStatus: string;
+  paymentMethod: string;
+  stripeSessionId: string | null;
+  shippingAddress_Line1: string;
+  shippingAddress_Line2: string;
+  shippingAddress_City: string;
+  shippingAddress_Country: string;
+  shippingAddress_State: string;
+  shippingAddress_PostalCode: string;
   orderItems: OrderItem[];
 }

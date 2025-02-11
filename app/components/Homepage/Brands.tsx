@@ -15,7 +15,6 @@ function Brands() {
             src={Drivilux}
             alt="Drivilux brand"
             fill
-            placeholder="blur"
             className="p-20 object-contain"
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
@@ -26,7 +25,6 @@ function Brands() {
             alt="Autopartse brand"
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            placeholder="blur"
             className="p-20 object-contain"
           />
         </Brand>
@@ -36,7 +34,6 @@ function Brands() {
             alt="Wheelbu brand"
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            placeholder="blur"
             className="p-20 object-contain"
           />
         </Brand>
@@ -46,7 +43,6 @@ function Brands() {
             alt="Motorks brand"
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            placeholder="blur"
             className="p-20 object-contain"
           />
         </Brand>
@@ -56,7 +52,6 @@ function Brands() {
             alt="Drivery brand"
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            placeholder="blur"
             className="p-20 object-contain"
           />
         </Brand>

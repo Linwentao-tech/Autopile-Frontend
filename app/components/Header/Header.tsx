@@ -23,7 +23,6 @@ function Header({
   const isHomePage: boolean = pathname === "/";
   const isPremiumPage: boolean = pathname === "/premium-area";
   const isPartsPage: boolean = pathname === "/category/all-products";
-  const isReviewsPage: boolean = pathname === "/reviews";
   const isWholesalePage: boolean = pathname === "/category/wholesale";
   const isAboutUsPage: boolean = pathname === "/about-us";
   const isAccessoriesPage: boolean = pathname === "/category/accessories";
@@ -53,7 +52,6 @@ function Header({
           src={PremiumPageBackGround}
           alt="background"
           className="w-full h-full object-cover absolute z-0"
-          placeholder="blur"
           fill
         />
       )}
@@ -62,13 +60,11 @@ function Header({
           src={aboutUsbackground}
           alt="background"
           className="w-full h-full object-cover object-[center_21%]"
-          placeholder="blur"
           fill
           quality={100}
         />
       )}
-      {(isReviewsPage ||
-        isWholesalePage ||
+      {(isWholesalePage ||
         isPartsPage ||
         isAccessoriesPage ||
         isBestSellersPage ||
@@ -81,7 +77,6 @@ function Header({
           src={background}
           alt="background"
           className="w-full h-full absolute z-0 filter brightness-200"
-          placeholder="blur"
           fill
         />
       )}

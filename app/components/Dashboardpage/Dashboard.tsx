@@ -8,7 +8,7 @@ async function Dashboard() {
   const session = await auth();
   console.log("session", session);
   const userInfo = await getCurrentUser();
-
+  console.log("userInfo", userInfo);
   if (!userInfo) {
     redirect("/");
   }

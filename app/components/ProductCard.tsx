@@ -23,7 +23,7 @@ function ProductCard({ product }: { product: ProductCardProps }) {
   } = product;
 
   return (
-    <div className="relative w-full cursor-pointer group">
+    <div className="relative w-full cursor-pointer group ">
       <Link
         href={`/product-page/${formatProductName(productName)}`}
         className="block"
@@ -45,7 +45,7 @@ function ProductCard({ product }: { product: ProductCardProps }) {
           </div>
         </div>
       </Link>
-      <div className="w-full opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+      <div className="w-full justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
         <Button
           type="Add_to_cart_productPage"
           productId={productId}

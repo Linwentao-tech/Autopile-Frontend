@@ -10,6 +10,7 @@ import {
   clearShoppingCart,
 } from "@/app/actions/shoppingCartItem";
 import { showToast } from "../ToastMessage";
+import { useRouter } from "next/navigation";
 
 function formatProductName(productName: string) {
   return productName
@@ -26,6 +27,11 @@ export default function CartTable({
   products: Product[];
   cartItems: CartItem[];
 }) {
+  const router = useRouter();
+
+  useEffect(() => {
+    router.refresh();
+  }, [router]);
   const [cartItems, setCartItems] = useState(initialCartItems);
 
   const [quantities, setQuantities] = useState<{ [key: number]: number }>(
@@ -60,14 +66,17 @@ export default function CartTable({
           try {
             if (newQuantity === 0) {
               const result = await deleteShoppingCartItem(item.id.toString());
+              await new Promise((resolve) => setTimeout(resolve, 100));
               if (result?.success) {
                 showToast.success("Item removed from cart");
+
                 // Remove item from frontend state
                 setCartItems((prev) =>
                   prev.filter((cartItem) => cartItem.id !== item.id)
                 );
               } else {
                 showToast.error("Failed to remove item");
+                await new Promise((resolve) => setTimeout(resolve, 3000));
                 setQuantities((prev) => ({
                   ...prev,
                   [item.id]: lastQuantity,
@@ -81,12 +90,14 @@ export default function CartTable({
 
               if (result?.success) {
                 showToast.success("Cart updated successfully");
+
                 setLastUpdatedQuantities((prev) => ({
                   ...prev,
                   [item.id]: newQuantity,
                 }));
               } else {
                 showToast.error("Failed to update cart");
+                await new Promise((resolve) => setTimeout(resolve, 500));
                 setQuantities((prev) => ({
                   ...prev,
                   [item.id]: lastQuantity,
@@ -95,6 +106,7 @@ export default function CartTable({
             }
           } catch {
             showToast.error("Failed to update cart");
+            await new Promise((resolve) => setTimeout(resolve, 500));
             setQuantities((prev) => ({
               ...prev,
               [item.id]: lastQuantity,
@@ -166,12 +178,15 @@ export default function CartTable({
                 const result = await clearShoppingCart();
                 if (result?.success) {
                   showToast.success("Cart cleared successfully");
+                  await new Promise((resolve) => setTimeout(resolve, 500));
                   setCartItems([]);
                 } else {
                   showToast.error("Failed to clear cart");
+                  await new Promise((resolve) => setTimeout(resolve, 500));
                 }
               } catch {
                 showToast.error("Failed to clear cart");
+                await new Promise((resolve) => setTimeout(resolve, 500));
               }
             }}
             className="px-4 py-2 text-sm text-white bg-red-600 hover:bg-red-700 

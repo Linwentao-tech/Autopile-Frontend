@@ -55,16 +55,34 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           cache: "no-store",
         });
         const setCookieHeader = res.headers.get("set-cookie");
+        console.log(setCookieHeader);
         if (setCookieHeader) {
           const tokenMatch = setCookieHeader.match(/AuthToken=([^;]+)/);
-          if (tokenMatch && tokenMatch[1]) {
+          const refreshTokenMatch =
+            setCookieHeader.match(/RefreshToken=([^;]+)/);
+
+          if (
+            tokenMatch &&
+            tokenMatch[1] &&
+            refreshTokenMatch &&
+            refreshTokenMatch[1]
+          ) {
             const actualToken = tokenMatch[1];
+            const actualRefreshToken = refreshTokenMatch[1];
+
             const cookieStore = cookies();
+
             cookieStore.set("AuthToken", actualToken, {
               httpOnly: true,
               secure: true,
               sameSite: "none",
-              maxAge: 3 * 60 * 60, // 3 hours
+              maxAge: 30 * 60,
+            });
+            cookieStore.set("RefreshToken", actualRefreshToken, {
+              httpOnly: true,
+              secure: true,
+              sameSite: "none",
+              maxAge: 7 * 24 * 60 * 60,
             });
           }
         }
@@ -86,6 +104,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         token.roles = user.roles as string[];
         token.emailConfirmed = user.emailConfirmed as boolean;
       }
+
       return token;
     },
     async session({ session, token }: { session: Session; token: JWT }) {
@@ -101,7 +120,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
   session: {
     strategy: "jwt",
-    maxAge: 3 * 60 * 60, // 3 hours
+    maxAge: 60,
   },
   pages: {
     signIn: "/login",

@@ -7,21 +7,33 @@ import {
 import Link from "next/link";
 import { addShoppingCartItem } from "../actions/shoppingCartItem";
 import { showToast } from "./ToastMessage";
-
+import { useSession } from "next-auth/react";
 interface ButtonProps extends ChildrenProps {
   type: ButtonType;
   productId?: string;
   quantity?: number;
+  disabled?: boolean;
 }
 
-function Button({ children, type, productId, quantity }: ButtonProps) {
+function Button({
+  children,
+  type,
+  productId,
+  quantity,
+  disabled,
+}: ButtonProps) {
+  const { status } = useSession();
+
   if (typeof type === "object" && type.type === "orange_button")
     if (type.subtype === "shop_now")
       return (
         <div>
           <Link href="/category/all-products">
             <button
-              className={`bg-orange-700 px-7 py-4 text-black rounded-full hover:border-white transition-all hover:bg-transparent hover:text-white border-2 border-transparent duration-500`}
+              className={`bg-orange-700 px-7 py-4 text-black rounded-full hover:border-white transition-all hover:bg-transparent hover:text-white border-2 border-transparent duration-500 ${
+                disabled ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              disabled={disabled}
             >
               {children}
             </button>
@@ -33,7 +45,10 @@ function Button({ children, type, productId, quantity }: ButtonProps) {
         <div>
           <Link href="/about-us">
             <button
-              className={`bg-orange-700 px-7 py-4 text-black rounded-full hover:border-white transition-all hover:bg-transparent hover:text-white border-2 border-transparent duration-500`}
+              className={`bg-orange-700 px-7 py-4 text-black rounded-full hover:border-white transition-all hover:bg-transparent hover:text-white border-2 border-transparent duration-500 ${
+                disabled ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              disabled={disabled}
             >
               {children}
             </button>
@@ -45,7 +60,10 @@ function Button({ children, type, productId, quantity }: ButtonProps) {
         <div>
           <Link href="/premium-area" scroll={false}>
             <button
-              className={`bg-orange-700 px-7 py-4 text-black rounded-full hover:border-white transition-all hover:bg-transparent hover:text-white border-2 border-transparent duration-500`}
+              className={`bg-orange-700 px-7 py-4 text-black rounded-full hover:border-white transition-all hover:bg-transparent hover:text-white border-2 border-transparent duration-500 ${
+                disabled ? "opacity-50 cursor-not-allowed" : ""
+              }`}
+              disabled={disabled}
             >
               {children}
             </button>
@@ -56,7 +74,10 @@ function Button({ children, type, productId, quantity }: ButtonProps) {
       return (
         <div>
           <button
-            className={`bg-orange-700 px-7 py-4 text-black rounded-full hover:border-white transition-all hover:bg-transparent hover:text-white border-2 border-transparent duration-500`}
+            className={`bg-orange-700 px-7 py-4 text-black rounded-full hover:border-white transition-all hover:bg-transparent hover:text-white border-2 border-transparent duration-500 ${
+              disabled ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            disabled={disabled}
           >
             {children}
           </button>
@@ -66,7 +87,10 @@ function Button({ children, type, productId, quantity }: ButtonProps) {
     return (
       <div>
         <button
-          className={`bg-orange-700 px-12 py-2 ml-56 mt-4 text-black rounded-full hover:border-white transition-all hover:bg-transparent hover:text-white border-2 border-transparent duration-500`}
+          className={`bg-orange-700 px-12 py-2 ml-56 mt-4 text-black rounded-full hover:border-white transition-all hover:bg-transparent hover:text-white border-2 border-transparent duration-500 ${
+            disabled ? "opacity-50 cursor-not-allowed" : ""
+          }`}
+          disabled={disabled}
         >
           {children}
         </button>
@@ -77,8 +101,11 @@ function Button({ children, type, productId, quantity }: ButtonProps) {
       <div>
         <Link href="/category/all-products">
           <button
-            className="bg-transparent text-white px-8 py-3  rounded-full  border-2 border-white  hover:bg-orange-700 hover:text-black hover:border-orange-700 
-        transition-all duration-500"
+            className={`bg-transparent text-white px-8 py-3 rounded-full border-2 border-white hover:bg-orange-700 hover:text-black hover:border-orange-700 
+            transition-all duration-500 ${
+              disabled ? "opacity-50 cursor-not-allowed" : ""
+            }`}
+            disabled={disabled}
           >
             {children}
           </button>
@@ -94,11 +121,14 @@ function Button({ children, type, productId, quantity }: ButtonProps) {
     return (
       <div>
         <button
-          className="bg-transparent text-white px-14 py-3 rounded-full border-2 border-white
+          className={`bg-transparent text-white px-14 py-3 rounded-full border-2 border-white
                        hover:bg-white hover:text-black hover:border-white
                        transition-all duration-300 ease-in-out
                        active:bg-white active:text-black active:scale-95
-                       active:duration-150 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50"
+                       active:duration-150 focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50 ${
+                         disabled ? "opacity-50 cursor-not-allowed" : ""
+                       }`}
+          disabled={disabled}
         >
           {children}
         </button>
@@ -111,19 +141,25 @@ function Button({ children, type, productId, quantity }: ButtonProps) {
         "productId and quantity are required for Add_to_cart_productPage button type"
       );
     }
+
     return (
       <div className="w-full">
         <button
-          className="bg-transparent text-white rounded-full border-2 border-white
+          className={`bg-transparent text-white rounded-full border-2 border-white
                        hover:text-opacity-60
                        transition-all duration-300 ease-in-out
                        mt-5 w-full py-2 px-4 hover:bg-orange-700 hover:text-black hover:border-orange-700 
                        focus:outline-none focus:ring-2 focus:ring-white focus:ring-opacity-50
                        active:bg-white active:text-black active:scale-95
-                       active:duration-150"
-          onClick={async () =>
+                       active:duration-150 ${
+                         disabled ? "opacity-50 cursor-not-allowed" : ""
+                       }`}
+          onClick={async () => {
+            if (status !== "authenticated") {
+              showToast.error("Please login first");
+              return;
+            }
             await addShoppingCartItem(productId, quantity).then((res) => {
-              console.log(res);
               if (res?.success && res?.data.quantity < 10) {
                 showToast.success("Added to cart");
               } else if (res?.data.quantity === 10) {
@@ -131,8 +167,9 @@ function Button({ children, type, productId, quantity }: ButtonProps) {
               } else {
                 showToast.error("Error adding item to cart");
               }
-            })
-          }
+            });
+          }}
+          disabled={disabled}
         >
           {children}
         </button>

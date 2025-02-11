@@ -7,7 +7,10 @@ import * as z from "zod";
 import { showToast } from "../ToastMessage";
 import { useState, useEffect } from "react";
 import { getProducts } from "@/app/actions/getProducts";
-import { getShoppingCartItems } from "@/app/actions/shoppingCartItem";
+import {
+  clearShoppingCart,
+  getShoppingCartItems,
+} from "@/app/actions/shoppingCartItem";
 import { CartItem, Product } from "../InterfaceType";
 import Image from "next/image";
 import Link from "next/link";
@@ -148,15 +151,17 @@ export default function CheckoutForm() {
       if (!response.success) {
         throw new Error(response.message);
       }
-      console.log(response);
 
       showToast.success("Order placed successfully!");
-      router.push("/order-confirmation");
+      await clearShoppingCart();
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      router.push(`/payment?order=${response.data.orderNumber}`);
     } catch (error) {
       console.error("Error creating order:", error);
       showToast.error(
         error instanceof Error ? error.message : "Please try again"
       );
+      await new Promise((resolve) => setTimeout(resolve, 1500));
     }
   };
 

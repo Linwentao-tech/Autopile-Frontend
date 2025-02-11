@@ -45,7 +45,6 @@ export default function OrderSummary({ orders }: OrderSummaryProps) {
     const total = orders.reduce((sum, order) => sum + order.totalAmount, 0);
     const average = total / (orders.length || 1);
 
-    // Convert orders to scatter plot data
     const scatterData = orders.map((order) => ({
       x: new Date(order.orderDate).getTime(),
       y: order.totalAmount,

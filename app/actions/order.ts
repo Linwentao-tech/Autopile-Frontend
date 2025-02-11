@@ -72,11 +72,10 @@ export async function deleteOrder(orderId: string) {
     if (!response.ok) {
       throw new Error("Failed to delete order");
     }
-    const data = await response.json();
-    console.log(data);
-    return data;
+    return { success: true };
   } catch (error) {
     console.error("Error deleting order:", error);
+    return { success: false };
   }
 }
 

@@ -37,11 +37,14 @@ export async function signInAction({
 
 export async function signOutAction() {
   console.log("clearing cookies");
+  await revokeRefreshToken();
   const cookieStore = cookies();
   const authToken = cookieStore.get("AuthToken")?.value;
+  const refreshToken = cookieStore.get("RefreshToken")?.value;
 
-  if (authToken) {
+  if (authToken || refreshToken) {
     cookieStore.delete("AuthToken");
+    cookieStore.delete("RefreshToken");
   }
 
   await signOut();
@@ -87,5 +90,56 @@ export async function resetPassword({
       success: false,
       message: "An unexpected error occurred",
     };
+  }
+}
+export async function refreshToken() {
+  const cookieStore = cookies();
+  const refreshToken = cookieStore.get("RefreshToken")!.value;
+
+  const res = await fetch(`${process.env.API_URL}/Auth/refresh-token`, {
+    method: "POST",
+    credentials: "include",
+    cache: "no-store",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      refreshToken: decodeURIComponent(refreshToken),
+    }),
+  });
+  if (!res.ok) {
+    return {
+      success: false,
+      message: "Failed to refresh token",
+    };
+  }
+
+  const data = await res.json();
+  return data;
+}
+
+export async function revokeRefreshToken() {
+  const cookieStore = cookies();
+  const authToken = cookieStore.get("AuthToken")?.value;
+  if (authToken) {
+    try {
+      const response = await fetch(`${process.env.API_URL}/Auth/revoke-token`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Cookie: `AuthToken=${authToken}`,
+        },
+      });
+      if (!response.ok) {
+        return {
+          success: false,
+          message: "Failed to revoke refresh token",
+        };
+      }
+      return { success: true };
+    } catch (error) {
+      console.error("Revoke refresh token error:", error);
+      throw new Error("Failed to revoke refresh token");
+    }
   }
 }

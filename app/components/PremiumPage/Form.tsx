@@ -1,21 +1,82 @@
 "use client";
+
 import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import Button from "@/app/components/Button";
-import { IFormInputs } from "@/app/components/InterfaceType";
+import { sendEmail } from "@/app/actions/email";
+import { showToast } from "@/app/components/ToastMessage";
+import { useState } from "react";
+
+const formSchema = z.object({
+  firstName: z
+    .string()
+    .min(1, "⚠ First name is required")
+    .max(50, "⚠ First name must be less than 50 characters"),
+  lastName: z
+    .string()
+    .min(1, "⚠ Last name is required")
+    .max(50, "⚠ Last name must be less than 50 characters"),
+  email: z
+    .string()
+    .min(1, "⚠ Email is required")
+    .email("⚠ Invalid email address"),
+  phone: z
+    .string()
+    .optional()
+    .refine((val) => !val || /^[0-9+\-\s()]*$/.test(val), {
+      message: "⚠ Invalid phone number format",
+    }),
+});
+
+type FormData = z.infer<typeof formSchema>;
 
 function Form() {
+  const [serverError, setServerError] = useState<string | null>(null);
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm<IFormInputs>();
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
+    },
+  });
 
-  function onSubmit(data: IFormInputs) {
-    console.log(data);
-  }
+  const onSubmit = async (data: FormData) => {
+    try {
+      setServerError(null);
+      const formData = new FormData();
+      Object.entries(data).forEach(([key, value]) => {
+        formData.append(key, value?.toString() || "");
+      });
+
+      const result = await sendEmail(formData);
+
+      if (result.success) {
+        showToast.success("Successfully subscribed to our newsletter!");
+        reset();
+      } else {
+        setServerError(
+          result.error || "Failed to subscribe. Please try again."
+        );
+        showToast.error("Failed to subscribe. Please try again.");
+      }
+    } catch (error) {
+      console.error("Form submission error:", error);
+      setServerError("An unexpected error occurred. Please try again.");
+      showToast.error("An unexpected error occurred. Please try again.");
+    }
+  };
 
   return (
-    <div className="bg-black text-white p-6 max-w-md ">
+    <div className="bg-black text-white p-6 max-w-md">
       <style jsx>{`
         /* Override autofill styles */
         input:-webkit-autofill,
@@ -25,9 +86,16 @@ function Form() {
           -webkit-background-clip: text;
           -webkit-text-fill-color: white !important;
           transition: background-color 5000s ease-in-out 0s;
-          box-shadow: inset 0 0 20px 20px #000000;
+          box-shadow: inset 0 0 20px 20px rgb(0, 0, 0) !important;
         }
       `}</style>
+
+      {serverError && (
+        <div className="mb-4 p-3 rounded bg-red-500/10 border border-red-500/20 text-red-500">
+          {serverError}
+        </div>
+      )}
+
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
           <label htmlFor="firstName" className="block mb-1">
@@ -35,8 +103,9 @@ function Form() {
           </label>
           <input
             id="firstName"
-            {...register("firstName", { required: "⚠ First name is required" })}
+            {...register("firstName")}
             className="w-full bg-black border-b border-gray-600 py-2 focus:outline-none focus:border-white text-white"
+            disabled={isSubmitting}
           />
           {errors.firstName && (
             <span className="text-red-500 text-sm">
@@ -51,8 +120,9 @@ function Form() {
           </label>
           <input
             id="lastName"
-            {...register("lastName", { required: "⚠ Last name is required" })}
+            {...register("lastName")}
             className="w-full bg-black border-b border-gray-600 py-2 focus:outline-none focus:border-white text-white"
+            disabled={isSubmitting}
           />
           {errors.lastName && (
             <span className="text-red-500 text-sm">
@@ -68,14 +138,9 @@ function Form() {
           <input
             id="email"
             type="email"
-            {...register("email", {
-              required: "⚠ Email is required",
-              pattern: {
-                value: /^\S+@\S+$/i,
-                message: "⚠ Invalid email address",
-              },
-            })}
+            {...register("email")}
             className="w-full bg-black border-b border-gray-600 py-2 focus:outline-none focus:border-white text-white"
+            disabled={isSubmitting}
           />
           {errors.email && (
             <span className="text-red-500 text-sm">{errors.email.message}</span>
@@ -91,24 +156,16 @@ function Form() {
             type="tel"
             {...register("phone")}
             className="w-full bg-black border-b border-gray-600 py-2 focus:outline-none focus:border-white text-white"
+            disabled={isSubmitting}
           />
+          {errors.phone && (
+            <span className="text-red-500 text-sm">{errors.phone.message}</span>
+          )}
         </div>
 
-        <div className="flex items-center">
-          <input
-            id="subscribe"
-            type="checkbox"
-            {...register("subscribe")}
-            className="accent-orange-500 mr-3 cursor-pointer"
-          />
-          <label
-            htmlFor="subscribe"
-            className="cursor-pointer font-thin text-gray-400"
-          >
-            Yes, subscribe me to your newsletter.
-          </label>
-        </div>
-        <Button type="orange_submit_button">Subscribe</Button>
+        <Button type="orange_submit_button" disabled={isSubmitting}>
+          {isSubmitting ? "Submitting..." : "Subscribe"}
+        </Button>
       </form>
     </div>
   );

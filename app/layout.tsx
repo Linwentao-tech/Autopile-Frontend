@@ -36,7 +36,8 @@ export default function RootLayout({ children }: ChildrenProps) {
       <body className={`bg-black text-white text-base ${josefin.className}`}>
         <SessionProvider>
           <Toaster />
-          {/* make components server components by passing as props */}
+
+          {/* make components as server components by passing as props */}
           <Header
             advertisement={<Advertisement />}
             premiumArea={<PremiumHeader />}

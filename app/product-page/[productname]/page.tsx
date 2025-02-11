@@ -55,7 +55,6 @@ async function ProductPage(props: {
   params: Promise<{ productname: string }>;
 }) {
   const session = await auth();
-  console.log(session);
 
   const params = await props.params;
   const products = await getProducts();
