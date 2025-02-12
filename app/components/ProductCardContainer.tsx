@@ -5,7 +5,10 @@ import {
 } from "./InterfaceType";
 import ProductCard from "./ProductCard";
 
-function ProductCardContainer({ products }: ProductCardContainerProps) {
+function ProductCardContainer({
+  products,
+  isLoggedIn,
+}: ProductCardContainerProps) {
   return (
     <>
       {products.map((el: Product) => {
@@ -17,7 +20,9 @@ function ProductCardContainer({ products }: ProductCardContainerProps) {
           productPrice: el.price,
           productId: el.id,
         };
-        return <ProductCard key={el.id} product={product} />;
+        return (
+          <ProductCard key={el.id} product={product} isLoggedIn={isLoggedIn} />
+        );
       })}
     </>
   );

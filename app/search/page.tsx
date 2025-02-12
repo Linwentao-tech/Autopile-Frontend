@@ -18,9 +18,11 @@ export default async function SearchPage(props: PageProps) {
     <div>
       <div className="mx-56">
         <h1 className=" text-6xl mb-10">Search Results</h1>
-        <p className="mb-10">{filteredProducts.length} products</p>
-        <div className="grid grid-cols-4 gap-9 ">
-          <ProductCardContainer products={filteredProducts} />
+        <div className="mb-10">{filteredProducts.length} products</div>
+        <div className="container mx-auto px-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-7 w-full max-w-screen-2xl mx-auto px-4">
+            <ProductCardContainer products={filteredProducts} />
+          </div>
         </div>
       </div>
     </div>

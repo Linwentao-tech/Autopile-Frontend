@@ -12,9 +12,10 @@ export default function DynamicProductsBlur({
       <Image
         src={src}
         alt={`${name} image`}
-        width={600}
-        height={600}
-        className="object-cover transition-transform duration-300 group-hover:scale-110"
+        width={0}
+        height={0}
+        sizes="100vw"
+        className="object-cover transition-transform duration-300 group-hover:scale-110 w-full h-auto"
       />
     </div>
   );

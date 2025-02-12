@@ -12,7 +12,13 @@ function formatProductName(productName: string) {
     .join("-");
 }
 
-function ProductCard({ product }: { product: ProductCardProps }) {
+function ProductCard({
+  product,
+  isLoggedIn,
+}: {
+  product: ProductCardProps;
+  isLoggedIn: boolean;
+}) {
   const {
     productName,
     productImage,
@@ -50,6 +56,7 @@ function ProductCard({ product }: { product: ProductCardProps }) {
           type="Add_to_cart_productPage"
           productId={productId}
           quantity={1}
+          isLoggedIn={isLoggedIn}
         >
           Add to cart
         </Button>

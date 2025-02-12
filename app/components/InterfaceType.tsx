@@ -89,6 +89,7 @@ export type ButtonType =
 
 export interface ProductCardContainerProps {
   products: Product[];
+  isLoggedIn: boolean;
 }
 
 export interface SearchParams {

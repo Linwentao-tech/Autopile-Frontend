@@ -4,6 +4,7 @@ import { getShoppingCartItems } from "../actions/shoppingCartItem";
 import CartTable from "../components/CartPage/CartTable";
 import { auth } from "../auth";
 import { redirect } from "next/navigation";
+
 export const metadata: Metadata = {
   title: "Cart",
   description: "Cart page",

@@ -8,7 +8,7 @@ function Layout({ children }: ChildrenProps) {
       <Suspense>
         <ProductSideBar />
       </Suspense>
-      <main>{children}</main>
+      <main className="w-full">{children}</main>
     </div>
   );
 }

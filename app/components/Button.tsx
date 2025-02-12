@@ -7,12 +7,13 @@ import {
 import Link from "next/link";
 import { addShoppingCartItem } from "../actions/shoppingCartItem";
 import { showToast } from "./ToastMessage";
-import { useSession } from "next-auth/react";
+
 interface ButtonProps extends ChildrenProps {
   type: ButtonType;
   productId?: string;
   quantity?: number;
   disabled?: boolean;
+  isLoggedIn?: boolean;
 }
 
 function Button({
@@ -21,9 +22,8 @@ function Button({
   productId,
   quantity,
   disabled,
+  isLoggedIn,
 }: ButtonProps) {
-  const { status } = useSession();
-
   if (typeof type === "object" && type.type === "orange_button")
     if (type.subtype === "shop_now")
       return (
@@ -155,7 +155,7 @@ function Button({
                          disabled ? "opacity-50 cursor-not-allowed" : ""
                        }`}
           onClick={async () => {
-            if (status !== "authenticated") {
+            if (!isLoggedIn) {
               showToast.error("Please login first");
               return;
             }
