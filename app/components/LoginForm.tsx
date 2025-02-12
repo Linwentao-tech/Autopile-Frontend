@@ -108,20 +108,7 @@ export default function LoginForm() {
             )}
           </div>
 
-          <div className="flex items-center justify-between">
-            <div className="flex items-center">
-              <input
-                {...register("rememberMe")}
-                type="checkbox"
-                className="h-4 w-4 rounded border-zinc-700 bg-zinc-800 text-orange-500 focus:ring-orange-500"
-              />
-              <label
-                htmlFor="rememberMe"
-                className="ml-2 block text-sm text-zinc-300"
-              >
-                Remember me
-              </label>
-            </div>
+          <div className="flex items-center justify-end">
             <Link
               href="/password-reset"
               className="text-sm text-orange-500 hover:text-orange-400"

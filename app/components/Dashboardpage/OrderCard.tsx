@@ -1,10 +1,23 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { Order, Product } from "../InterfaceType";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { deleteOrder } from "@/app/actions/order";
 import { useRouter } from "next/navigation";
 import { showToast } from "../ToastMessage";
+import dynamic from "next/dynamic";
+import { getMap } from "@/app/actions/map";
+
+const Map = dynamic(() => import("../Map"), {
+  loading: () => (
+    <div className="h-[300px] w-full rounded-lg overflow-hidden flex items-center justify-center bg-zinc-800">
+      <p className="text-zinc-400">{"Loading map..."}</p>
+    </div>
+  ),
+  ssr: false,
+});
 
 export default function OrderCard({
   orders,
@@ -15,8 +28,48 @@ export default function OrderCard({
   updateOrder: (newOrders: Order[]) => void;
   products: Product[];
 }) {
+  const [isLoadingMap, setIsLoadingMap] = useState(true);
+  const [processedOrders, setProcessedOrders] = useState<Order[]>(orders);
   const [isDeleting, setIsDeleting] = useState<number | null>(null);
   const router = useRouter();
+
+  useEffect(() => {
+    const fetchMap = async () => {
+      if (!orders.length) {
+        setIsLoadingMap(false);
+        return;
+      }
+
+      setIsLoadingMap(true);
+
+      try {
+        const updatedOrders = await Promise.all(
+          orders.map(async (order) => {
+            try {
+              const map = await getMap(
+                `${order.shippingAddress_Line1}, ${order.shippingAddress_City}, ${order.shippingAddress_State}, ${order.shippingAddress_Country}`
+              );
+              if (map.success && map.data) {
+                return { ...order, map: map.data };
+              }
+              console.error("Map data not available for order:", order.id);
+              return order;
+            } catch (error) {
+              console.error("Error fetching map for order:", order.id, error);
+              return order;
+            }
+          })
+        );
+        setProcessedOrders(updatedOrders);
+      } catch (error) {
+        console.error("Error processing orders:", error);
+      } finally {
+        setIsLoadingMap(false);
+      }
+    };
+
+    fetchMap();
+  }, [orders]);
 
   const handleDeleteOrder = async (orderId: number) => {
     try {
@@ -25,8 +78,7 @@ export default function OrderCard({
       if (result.success) {
         showToast.success("Order deleted successfully");
         await new Promise((resolve) => setTimeout(resolve, 3000));
-        updateOrder(orders.filter((order) => order.id !== orderId));
-
+        updateOrder(processedOrders.filter((order) => order.id !== orderId));
         router.refresh();
       } else {
         showToast.error("Failed to delete order");
@@ -37,9 +89,11 @@ export default function OrderCard({
       setIsDeleting(null);
     }
   };
+
   const getProductDetails = (productId: string) => {
     return products.find((product) => product.id === productId);
   };
+
   const getPaymentStatusDisplay = (status: string) => {
     switch (status.toLowerCase()) {
       case "pending":
@@ -52,9 +106,26 @@ export default function OrderCard({
         return <span className="text-zinc-400">{status}</span>;
     }
   };
+
+  function renderMap(map: { lon: number; lat: number }) {
+    if (!map || !map.lat || !map.lon) {
+      return (
+        <div className="h-[300px] w-full rounded-lg overflow-hidden flex items-center justify-center bg-zinc-800">
+          <p className="text-zinc-400">Map coordinates unavailable</p>
+        </div>
+      );
+    }
+
+    return (
+      <div className="h-[300px] w-full rounded-lg overflow-hidden">
+        <Map center={[map.lat, map.lon]} />
+      </div>
+    );
+  }
+
   return (
     <div className="grid gap-6">
-      {orders.map((order) => (
+      {processedOrders.map((order) => (
         <div
           key={order.id}
           className="bg-zinc-900 rounded-xl p-6 border border-zinc-800"
@@ -151,6 +222,7 @@ export default function OrderCard({
                               src={product.productMedias[0].fullUrl}
                               alt={product.name}
                               fill
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                               className="object-cover rounded-md"
                             />
                           </div>
@@ -172,7 +244,7 @@ export default function OrderCard({
                 })}
               </div>
 
-              <div className="grid grid-cols-2 gap-6 pt-4 border-t border-zinc-800">
+              <div className="grid grid-cols-3 gap-6 pt-4 border-t border-zinc-800">
                 <div>
                   <h4 className="text-sm font-medium text-zinc-400 mb-2">
                     Shipping Address
@@ -190,12 +262,22 @@ export default function OrderCard({
                     <p>{order.shippingAddress_Country}</p>
                   </div>
                 </div>
-
                 <div>
                   <h4 className="text-sm font-medium text-zinc-400 mb-2">
                     Payment Method
                   </h4>
                   <p className="text-white">{order.paymentMethod}</p>
+                </div>
+                <div className="col-span-1">
+                  {order.map && !isLoadingMap ? (
+                    renderMap(order.map)
+                  ) : (
+                    <div className="h-[300px] w-full rounded-lg overflow-hidden flex items-center justify-center bg-zinc-800">
+                      <p className="text-zinc-400">
+                        {isLoadingMap ? "Loading map..." : "Map unavailable"}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

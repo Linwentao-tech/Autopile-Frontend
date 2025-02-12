@@ -11,7 +11,7 @@ export default async function Payment(props: {
   const { searchParams } = props;
   const order = await getOrderById(searchParams.order);
 
-  if (order.data.paymentStatus !== "Pending") {
+  if (order?.data?.paymentStatus !== "Pending") {
     redirect("/");
   }
 

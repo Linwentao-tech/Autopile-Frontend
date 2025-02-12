@@ -108,7 +108,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       return token;
     },
     async session({ session, token }: { session: Session; token: JWT }) {
-      // Add the custom fields to the session
       if (session.user) {
         session.user.id = token.id;
         session.user.userName = token.userName;
@@ -120,7 +119,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
   session: {
     strategy: "jwt",
-    maxAge: 60,
+    maxAge: 60 * 30,
   },
   pages: {
     signIn: "/login",

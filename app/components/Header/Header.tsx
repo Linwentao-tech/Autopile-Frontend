@@ -78,6 +78,7 @@ function Header({
           alt="background"
           className="w-full h-full absolute z-0 filter brightness-200"
           fill
+          priority
         />
       )}
 

@@ -170,4 +170,8 @@ export interface Order {
   shippingAddress_State: string;
   shippingAddress_PostalCode: string;
   orderItems: OrderItem[];
+  map?: {
+    lon: number;
+    lat: number;
+  };
 }
