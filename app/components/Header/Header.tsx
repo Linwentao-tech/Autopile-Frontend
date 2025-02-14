@@ -36,7 +36,7 @@ function Header({
     <div className="relative ">
       {isHomePage && (
         <video
-          className="w-full h-full object-cover absolute z-0"
+          className="w-full  object-cover absolute z-0 h-screen md:h-full lg:h-full"
           autoPlay
           muted
           loop

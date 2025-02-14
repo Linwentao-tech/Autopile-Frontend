@@ -14,7 +14,7 @@ export default async function TopSeller({ products }: { products: Product[] }) {
 
   return (
     <div className="flex flex-col gap-4 mx-10 mb-10">
-      <h1 className="text-4xl  mx-10 my-5">Top Seller:</h1>
+      <h1 className="text-4xl   my-5">Top Seller:</h1>
       <ScrollArea className="w-full whitespace-nowrap rounded-md border ">
         <div className="flex flex-row space-x-10 mt-7 mx-10 w-full mb-10">
           {products.map((product) => (
