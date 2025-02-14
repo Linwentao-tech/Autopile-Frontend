@@ -1,6 +1,6 @@
 function PremiumHeader() {
   return (
-    <div className="px-12 pt-16 py-48">
+    <div className="px-12 pt-16 py-48 w-full">
       <h1 className="text-6xl mb-6">
         Join Our <br />
         Premium Club

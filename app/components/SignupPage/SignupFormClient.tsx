@@ -10,6 +10,7 @@ import FormInput from "../FormInputs/FormInput";
 import { signUp } from "@/app/actions/signUp";
 import { signInAction } from "@/app/actions/authActions";
 
+// Schema remains the same
 const signupSchema = z
   .object({
     userName: z
@@ -132,92 +133,106 @@ export default function SignupFormClient() {
   return (
     <>
       {error && (
-        <div className="mb-4 p-3 rounded bg-red-500/10 border border-red-500/20 text-red-500">
+        <div className="mb-4 p-2 sm:p-3 rounded text-sm sm:text-base bg-red-500/10 border border-red-500/20 text-red-500">
           {error}
         </div>
       )}
-      <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
-        <FormInput
-          {...register("userName")}
-          id="userName"
-          name="userName"
-          label="Username"
-          type="text"
-          error={errors.userName?.message}
-          disabled={isSubmitting}
-          required
-        />
+      <form
+        className="space-y-4 sm:space-y-5 md:space-y-6"
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <div className="grid gap-4 sm:gap-5 md:gap-6">
+          <FormInput
+            {...register("userName")}
+            id="userName"
+            name="userName"
+            label="Username"
+            type="text"
+            error={errors.userName?.message}
+            disabled={isSubmitting}
+            required
+            className="text-sm sm:text-base"
+          />
 
-        <FormInput
-          {...register("firstName")}
-          id="firstName"
-          name="firstName"
-          label="First Name"
-          type="text"
-          error={errors.firstName?.message}
-          disabled={isSubmitting}
-          required
-        />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6">
+            <FormInput
+              {...register("firstName")}
+              id="firstName"
+              name="firstName"
+              label="First Name"
+              type="text"
+              error={errors.firstName?.message}
+              disabled={isSubmitting}
+              required
+              className="text-sm sm:text-base"
+            />
 
-        <FormInput
-          {...register("lastName")}
-          id="lastName"
-          name="lastName"
-          label="Last Name"
-          type="text"
-          error={errors.lastName?.message}
-          disabled={isSubmitting}
-          required
-        />
+            <FormInput
+              {...register("lastName")}
+              id="lastName"
+              name="lastName"
+              label="Last Name"
+              type="text"
+              error={errors.lastName?.message}
+              disabled={isSubmitting}
+              required
+              className="text-sm sm:text-base"
+            />
+          </div>
 
-        <FormInput
-          {...register("email")}
-          id="email"
-          name="email"
-          label="Email"
-          type="email"
-          error={errors.email?.message}
-          disabled={isSubmitting}
-          required
-        />
+          <FormInput
+            {...register("email")}
+            id="email"
+            name="email"
+            label="Email"
+            type="email"
+            error={errors.email?.message}
+            disabled={isSubmitting}
+            required
+            className="text-sm sm:text-base"
+          />
 
-        <FormInput
-          {...register("phoneNumber")}
-          id="phoneNumber"
-          name="phoneNumber"
-          label="Phone Number"
-          type="tel"
-          error={errors.phoneNumber?.message}
-          disabled={isSubmitting}
-          required
-        />
+          <FormInput
+            {...register("phoneNumber")}
+            id="phoneNumber"
+            name="phoneNumber"
+            label="Phone Number"
+            type="tel"
+            error={errors.phoneNumber?.message}
+            disabled={isSubmitting}
+            required
+            className="text-sm sm:text-base"
+          />
 
-        <FormInput
-          {...register("password")}
-          id="password"
-          name="password"
-          label="Password"
-          type="password"
-          error={errors.password?.message}
-          disabled={isSubmitting}
-          required
-        />
+          <FormInput
+            {...register("password")}
+            id="password"
+            name="password"
+            label="Password"
+            type="password"
+            error={errors.password?.message}
+            disabled={isSubmitting}
+            required
+            className="text-sm sm:text-base"
+          />
 
-        <FormInput
-          {...register("confirmPassword")}
-          id="confirmPassword"
-          name="confirmPassword"
-          label="Confirm Password"
-          type="password"
-          error={errors.confirmPassword?.message}
-          disabled={isSubmitting}
-          required
-        />
+          <FormInput
+            {...register("confirmPassword")}
+            id="confirmPassword"
+            name="confirmPassword"
+            label="Confirm Password"
+            type="password"
+            error={errors.confirmPassword?.message}
+            disabled={isSubmitting}
+            required
+            className="text-sm sm:text-base"
+          />
+        </div>
 
         <button
           type="submit"
           disabled={isSubmitting || isRedirecting}
-          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="w-full flex justify-center py-2 sm:py-2.5 px-4 border border-transparent rounded-md shadow-sm text-sm sm:text-base font-medium text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
         >
           {isSubmitting
             ? "Signing up..."
@@ -227,9 +242,12 @@ export default function SignupFormClient() {
         </button>
       </form>
 
-      <p className="mt-4 text-center text-sm text-zinc-400">
+      <p className="mt-4 sm:mt-6 text-center text-sm sm:text-base text-zinc-400">
         Already have an account?{" "}
-        <Link href="/login" className="text-orange-500 hover:text-orange-400">
+        <Link
+          href="/login"
+          className="text-orange-500 hover:text-orange-400 transition-colors duration-200"
+        >
           Sign in
         </Link>
       </p>

@@ -24,17 +24,20 @@ const footerLinks = [
 
 function ContactSection() {
   return (
-    <section className="space-y-2 text-sm flex-1">
-      <h2 className="mb-7 text-xl">Contact Us</h2>
-      <Link href="mailto:info@autopile.com" className="opacity-45">
+    <section className="space-y-2 text-sm w-full md:flex-1 lg:text-left">
+      <h2 className="md-4 md:mb-7 text-lg md:text-xl">Contact Us</h2>
+      <Link
+        href="mailto:info@autopile.com"
+        className="block opacity-45 hover:opacity-75 transition-opacity"
+      >
         info@autopile.com
       </Link>
-      <address className="opacity-45 leading-relaxed">
+      <address className="opacity-45 leading-relaxed not-italic">
         <Link
-          href="https://www.google.com/maps/place/Autopile/@-41.0323272,145.8129355,19z/data=!3m1!4b1!4m6!3m5!1s0xaa7bec33fd6fdbbf:0x2d2c61e710085a10!8m2!3d-41.0323282!4d145.8135792!16s%2Fg%2F11vq2r3256?entry=ttu&g_ep=EgoyMDI0MDkyOS4wIKXMDSoASAFQAw%3D%3D"
+          href="https://www.google.com/maps/place/Autopile/@-41.0323272,145.8129355,19z/"
           target="_blank"
           rel="noopener noreferrer"
-          className="no-underline text-inherit"
+          className="no-underline text-inherit hover:opacity-75 transition-opacity"
         >
           10 Fairlands Dr,
           <br />
@@ -49,25 +52,28 @@ function ContactSection() {
 
 function FooterSection() {
   return (
-    <>
-      {footerLinks.map((section) => {
-        return (
-          <section key={section.title} className="space-y-2 text-sm flex-1">
-            <p className="mb-7 text-xl">{section.title}</p>
-            {section.links.map((link) => {
-              return (
-                <div key={link.href} className="mb-2">
-                  <Link href={link.href} className="cursor-pointer opacity-45">
+    <div className="flex flex-row items-center justify-center my-10 lg:w-full lg:justify-end">
+      <div className="inline-grid grid-cols-1 space-y-8 md:space-y-0 text-center md:grid-cols-3 md:gap-12 lg:grid-cols-4 lg:gap-16 lg:w-3/4">
+        {footerLinks.map((section) => (
+          <section key={section.title} className="text-sm lg:text-left">
+            <p className="mb-4 md:mb-7 text-lg md:text-xl">{section.title}</p>
+            <div className="space-y-2">
+              {section.links.map((link) => (
+                <div key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="cursor-pointer opacity-45 hover:opacity-75 transition-opacity"
+                  >
                     {link.text}
                   </Link>
                 </div>
-              );
-            })}
+              ))}
+            </div>
           </section>
-        );
-      })}
-      <ContactSection />
-    </>
+        ))}
+        <ContactSection />
+      </div>
+    </div>
   );
 }
 

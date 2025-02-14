@@ -33,7 +33,7 @@ function Header({
   const isCartPage: boolean = pathname === "/cart";
   const isDashboardPage: boolean = pathname === "/dashboard";
   return (
-    <div className="relative">
+    <div className="relative ">
       {isHomePage && (
         <video
           className="w-full h-full object-cover absolute z-0"
@@ -51,7 +51,7 @@ function Header({
         <Image
           src={PremiumPageBackGround}
           alt="background"
-          className="w-full h-full object-cover absolute z-0"
+          className="w-screen h-full object-cover absolute z-0"
           fill
         />
       )}
@@ -59,7 +59,7 @@ function Header({
         <Image
           src={aboutUsbackground}
           alt="background"
-          className="w-full h-full object-cover object-[center_21%]"
+          className="w-screen h-full object-cover object-[center_21%]"
           fill
           quality={100}
         />
@@ -76,14 +76,14 @@ function Header({
         <Image
           src={background}
           alt="background"
-          className="w-full h-full absolute z-0 filter brightness-200"
+          className="w-screen h-full absolute z-0 filter brightness-200"
           fill
           priority
         />
       )}
 
-      <div className="relative z-10">
-        <div className="p-12">{children}</div>
+      <div className="relative z-10 ">
+        <div className="p-7 md:p-9 lg:p-12">{children}</div>
         {isHomePage && advertisement}
         {isPremiumPage && premiumArea}
         {isAboutUsPage && aboutUs}

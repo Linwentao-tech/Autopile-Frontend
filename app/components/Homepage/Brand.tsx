@@ -6,7 +6,7 @@ type BrandProps = {
 
 function Brand({ children }: BrandProps) {
   return (
-    <section className="border border-gray-600 relative w-[700px] h-[260px]">
+    <section className="relative w-full aspect-square border border-gray-600">
       {children}
     </section>
   );

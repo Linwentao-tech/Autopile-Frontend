@@ -37,7 +37,7 @@ function SvgLogo(props: SvgLogoType) {
     return (
       <Link
         href="/"
-        className="flex items-start space-x-2 text-xl justify-center "
+        className="flex items-start space-x-2 text-xl justify-center"
         onClick={handleClick}
       >
         <svg
@@ -62,7 +62,7 @@ function SvgLogo(props: SvgLogoType) {
   if (type == "iconA") {
     const { text } = props;
     return (
-      <div className="flex items-center mt-16 gap-5">
+      <div className="flex items-center mt-16 gap-5 md:ml-4">
         <svg
           className="text-white fill-current "
           preserveAspectRatio="xMidYMid meet"

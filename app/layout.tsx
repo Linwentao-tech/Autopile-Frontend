@@ -8,7 +8,7 @@ import "@/app/globals.css";
 import PremiumHeader from "./components/Header/PremiumHeader";
 import AboutUsHeader from "./components/Header/AboutUsHeader";
 import { Raleway } from "next/font/google";
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
 
@@ -17,6 +17,11 @@ const josefin = Raleway({
   subsets: ["latin"],
   display: "swap",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   authors: [{ name: "Wentao Lin" }],
@@ -33,10 +38,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: ChildrenProps) {
   return (
     <html lang="en">
-      <body className={`bg-black text-white text-base ${josefin.className}`}>
+      <body
+        className={`bg-black text-white text-base ${josefin.className} w-full`}
+      >
         <SessionProvider>
           <Toaster />
-
           {/* make components as server components by passing as props */}
           <Header
             advertisement={<Advertisement />}

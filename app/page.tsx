@@ -7,7 +7,7 @@ import Brands from "./components/Homepage/Brands";
 
 async function Page() {
   return (
-    <div>
+    <div className="w-full">
       <Category />
       <LearnMore />
       <TopSellerContainer />

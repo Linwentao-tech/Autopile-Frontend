@@ -6,15 +6,17 @@ export const metadata = {
 };
 function page() {
   return (
-    <section className="px-12 pt-16">
-      <h1 className="text-4xl">We Understand Cars</h1>
-      <p className="w-1/5 mt-5 text-lg ">
-        We love cars and know them inside out. From design and performance to
-        the latest trends, we&apos;re here to share our expertise. Whether
-        you&apos;re an enthusiast or just curious, join us as we explore
-        everything that makes cars special.
-      </p>
-      <section className="grid-flow-col grid mt-48">
+    <section className="px-4 sm:px-12 pt-16">
+      <section className="w-full">
+        <h1 className="text-4xl">We Understand Cars</h1>
+        <p className="w-full mt-5 text-lg ">
+          We love cars and know them inside out. From design and performance to
+          the latest trends, we&apos;re here to share our expertise. Whether
+          you&apos;re an enthusiast or just curious, join us as we explore
+          everything that makes cars special.
+        </p>
+      </section>
+      <section className="grid-flow-col grid mt-48 ">
         <article className="border p-32">
           <h2 className="text-3xl font-bold mb-6">Dependability</h2>
           <p className="text-xl">

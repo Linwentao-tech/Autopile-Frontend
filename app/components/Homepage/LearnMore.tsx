@@ -17,9 +17,8 @@ function LearnMore() {
       />
       <div className="relative z-10 p-6 text-white">
         <div className="relative ml-5 ">
-          <h1 className="text-5xl mb-24 font-smibold pt-40 ">
-            The One-Stop Shop for <br />
-            Automotive Enthusiasts
+          <h1 className="lg:text-5xl mb-12 font-smibold lg:pt-40 pt-20 text-2xl w-full lg:w-1/3 md:w-1/2 md:text-3xl">
+            The One-Stop Shop for Automotive Enthusiasts
           </h1>
           <Table />
           <div className="mb-24 ">
