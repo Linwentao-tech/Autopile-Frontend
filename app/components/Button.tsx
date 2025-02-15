@@ -58,7 +58,7 @@ function Button({
     else if (type.subtype === "premium_area")
       return (
         <div>
-          <Link href="/premium-area" scroll={false}>
+          <Link href="/premium-area">
             <button
               className={`bg-orange-700 lg:px-7 md:px-5 px-3 py-4 text-black rounded-full hover:border-white transition-all hover:bg-transparent hover:text-white border-2 border-transparent duration-500 ${
                 disabled ? "opacity-50 cursor-not-allowed" : ""
