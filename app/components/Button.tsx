@@ -85,9 +85,9 @@ function Button({
       );
   if (type == "orange_submit_button")
     return (
-      <div>
+      <div className="flex justify-center items-center">
         <button
-          className={`bg-orange-700 px-12 py-2 ml-56 mt-4 text-black rounded-full hover:border-white transition-all hover:bg-transparent hover:text-white border-2 border-transparent duration-500 ${
+          className={`bg-orange-700 px-12 py-2  text-black rounded-full hover:border-white transition-all hover:bg-transparent hover:text-white border-2 border-transparent duration-500 ${
             disabled ? "opacity-50 cursor-not-allowed" : ""
           }`}
           disabled={disabled}

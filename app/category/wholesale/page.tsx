@@ -19,9 +19,9 @@ async function Page(props: PageProps) {
   const session = await auth();
   return (
     <div className="bg-red">
-      <h1 className="text-6xl mb-10">Wholesale</h1>
+      <h1 className="text-4xl sm:text-5xl lg:text-6xl mb-10">Wholesale</h1>
       <p className="mb-10">{filterProducts.length} products</p>
-      <div className="grid grid-cols-4 gap-9">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-9">
         <ProductCardContainer
           products={filterProducts}
           isLoggedIn={session?.user ? true : false}

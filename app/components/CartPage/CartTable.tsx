@@ -42,8 +42,6 @@ export default function CartTable({
   );
 
   const [isUpdating, setIsUpdating] = useState<{ [key: number]: boolean }>({});
-
-  // Keep track of the last updated quantities to compare
   const [lastUpdatedQuantities, setLastUpdatedQuantities] = useState<{
     [key: number]: number;
   }>(
@@ -59,7 +57,6 @@ export default function CartTable({
         const newQuantity = quantities[item.id];
         const lastQuantity = lastUpdatedQuantities[item.id];
 
-        // Only update if quantity has changed and not already updating
         if (newQuantity !== lastQuantity && !isUpdating[item.id]) {
           setIsUpdating((prev) => ({ ...prev, [item.id]: true }));
 
@@ -69,8 +66,6 @@ export default function CartTable({
               await new Promise((resolve) => setTimeout(resolve, 100));
               if (result?.success) {
                 showToast.success("Item removed from cart");
-
-                // Remove item from frontend state
                 setCartItems((prev) =>
                   prev.filter((cartItem) => cartItem.id !== item.id)
                 );
@@ -90,7 +85,6 @@ export default function CartTable({
 
               if (result?.success) {
                 showToast.success("Cart updated successfully");
-
                 setLastUpdatedQuantities((prev) => ({
                   ...prev,
                   [item.id]: newQuantity,
@@ -165,10 +159,12 @@ export default function CartTable({
   }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-12">
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold text-white">Shopping Cart</h1>
-        <div className="flex items-center gap-4">
+    <div className="max-w-7xl mx-auto px-4 py-8 sm:py-12">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4 sm:gap-0">
+        <h1 className="text-2xl sm:text-3xl font-bold text-white">
+          Shopping Cart
+        </h1>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <p className="text-zinc-400">
             {cartItems.length} {cartItems.length === 1 ? "item" : "items"}
           </p>
@@ -189,8 +185,8 @@ export default function CartTable({
                 await new Promise((resolve) => setTimeout(resolve, 500));
               }
             }}
-            className="px-4 py-2 text-sm text-white bg-red-600 hover:bg-red-700 
-                     rounded-lg transition-colors duration-300 flex items-center gap-2"
+            className="w-full sm:w-auto px-4 py-2 text-sm text-white bg-red-600 hover:bg-red-700 
+                     rounded-lg transition-colors duration-300 flex items-center justify-center sm:justify-start gap-2"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -222,17 +218,16 @@ export default function CartTable({
           return (
             <div
               key={item.id}
-              className={`flex items-center gap-6 p-6 hover:bg-zinc-800/50 transition-colors duration-300
+              className={`flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 p-4 sm:p-6 hover:bg-zinc-800/50 transition-colors duration-300
                       ${
                         index !== cartItems.length - 1
                           ? "border-b border-zinc-800"
                           : ""
                       }`}
             >
-              {/* Product Image */}
               <Link
                 href={`/product-page/${formatProductName(product.name)}`}
-                className="flex-shrink-0 w-24 h-24 overflow-hidden rounded-lg border border-zinc-700 hover:border-orange-500 transition-colors duration-300"
+                className="flex-shrink-0 w-full sm:w-24 h-48 sm:h-24 overflow-hidden rounded-lg border border-zinc-700 hover:border-orange-500 transition-colors duration-300"
               >
                 <Image
                   src={product.productMedias[0].fullUrl}
@@ -243,16 +238,15 @@ export default function CartTable({
                 />
               </Link>
 
-              {/* Product Details */}
-              <div className="flex-1 min-w-0 flex items-center justify-between gap-6">
-                <div>
+              <div className="flex-1 min-w-0 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 sm:gap-6 w-full">
+                <div className="w-full sm:w-auto">
                   <Link
                     href={`/product-page/${formatProductName(product.name)}`}
-                    className="text-lg font-medium text-white hover:text-orange-500 transition-colors duration-300"
+                    className="text-lg font-medium text-white hover:text-orange-500 transition-colors duration-300 block"
                   >
                     {product.name}
                   </Link>
-                  <div className="mt-1 flex items-center gap-6">
+                  <div className="mt-2 sm:mt-1 flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-6">
                     <div className="flex items-center gap-2">
                       <span className="text-sm text-zinc-400">Price:</span>
                       <span className="text-white">${price.toFixed(2)}</span>
@@ -265,7 +259,7 @@ export default function CartTable({
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4 w-full sm:w-auto">
                   <input
                     type="number"
                     value={quantities[item.id]}
@@ -280,7 +274,7 @@ export default function CartTable({
                     }}
                     min="0"
                     max="10"
-                    className="w-16 text-white px-2 py-1 bg-black border border-zinc-700 rounded-lg 
+                    className="w-full sm:w-16 text-white px-2 py-1 bg-black border border-zinc-700 rounded-lg 
                              hover:border-orange-500 focus:border-orange-500 focus:outline-none
                              transition-colors duration-300"
                   />
@@ -315,13 +309,13 @@ export default function CartTable({
         })}
       </div>
 
-      {/* Continue Button */}
       <div className="mt-8 flex justify-end">
         <Link
           href="/checkout"
-          className="px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-700 
+          className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-orange-600 to-orange-700 
                    hover:from-orange-700 hover:to-orange-800 text-white font-medium rounded-lg 
-                   transition-all duration-300 shadow-lg hover:shadow-orange-500/20"
+                   transition-all duration-300 shadow-lg hover:shadow-orange-500/20
+                   text-center sm:text-left"
         >
           Continue to Checkout
         </Link>

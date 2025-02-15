@@ -19,9 +19,13 @@ interface ProductSubmitComponentProps {
   media: media[];
   formattedComparePrice: string | null;
   formattedPrice: string;
+  isLoggedIn: boolean;
 }
 
-function ProductSubmitComponent({ id }: ProductSubmitComponentProps) {
+function ProductSubmitComponent({
+  id,
+  isLoggedIn,
+}: ProductSubmitComponentProps) {
   const [quantity, setQuantity] = useState(1);
 
   const [warning, setWarning] = useState<string>("");
@@ -64,7 +68,12 @@ function ProductSubmitComponent({ id }: ProductSubmitComponentProps) {
           </div>
         )}
       </div>
-      <Button type="Add_to_cart_productPage" productId={id} quantity={quantity}>
+      <Button
+        type="Add_to_cart_productPage"
+        productId={id}
+        quantity={quantity}
+        isLoggedIn={isLoggedIn}
+      >
         Add to cart
       </Button>
     </>

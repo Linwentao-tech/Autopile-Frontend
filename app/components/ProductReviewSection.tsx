@@ -7,6 +7,7 @@ import ReviewForm from "./ReviewForm";
 import type { Review } from "@/app/components/InterfaceType";
 import { deleteReview } from "@/app/actions/Review";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 function ReviewCard({
   id,
@@ -37,26 +38,28 @@ function ReviewCard({
   };
 
   return (
-    <div className="bg-black/20 backdrop-blur-sm rounded-xl p-8 hover:bg-black/30 transition-all duration-300">
-      <div className="flex flex-col gap-6">
+    <div className="bg-black/20 backdrop-blur-sm rounded-xl p-4 sm:p-6 lg:p-8 hover:bg-black/30 transition-all duration-300">
+      <div className="flex flex-col gap-4 sm:gap-5 lg:gap-6">
         <div className="flex justify-between items-start">
           <div>
-            <h3 className="font-semibold text-lg tracking-tight text-white">
+            <h3 className="font-semibold text-base sm:text-lg lg:text-xl tracking-tight text-white">
               {title}
             </h3>
             {subtitle && (
-              <p className="text-zinc-300 text-sm mt-0.5">{subtitle}</p>
+              <p className="text-zinc-300 text-sm sm:text-base lg:text-lg mt-0.5 sm:mt-1">
+                {subtitle}
+              </p>
             )}
           </div>
-          <div className="flex flex-col items-end gap-2">
-            <div className="flex items-center gap-2">
+          <div className="flex flex-col items-end gap-2 sm:gap-3">
+            <div className="flex items-center gap-1.5 sm:gap-2">
               <StarRating rating={rating} />
-              <span className="text-sm font-medium text-orange-500">
+              <span className="text-sm sm:text-base lg:text-lg font-medium text-orange-500">
                 {rating}/5
               </span>
             </div>
-            <div className="flex items-center gap-4">
-              <time className="text-sm text-zinc-400">
+            <div className="flex items-center gap-3 sm:gap-4">
+              <time className="text-xs sm:text-sm lg:text-base text-zinc-400">
                 {new Date(createdAt).toLocaleString("en-AU", {
                   timeZone: "Australia/Sydney",
                 })}
@@ -68,10 +71,12 @@ function ReviewCard({
                   className="text-red-500 hover:text-red-400 transition-colors disabled:opacity-50"
                 >
                   {isDeleting ? (
-                    <span className="text-sm">Deleting...</span>
+                    <span className="text-xs sm:text-sm lg:text-base">
+                      Deleting...
+                    </span>
                   ) : (
                     <svg
-                      className="w-5 h-5"
+                      className="w-4 h-4 sm:w-5 sm:h-5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -91,14 +96,16 @@ function ReviewCard({
         </div>
         {imageUrl && (
           <div className="relative w-full aspect-video max-h-[400px] rounded-lg overflow-hidden">
-            <img
+            <Image
               src={imageUrl}
               alt="Review image"
               className="object-contain w-full h-full bg-black/40"
             />
           </div>
         )}
-        <p className="text-zinc-300 leading-relaxed">{content}</p>
+        <p className="text-sm sm:text-base lg:text-lg text-zinc-300 leading-relaxed">
+          {content}
+        </p>
       </div>
     </div>
   );
@@ -119,7 +126,6 @@ export default function ProductReviewSection({
     ? reviews.some((review) => review.userId === userId)
     : false;
 
-  // Calculate average rating
   const averageRating =
     reviews.length > 0
       ? reviews.reduce((acc, review) => acc + (review.rating || 0), 0) /
@@ -127,12 +133,12 @@ export default function ProductReviewSection({
       : 0;
 
   return (
-    <div className="mt-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-      <div className="bg-zinc-900/50 backdrop-blur-sm rounded-2xl p-8">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-10">
-          <div className="flex flex-col items-center md:items-start gap-2">
-            <div className="flex items-center gap-3">
-              <span className="text-4xl font-bold">
+    <div className="w-full">
+      <div className="bg-zinc-900/50 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6 mb-6 sm:mb-8 lg:mb-10">
+          <div className="flex flex-col items-center sm:items-start gap-2">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <span className="text-3xl sm:text-4xl lg:text-5xl font-bold">
                 {averageRating.toFixed(1)}
               </span>
               <div className="flex flex-col">
@@ -146,18 +152,18 @@ export default function ProductReviewSection({
           {!isLoggedIn ? (
             <Link
               href="/login"
-              className="bg-gradient-to-r from-orange-500 to-orange-600 text-black px-6 py-3 rounded-xl font-medium hover:from-orange-600 hover:to-orange-700 transition-all duration-300"
+              className="w-full sm:w-auto text-center bg-gradient-to-r from-orange-500 to-orange-600 text-black px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-medium hover:from-orange-600 hover:to-orange-700 transition-all duration-300"
             >
               Login to Write a Review
             </Link>
           ) : hasUserReviewed ? (
-            <div className="text-zinc-400 text-sm">
+            <div className="text-zinc-400 text-sm sm:text-base">
               You have already reviewed this product
             </div>
           ) : (
             <button
               onClick={() => setShowReviewForm(!showReviewForm)}
-              className="bg-gradient-to-r from-orange-500 to-orange-600 text-black px-6 py-3 rounded-xl font-medium hover:from-orange-600 hover:to-orange-700 transition-all duration-300"
+              className="w-full sm:w-auto bg-gradient-to-r from-orange-500 to-orange-600 text-black px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl font-medium hover:from-orange-600 hover:to-orange-700 transition-all duration-300"
             >
               {showReviewForm ? "Cancel Review" : "Write a Review"}
             </button>
@@ -172,7 +178,7 @@ export default function ProductReviewSection({
           />
         )}
 
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {reviews.map((review) => (
             <ReviewCard key={review.id} {...review} currentUserId={userId} />
           ))}

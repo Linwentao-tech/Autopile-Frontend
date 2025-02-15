@@ -25,8 +25,8 @@ export default async function Payment(props: {
 
   return (
     <div className="container mx-auto px-4 py-8 grid md:grid-cols-2 gap-8">
-      <PaymentForm clientSecret={clientSecret} orderId={order.data.id} />
       <ProductForm orderNumber={searchParams.order} />
+      <PaymentForm clientSecret={clientSecret} orderId={order.data.id} />
     </div>
   );
 }

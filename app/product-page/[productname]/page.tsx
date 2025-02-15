@@ -84,8 +84,8 @@ async function ProductPage(props: {
   const reviews = await getReviews(id);
 
   return (
-    <div className="container mx-auto px-4">
-      <nav className="text-sm mb-4">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <nav className="text-sm mb-4 sm:mb-6 lg:mb-8">
         <Link href="/" className="hover:underline">
           Home
         </Link>
@@ -105,34 +105,37 @@ async function ProductPage(props: {
           {name}
         </span>
       </nav>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div className="flex flex-col space-y-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
+        <div className="flex flex-col space-y-6 sm:space-y-8">
           <DynamicProductPageBlur src={productMedias[0].fullUrl} name={name} />
-          <p className="text-base mx-16">{productDescription}</p>
+          <p className="text-base sm:text-lg text-zinc-300 px-4 sm:px-6 lg:px-8">
+            {productDescription}
+          </p>
         </div>
-        <div className="flex flex-col justify-start space-y-5 w-1/2">
+        <div className="flex flex-col space-y-5 w-full lg:w-4/5 px-4 sm:px-6">
           <h1
             className={`${
               name.toLowerCase() === "gps" ? "uppercase" : ""
-            } text-4xl mb-4`}
+            } text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold`}
           >
             {name}
           </h1>
-          <span className="text-2xl">
+          <span className="text-xl sm:text-2xl lg:text-3xl text-orange-500">
             ${comparePrice ? comparePrice : price}
           </span>
-          <span className="text-sm">Quantity</span>
+          <span className="text-sm sm:text-base text-zinc-400">Quantity</span>
           <ProductSubmitComponent
             id={id}
             name={name}
             media={productMedias}
             formattedComparePrice={comparePrice}
             formattedPrice={price}
+            isLoggedIn={session?.user?.email ? true : false}
           />
           <ProductSectionContainer productInfo={productInfo} />
         </div>
       </div>
-      <section className="mx-16 mt-16">
+      <section className="mt-12 sm:mt-16 lg:mt-20">
         <ProductReviewSection
           userId={session?.user?.id}
           productId={id}

@@ -16,7 +16,6 @@ const footerLinks = [
     title: "The Company",
     links: [
       { href: "/about-us", text: "About Us" },
-      { href: "/reviews", text: "Reviews" },
       { href: "/premium-area", text: "Premium Area" },
     ],
   },

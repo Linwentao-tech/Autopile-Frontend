@@ -76,7 +76,7 @@ function Form() {
   };
 
   return (
-    <div className="bg-black text-white p-6 max-w-md">
+    <div className="bg-black text-white p-6 w-full md:w-1/2  mx-auto">
       <style jsx>{`
         /* Override autofill styles */
         input:-webkit-autofill,

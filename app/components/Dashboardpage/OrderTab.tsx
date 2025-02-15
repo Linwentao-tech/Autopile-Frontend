@@ -46,7 +46,9 @@ export default function OrderTab() {
   if (isLoading) {
     return (
       <div className="min-h-[400px] flex items-center justify-center">
-        <div className="text-white">Loading orders...</div>
+        <div className="text-white text-base sm:text-lg animate-pulse">
+          Loading orders...
+        </div>
       </div>
     );
   }
@@ -54,16 +56,20 @@ export default function OrderTab() {
   if (orders.length === 0) {
     return (
       <div className="min-h-[400px] flex items-center justify-center">
-        <div className="text-center">
-          <h3 className="text-xl font-medium text-white mb-2">No Orders Yet</h3>
-          <p className="text-zinc-400">You have not placed any orders yet.</p>
+        <div className="text-center space-y-2 sm:space-y-3">
+          <h3 className="text-lg sm:text-xl lg:text-2xl font-medium text-white">
+            No Orders Yet
+          </h3>
+          <p className="text-sm sm:text-base text-zinc-400">
+            You have not placed any orders yet.
+          </p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 sm:space-y-8 lg:space-y-10">
       <OrderSummary orders={orders} />
       <OrderCard
         orders={orders}

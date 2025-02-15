@@ -76,7 +76,7 @@ function RangeSlider({ onValueChange }: RangeSliderProps) {
   );
 
   return (
-    <Box sx={{ width: 220 }}>
+    <Box sx={{ width: "100%" }}>
       <WhiteSlider
         getAriaLabel={() => "Price range"}
         value={value}
@@ -87,7 +87,7 @@ function RangeSlider({ onValueChange }: RangeSliderProps) {
         min={0}
         max={130}
       />
-      <div className="flex justify-between">
+      <div className="flex justify-between text-sm sm:text-base">
         <span>${displayMin}</span>
         <span>${displayMax}</span>
       </div>
