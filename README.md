@@ -25,6 +25,7 @@ AutoPile is a modern e-commerce platform specializing in premium auto parts and 
   - Shadcn UI
   - React Hook Form
   - Zod Validation
+  - Redux
 - **Backend Integration**:
   - RESTful API
   - JWT Authentication
