@@ -84,7 +84,7 @@ export default function CheckoutForm() {
           getShoppingCartItems(),
           getProducts(),
         ]);
-        console.log(cartData);
+
         setCartItems(cartData);
         setProducts(productsData);
       } catch {

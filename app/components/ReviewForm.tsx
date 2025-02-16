@@ -7,6 +7,7 @@ import { createReview } from "@/app/actions/Review";
 import { StarRating } from "@/app/components/StarRating";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_IMAGE_TYPES = ["image/jpeg", "image/jpg", "image/png"];
@@ -230,7 +231,7 @@ export default function ReviewForm({
           )}
           {previewUrl && (
             <div className="mt-4 relative w-full aspect-video max-h-[400px] rounded-lg overflow-hidden">
-              <img
+              <Image
                 src={previewUrl}
                 alt="Preview"
                 className="object-contain w-full h-full bg-black/40"

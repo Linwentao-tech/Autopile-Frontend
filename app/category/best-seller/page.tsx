@@ -17,7 +17,6 @@ async function page(props: PageProps) {
     products: products,
   });
   const session = await auth();
-  console.log(session);
 
   return (
     <div>

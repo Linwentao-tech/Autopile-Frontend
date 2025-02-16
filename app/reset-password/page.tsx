@@ -11,12 +11,11 @@ export default async function ResetPasswordPage({
 }: {
   searchParams: { token: string; email: string };
 }) {
-  console.log(searchParams);
   const response = await validatePasswordResetToken(
     searchParams.email,
     searchParams.token
   );
-  console.log(response);
+
   return (
     <PasswordResetForm
       passwordResetToken={searchParams.token}

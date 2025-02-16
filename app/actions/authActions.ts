@@ -36,7 +36,6 @@ export async function signInAction({
 }
 
 export async function signOutAction() {
-  console.log("clearing cookies");
   await revokeRefreshToken();
   const cookieStore = cookies();
   const authToken = cookieStore.get("AuthToken")?.value;

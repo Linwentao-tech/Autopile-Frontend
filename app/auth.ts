@@ -55,7 +55,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           cache: "no-store",
         });
         const setCookieHeader = res.headers.get("set-cookie");
-        console.log(setCookieHeader);
+
         if (setCookieHeader) {
           const tokenMatch = setCookieHeader.match(/AuthToken=([^;]+)/);
           const refreshTokenMatch =
@@ -89,7 +89,6 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const user = await res.json();
 
         if (!user.message) {
-          console.log("invalid credentials");
           return null;
         }
         return user.data;

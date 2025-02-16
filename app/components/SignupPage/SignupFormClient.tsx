@@ -109,7 +109,7 @@ export default function SignupFormClient() {
         password: data.password,
       });
       const result = await response;
-      console.log("result", result);
+
       if (!result.success) {
         setError(result.message || "Signup failed");
       } else {

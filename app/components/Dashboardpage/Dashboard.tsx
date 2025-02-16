@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 
 async function Dashboard() {
   const userInfo = await getCurrentUser();
-  console.log("userInfo", userInfo);
+
   if (!userInfo) {
     redirect("/");
   }

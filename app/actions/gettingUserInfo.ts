@@ -33,7 +33,6 @@ export async function getCurrentUser(): Promise<User | null> {
     );
 
     if (!response.ok) {
-      console.log("Response not ok:", await response.text());
       return null;
     }
 

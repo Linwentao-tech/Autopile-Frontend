@@ -84,8 +84,6 @@ export async function deleteReview(reviewId: string) {
     throw new Error("Authentication required");
   }
 
-  console.log(reviewId);
-
   const response = await fetch(`${process.env.API_URL}/Review/${reviewId}`, {
     method: "DELETE",
     headers: {

@@ -6,7 +6,7 @@ async function LoginCart() {
 
   const handleAction = async () => {
     "use server";
-    console.log(session);
+
     if (session?.user) {
       await signOutAction();
     } else {

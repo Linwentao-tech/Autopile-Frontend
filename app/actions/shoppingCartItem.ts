@@ -3,7 +3,6 @@
 import { cookies } from "next/headers";
 
 export async function addShoppingCartItem(productId: string, quantity: number) {
-  console.log(productId, quantity);
   const cookieStore = cookies();
   const authToken = cookieStore.get("AuthToken")?.value;
   try {
@@ -22,12 +21,11 @@ export async function addShoppingCartItem(productId: string, quantity: number) {
     );
 
     const data = await response.json();
-    console.log(data);
+
     if (data.success) {
       return { success: true, data: data.data };
     }
-  } catch (error) {
-    console.log(error);
+  } catch {
     throw new Error("Failed to add shopping cart item");
   }
 }
@@ -49,8 +47,7 @@ export async function getShoppingCartItems() {
     const data = await response.json();
 
     return data.data;
-  } catch (error) {
-    console.log(error);
+  } catch {
     throw new Error("Failed to get shopping cart items");
   }
 }
@@ -74,10 +71,9 @@ export async function updateShoppingCartItem(
       }
     );
     const data = await response.json();
-    console.log(data);
+
     return data;
-  } catch (error) {
-    console.log(error);
+  } catch {
     throw new Error("Failed to update shopping cart item");
   }
 }
@@ -98,8 +94,7 @@ export async function deleteShoppingCartItem(shoppingCartItemId: string) {
     if (response.ok) {
       return { success: true };
     }
-  } catch (error) {
-    console.log(error);
+  } catch {
     throw new Error("Failed to delete shopping cart item");
   }
 }
@@ -112,12 +107,11 @@ export async function clearShoppingCart() {
       method: "DELETE",
       headers: { Cookie: `AuthToken=${authToken}` },
     });
-    console.log(response);
+
     if (response.ok) {
       return { success: true };
     }
-  } catch (error) {
-    console.log(error);
+  } catch {
     throw new Error("Failed to clear shopping cart");
   }
 }
