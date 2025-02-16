@@ -7,7 +7,6 @@ AutoPile is a modern e-commerce platform specializing in premium auto parts and 
 ⚙️ **Backend Repository**: [AutoPile Backend](https://github.com/Linwentao-tech/AutoPile)
 
 ## ✨ Features
-
 - 🛍️ Comprehensive product catalog with detailed descriptions
 - 🔍 Advanced search and filtering capabilities
 - 🛒 Seamless shopping cart experience
@@ -19,7 +18,6 @@ AutoPile is a modern e-commerce platform specializing in premium auto parts and 
 - 📊 Interactive dashboard for order management
 
 ## 🛠️ Tech Stack
-
 - **Frontend**:
   - Next.js 14 (App Router)
   - TypeScript
@@ -27,7 +25,6 @@ AutoPile is a modern e-commerce platform specializing in premium auto parts and 
   - Shadcn UI
   - React Hook Form
   - Zod Validation
-
 - **Backend Integration**:
   - RESTful API
   - JWT Authentication
@@ -36,6 +33,14 @@ AutoPile is a modern e-commerce platform specializing in premium auto parts and 
 
 ## 🚀 Getting Started
 
+### Demo Account
+You can explore the platform using our test account:
+- **Email**: johndoe@example.com
+- **Password**: Test@1234
+
+This account has been pre-configured with sample data to showcase all features of the platform.
+
+### Local Development
 1. Clone the repository:
 ```bash
 git clone [your-repository-url]
@@ -60,7 +65,6 @@ npm run dev
 Open [http://localhost:3000](http://localhost:3000) to view the application.
 
 ## 📚 Project Structure
-
 ```
 autopile/
 ├── app/               # Next.js app directory
@@ -73,6 +77,4 @@ autopile/
 ```
 
 ## 🌐 Deployment
-
 The application is deployed on Vercel with automatic deployments from the main branch. Visit [https://www.autopile.store](https://www.autopile.store) to see it in action.
-
