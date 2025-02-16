@@ -11,6 +11,7 @@ import { Raleway } from "next/font/google";
 import { Metadata, Viewport } from "next";
 import { SessionProvider } from "next-auth/react";
 import { Toaster } from "react-hot-toast";
+import StoreProvider from "./StoreProvider";
 
 const josefin = Raleway({
   weight: ["400"],
@@ -41,20 +42,22 @@ export default function RootLayout({ children }: ChildrenProps) {
       <body
         className={`bg-black text-white text-base ${josefin.className} w-full`}
       >
-        <SessionProvider>
-          <Toaster />
-          {/* make components as server components by passing as props */}
-          <Header
-            advertisement={<Advertisement />}
-            premiumArea={<PremiumHeader />}
-            aboutUs={<AboutUsHeader />}
-          >
-            <Info />
-            <NavigationSection />
-          </Header>
-          {children}
-          <Footer />
-        </SessionProvider>
+        <StoreProvider>
+          <SessionProvider>
+            <Toaster />
+            {/* make components as server components by passing as props */}
+            <Header
+              advertisement={<Advertisement />}
+              premiumArea={<PremiumHeader />}
+              aboutUs={<AboutUsHeader />}
+            >
+              <Info />
+              <NavigationSection />
+            </Header>
+            {children}
+            <Footer />
+          </SessionProvider>
+        </StoreProvider>
       </body>
     </html>
   );

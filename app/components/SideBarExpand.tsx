@@ -5,7 +5,9 @@ import Box from "@mui/material/Box";
 import Slider from "@mui/material/Slider";
 import { styled } from "@mui/material/styles";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
-
+import { useAppDispatch, useAppSelector } from "@/app/_lib/hooks";
+import { setPriceRange } from "@/app/_lib/filterSlice";
+import { RootState } from "@/app/_lib/store";
 function valuetext(value: number) {
   return value.toString();
 }
@@ -23,21 +25,19 @@ const WhiteSlider = styled(Slider)({
   },
 });
 
-interface RangeSliderProps {
-  onValueChange?: (value: number[]) => void;
-}
-
-function RangeSlider({ onValueChange }: RangeSliderProps) {
-  const [value, setValue] = useState<number[]>([0, 130]);
-  const [displayMin, setDisplayMin] = useState(0);
-  const [displayMax, setDisplayMax] = useState(130);
+function RangeSlider() {
+  const dispatch = useAppDispatch();
+  const { minPrice, maxPrice } = useAppSelector(
+    (state: RootState) => state.filter
+  );
+  const [value, setValue] = useState<number[]>([minPrice, maxPrice]);
 
   const searchParams = useSearchParams();
   const pathName = usePathname();
   const router = useRouter();
 
   useEffect(() => {
-    if (displayMin === 0 && displayMax === 130) {
+    if (minPrice === 0 && maxPrice === 130) {
       const params = new URLSearchParams(searchParams);
       params.delete("minPrice");
       params.delete("maxPrice");
@@ -47,32 +47,32 @@ function RangeSlider({ onValueChange }: RangeSliderProps) {
       router.replace(newPath, { scroll: false });
     } else {
       const params = new URLSearchParams(searchParams);
-      params.set("minPrice", displayMin.toString());
-      params.set("maxPrice", displayMax.toString());
+      params.set("minPrice", minPrice.toString());
+      params.set("maxPrice", maxPrice.toString());
       router.replace(`${pathName}?${params.toString()}`, { scroll: false });
     }
-  }, [displayMin, displayMax, pathName, router, searchParams]);
+  }, [minPrice, maxPrice, pathName, router, searchParams]);
 
   const handleChange = useCallback(
     (event: Event, newValue: number | number[]) => {
       const newValueArray = newValue as number[];
       setValue(newValueArray);
-      if (onValueChange) {
-        onValueChange(newValueArray);
-      }
     },
-    [onValueChange]
+    []
   );
 
   const handleChangeCommitted = useCallback(
     (event: React.SyntheticEvent | Event, newValue: number | number[]) => {
       if (Array.isArray(newValue)) {
-        const [newMinPrice, newMaxPrice] = newValue;
-        setDisplayMin(newMinPrice);
-        setDisplayMax(newMaxPrice);
+        dispatch(
+          setPriceRange({
+            minPrice: newValue[0],
+            maxPrice: newValue[1],
+          })
+        );
       }
     },
-    []
+    [dispatch]
   );
 
   return (
@@ -88,14 +88,11 @@ function RangeSlider({ onValueChange }: RangeSliderProps) {
         max={130}
       />
       <div className="flex justify-between text-sm sm:text-base">
-        <span>${displayMin}</span>
-        <span>${displayMax}</span>
+        <span>${minPrice}</span>
+        <span>${maxPrice}</span>
       </div>
     </Box>
   );
 }
 
-const MemoizedRangeSlider = memo(RangeSlider);
-MemoizedRangeSlider.displayName = "RangeSlider";
-
-export default MemoizedRangeSlider;
+export default memo(RangeSlider);
