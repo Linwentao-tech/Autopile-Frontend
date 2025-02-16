@@ -3,7 +3,7 @@
 ## 🌟 Overview
 AutoPile is a modern e-commerce platform specializing in premium auto parts and accessories. Built with Next.js 14, TypeScript, and Tailwind CSS, it offers a seamless shopping experience for automotive enthusiasts.
 
-🔗 **Live Demo**: [https://www.autopile.store](https://www.autopile.store)  
+🔗 **Address**: [https://www.autopile.store](https://www.autopile.store)  
 ⚙️ **Backend Repository**: [AutoPile Backend](https://github.com/Linwentao-tech/AutoPile)
 
 ## ✨ Features
@@ -77,5 +77,3 @@ autopile/
 └── styles/           # Global styles
 ```
 
-## 🌐 Deployment
-The application is deployed on Vercel with automatic deployments from the main branch. Visit [https://www.autopile.store](https://www.autopile.store) to see it in action.
