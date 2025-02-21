@@ -26,24 +26,46 @@ function ProductSubmitComponent({
   id,
   isLoggedIn,
 }: ProductSubmitComponentProps) {
+  const [inputValue, setInputValue] = useState("1");
   const [quantity, setQuantity] = useState(1);
-
   const [warning, setWarning] = useState<string>("");
 
   const handleQuantityChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value, 10);
+    const newValue = e.target.value;
+    setInputValue(newValue);
+
+    if (newValue === "") {
+      setWarning("");
+      return;
+    }
+
+    const value = parseInt(newValue, 10);
 
     if (isNaN(value)) {
-      setQuantity(0);
       setWarning("Please enter a valid number.");
     } else if (value < 1) {
-      setQuantity(1);
       setWarning("Minimum quantity is 1.");
     } else if (value > 10) {
-      setQuantity(10);
       setWarning("Maximum quantity is 10.");
     } else {
       setQuantity(value);
+      setWarning("");
+    }
+  };
+
+  const handleBlur = () => {
+    const value = parseInt(inputValue, 10);
+    if (inputValue === "" || isNaN(value) || value < 1) {
+      setQuantity(1);
+      setInputValue("1");
+      setWarning("Minimum quantity is 1.");
+    } else if (value > 10) {
+      setQuantity(10);
+      setInputValue("10");
+      setWarning("Maximum quantity is 10.");
+    } else {
+      setQuantity(value);
+      setInputValue(value.toString());
       setWarning("");
     }
   };
@@ -52,8 +74,9 @@ function ProductSubmitComponent({
     <>
       <div className="space-y-4">
         <input
-          value={quantity}
+          value={inputValue}
           onChange={handleQuantityChange}
+          onBlur={handleBlur}
           type="number"
           className="w-20 text-white px-4 py-2 bg-black border-2 border-white rounded-lg hover:border-orange-500 focus:outline-none focus:border-orange-500 transition-colors duration-300"
           max="10"
