@@ -38,7 +38,7 @@ jobs:
           AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           API_URL: ${{ secrets.API_URL }}
-          NODE_ENV: development 
+      
         
 
       - name: Cache Next.js build
