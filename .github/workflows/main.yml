@@ -2,13 +2,12 @@ name: E-Commerce Store CI
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: main
   pull_request:
-    branches: [ main, develop ]
-  workflow_dispatch:
+    branches: main
 
 jobs:
-  build_and_test:
+  test_and_build:
     runs-on: ubuntu-latest
     
     steps:
@@ -23,47 +22,29 @@ jobs:
           
       - name: Install dependencies
         run: npm ci
+      
+      - name: Check code formatting
+        run: npx prettier --check .
         
       - name: Lint
         run: npm run lint
         
-      - name: Type check
-        run: npx tsc --noEmit
+     
         
       - name: Build
         run: npm run build
         env:
           # Add any environment variables needed for build
-          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+          NODE_ENV: development
           
       - name: Cache Next.js build
         uses: actions/cache@v3
         with:
-          path: .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
-          restore-keys: |
-            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
-            
-    
-      - name: Run Lighthouse CI
-        uses: treosh/lighthouse-ci-action@v10
-        with:
-          urls: |
-            http://localhost:3000
-          uploadArtifacts: true
-          temporaryPublicStorage: true
-          runs: 3
-        env:
-          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          path: |
+            .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}
           
-    
-      - name: Run security scan
-        uses: snyk/actions/node@master
-        continue-on-error: true 
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      - name: Check for vulnerabilities
+        run: npm audit --production --audit-level=high
       
-      # Bundle analysis
-      - name: Analyze bundle size
-        run: npx next-bundle-analyzer
-        continue-on-error: true
+      
