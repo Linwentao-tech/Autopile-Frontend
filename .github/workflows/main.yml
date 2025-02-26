@@ -1,0 +1,69 @@
+name: E-Commerce Store CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: npm ci
+        
+      - name: Lint
+        run: npm run lint
+        
+      - name: Type check
+        run: npx tsc --noEmit
+        
+      - name: Build
+        run: npm run build
+        env:
+          # Add any environment variables needed for build
+          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+          
+      - name: Cache Next.js build
+        uses: actions/cache@v3
+        with:
+          path: .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
+            
+    
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v10
+        with:
+          urls: |
+            http://localhost:3000
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+          runs: 3
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+          
+    
+      - name: Run security scan
+        uses: snyk/actions/node@master
+        continue-on-error: true 
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      
+      # Bundle analysis
+      - name: Analyze bundle size
+        run: npx next-bundle-analyzer
+        continue-on-error: true
