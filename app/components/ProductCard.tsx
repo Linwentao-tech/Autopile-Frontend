@@ -3,6 +3,7 @@ import Button from "./Button";
 import DynamicProductsBlur from "./DynamicProductsBlur";
 import Link from "next/link";
 import convertRibbon from "../_lib/utils/ribbonConverter";
+import { memo } from "react";
 
 function formatProductName(productName: string) {
   return productName
@@ -65,4 +66,5 @@ function ProductCard({
   );
 }
 
-export default ProductCard;
+// Memoize the component to prevent unnecessary re-renders
+export default memo(ProductCard);

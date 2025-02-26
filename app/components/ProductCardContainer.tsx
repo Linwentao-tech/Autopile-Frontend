@@ -4,6 +4,7 @@ import {
   type ProductCardProps,
 } from "./InterfaceType";
 import ProductCard from "./ProductCard";
+import { memo } from "react";
 
 function ProductCardContainer({
   products,
@@ -28,4 +29,5 @@ function ProductCardContainer({
   );
 }
 
-export default ProductCardContainer;
+// Memoize the component to prevent unnecessary re-renders
+export default memo(ProductCardContainer);

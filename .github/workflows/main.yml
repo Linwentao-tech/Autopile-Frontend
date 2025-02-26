@@ -1,4 +1,4 @@
-name: E-Commerce Store CI
+name: E-Commerce Store CI/CD
 
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: npm ci  
+        run: npm ci
 
       - name: Lint
         run: npm run lint
@@ -38,8 +38,6 @@ jobs:
           AUTH_SECRET: ${{ secrets.AUTH_SECRET }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           API_URL: ${{ secrets.API_URL }}
-      
-        
 
       - name: Cache Next.js build
         uses: actions/cache@v3
@@ -50,7 +48,14 @@ jobs:
 
       - name: Check for vulnerabilities
         run: npm audit --production --audit-level=high
-        # Make this step continue even if it finds vulnerabilities
         continue-on-error: true
 
-     
+      # Deploy to Vercel (only on push to main, not on pull requests)
+      - name: Deploy to Vercel
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: "--prod"

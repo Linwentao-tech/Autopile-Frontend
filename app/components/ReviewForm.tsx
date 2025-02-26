@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { createReview } from "@/app/actions/Review";
 import { StarRating } from "@/app/components/StarRating";
-import { useState } from "react";
+import { useState, memo, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 
@@ -47,21 +47,30 @@ const reviewSchema = z.object({
 
 type ReviewFormData = z.infer<typeof reviewSchema>;
 
-function SuccessMessage({ message }: { message: string }) {
+// Memoize child components to prevent unnecessary re-renders
+const SuccessMessage = memo(function SuccessMessage({
+  message,
+}: {
+  message: string;
+}) {
   return (
     <div className="bg-green-500/20 border border-green-500/50 rounded-xl p-4 mb-6">
       <p className="text-green-400">{message}</p>
     </div>
   );
-}
+});
 
-function ErrorMessage({ message }: { message: string }) {
+const ErrorMessage = memo(function ErrorMessage({
+  message,
+}: {
+  message: string;
+}) {
   return (
     <div className="bg-red-500/20 border border-red-500/50 rounded-xl p-4 mb-6">
       <p className="text-red-400">{message}</p>
     </div>
   );
-}
+});
 
 export default function ReviewForm({
   onClose,
@@ -92,44 +101,58 @@ export default function ReviewForm({
 
   const currentRating = watch("rating");
 
-  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const url = URL.createObjectURL(file);
-      setPreviewUrl(url);
-    } else {
-      setPreviewUrl(null);
-    }
-  };
-
-  const onSubmit = async (formData: ReviewFormData) => {
-    try {
-      setSuccessMsg(null);
-      setErrorMsg(null);
-
-      const data = new FormData();
-      data.append("productId", productId);
-      data.append("userId", userId);
-      data.append("rating", formData.rating.toString());
-      data.append("title", formData.title);
-      if (formData.subtitle) {
-        data.append("subtitle", formData.subtitle);
+  // Memoize the handleImageChange function to prevent unnecessary re-creation
+  const handleImageChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (file) {
+        const url = URL.createObjectURL(file);
+        setPreviewUrl(url);
+      } else {
+        setPreviewUrl(null);
       }
-      data.append("content", formData.content);
-      if (formData.image?.[0]) {
-        data.append("image", formData.image[0]);
+    },
+    []
+  );
+
+  // Memoize the onSubmit function to prevent unnecessary re-creation
+  const onSubmit = useCallback(
+    async (formData: ReviewFormData) => {
+      try {
+        setSuccessMsg(null);
+        setErrorMsg(null);
+
+        const data = new FormData();
+        data.append("productId", productId);
+        data.append("userId", userId);
+        data.append("rating", formData.rating.toString());
+        data.append("title", formData.title);
+        if (formData.subtitle) {
+          data.append("subtitle", formData.subtitle);
+        }
+        data.append("content", formData.content);
+        if (formData.image?.[0]) {
+          data.append("image", formData.image[0]);
+        }
+        await createReview(data);
+        setSuccessMsg("Your review has been submitted successfully!");
+        setTimeout(() => {
+          onClose();
+        }, 2000);
+        router.refresh();
+      } catch (error) {
+        console.error("Failed to submit review:", error);
+        setErrorMsg("Failed to submit review. Please try again.");
       }
-      await createReview(data);
-      setSuccessMsg("Your review has been submitted successfully!");
-      setTimeout(() => {
-        onClose();
-      }, 2000);
-      router.refresh();
-    } catch (error) {
-      console.error("Failed to submit review:", error);
-      setErrorMsg("Failed to submit review. Please try again.");
-    }
-  };
+    },
+    [productId, userId, onClose, router]
+  );
+
+  // Memoize the clearPreview function to prevent unnecessary re-creation
+  const clearPreview = useCallback(() => {
+    setPreviewUrl(null);
+    setValue("image", null);
+  }, [setValue]);
 
   return (
     <div className="bg-black/20 backdrop-blur-sm rounded-xl p-8 mb-8">
@@ -238,10 +261,7 @@ export default function ReviewForm({
               />
               <button
                 type="button"
-                onClick={() => {
-                  setPreviewUrl(null);
-                  setValue("image", null);
-                }}
+                onClick={clearPreview}
                 className="absolute top-2 right-2 bg-black/60 text-white p-2 rounded-full hover:bg-black/80"
               >
                 <svg

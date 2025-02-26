@@ -50,18 +50,27 @@ function Header({
       {isPremiumPage && (
         <Image
           src={PremiumPageBackGround}
-          alt="background"
+          alt="Premium area background"
           className="w-screen h-full object-cover absolute z-0"
           fill
+          loading="lazy"
+          sizes="100vw"
+          quality={85}
+          placeholder="blur"
+          blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMyMjIyMjIiLz48L3N2Zz4="
         />
       )}
       {isAboutUsPage && (
         <Image
           src={aboutUsbackground}
-          alt="background"
+          alt="About us background"
           className="w-screen h-full object-cover object-[center_21%]"
           fill
-          quality={100}
+          loading="eager"
+          sizes="100vw"
+          quality={90}
+          placeholder="blur"
+          blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMyMjIyMjIiLz48L3N2Zz4="
         />
       )}
       {(isWholesalePage ||
@@ -75,10 +84,12 @@ function Header({
         isDashboardPage) && (
         <Image
           src={background}
-          alt="background"
+          alt="Category background"
           className="w-screen h-full absolute z-0 filter brightness-200"
           fill
           priority
+          sizes="100vw"
+          quality={75}
         />
       )}
 
